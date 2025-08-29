@@ -1,0 +1,1529 @@
+/* --- Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+
+/* --- RESET Y CONFIGURACIÓN BASE --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    zoom: reset;
+    width: 100%;
+    background: #000;
+    /* Fondo negro puro, sin azul */
+    overflow-x: hidden;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+/* --- SOLUCIÓN: FONDO ESTELAR DENSO Y PERSISTENTE --- */
+.starfield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.starfield div {
+    position: absolute;
+    border-radius: 50%;
+    background: transparent;
+}
+
+/* Capa de estrellas lejanas y diminutas (muchas más) */
+.stars-layer1 {
+    width: 1px;
+    height: 1px;
+    box-shadow: 537px 1389px #555, 1969px 192px #555, 1099px 1038px #555, 1190px 1043px #555, 1156px 510px #555, 1018px 111px #555, 1141px 1352px #555, 1390px 1235px #555, 1184px 119px #555, 1305px 137px #555, 1387px 1245px #555, 1592px 1189px #555, 1183px 129px #555, 102px 1438px #555, 1461px 1236px #555, 1885px 118px #555, 859px 1093px #555, 1490px 131px #555, 1335px 336px #555, 501px 142px #555, 1149px 1232px #555, 45px 1114px #555, 1624px 1146px #555, 110px 1231px #555, 1185px 133px #555, 1430px 1388px #555, 333px 128px #555, 124px 1398px #555, 1159px 1108px #555, 1941px 1014px #555, 250px 500px #555, 750px 900px #555, 1250px 1500px #555, 1750px 200px #555, 300px 800px #555, 600px 1200px #555, 900px 1800px #555, 1400px 400px #555, 1800px 1000px #555, 200px 1700px #555, 500px 1900px #555, 800px 200px #555, 1200px 500px #555, 1500px 800px #555;
+}
+
+/* Capa de estrellas intermedias */
+.stars-layer2 {
+    width: 2px;
+    height: 2px;
+    box-shadow: 1597px 1505px #999, 1835px 573px #999, 1402px 109px #999, 1339px 1343px #999, 649px 1360px #999, 152px 1146px #999, 1873px 1282px #999, 1652px 1116px #999, 233px 1160px #999, 1537px 1112px #999, 1119px 131px #999, 1038px 113px #999, 999px 1293px #999, 598px 1117px #999, 1496px 137px #999, 350px 700px #999, 700px 1400px #999, 1050px 100px #999, 1400px 500px #999, 1800px 900px #999;
+}
+
+/* Capa de estrellas más cercanas y brillantes */
+.stars-layer3 {
+    width: 3px;
+    height: 3px;
+    box-shadow: 1565px 1350px #fff, 1189px 113px #fff, 1130px 1313px #fff, 1143px 130px #fff, 1105px 133px #fff, 114px 1393px #fff, 119px 1133px #fff, 104px 139px #fff, 139px 1193px #fff, 1194px 139px #fff, 200px 400px #fff, 400px 800px #fff, 600px 1200px #fff, 800px 1600px #fff;
+}
+
+/* --- SECCIÓN 1: INTRO STAR WARS --- */
+.intro-star-wars {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 10;
+    background-image: url(../images/Evidencia/EspacioExterior.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    /* La animación de fade-out se elimina de aquí */
+}
+
+.moving-stars-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 11;
+}
+
+.shooting-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: transparent;
+    z-index: 12;
+    opacity: 0;
+}
+
+.shooting-star::before {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 100%;
+    right: 1px;
+    top: 0;
+    transform-origin: right center;
+    background: linear-gradient(to left, #fff, transparent);
+    border-radius: 999px;
+}
+
+.shooting-star::after {
+    content: '';
+    position: absolute;
+    right: -2px;
+    top: -1px;
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 2px #fff;
+}
+
+.s1 {
+    animation: shoot-1 8s ease-in infinite 1s;
+}
+
+.s2 {
+    animation: shoot-2 10s ease-in infinite 4s;
+}
+
+.s3 {
+    animation: shoot-3 6s ease-in infinite 7s;
+}
+
+.animation-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 13;
+    /* SOLUCIÓN: La animación de fade-out se aplica solo al contenido de la intro */
+    /* animation: fade-out-content 1s linear 21s forwards; */
+}
+
+.intro-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #49daff;
+    font-size: 2em;
+    text-align: center;
+    opacity: 0;
+    animation: intro-fade 4s ease-out forwards, fade-out-content 1s linear 7s forwards;
+
+}
+
+.logo-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    max-width: 500px;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    animation: logo-zoom 10s 4s ease-out forwards, fade-out-content 1s linear 14s forwards;
+
+}
+
+.main-logo {
+    width: 100%;
+    height: auto;
+}
+
+.crawl-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    perspective: 900px;
+    opacity: 0;
+    animation: show-crawl 1s 10s forwards;
+    z-index: 15;
+    /*Para hacer que el texto se muestre de abajo hacia arriba y que no desaparezca bruscamente*/
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, black 20%, black 80%, transparent 100%);
+    mask-image: linear-gradient(to top, transparent 0%, black 20%, black 80%, transparent 100%);
+}
+
+/* Animación de texto de instroducción hacia arriba */
+.crawl-text {
+    position: absolute;
+    top: 100%;
+    width: 90%;
+    max-width: 1000px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffc909;
+    text-align: justify;
+    font-weight: bold;
+    font-size: clamp(22px, 4.5vw, 48px);
+    line-height: 1.6;
+    /* espaciado entre líneas más cómodo */
+    letter-spacing: 1px;
+    /* sensación más “épica” */
+    animation: crawl 350s linear 13s forwards;
+    transform-origin: 50% 100%;
+    z-index: 15;
+}
+
+.episode-title {
+    text-align: center;
+    margin-bottom: 1.5em;
+}
+
+.episode-title p {
+    font-size: 1em;
+    margin: 0;
+}
+
+.episode-title h1 {
+    font-size: 1.6em;
+    margin: 0;
+}
+
+.death-star,
+.millennium-falcon,
+.star-destroyer,
+.x-wing,
+.lucrehulk {
+    position: absolute;
+    opacity: 1;
+    animation-duration: 10s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+    z-index: 12;
+}
+
+
+.millennium-falcon {
+    width: 25%;
+    max-width: 340px;
+    bottom: 35%;
+    left: -50%;
+    animation-name: fly-in-falcon;
+    animation-delay: 1s;
+}
+
+.star-destroyer {
+    width: 42%;
+    max-width: 510px;
+    top: -40%;
+    left: 25%;
+    transform: rotate(-15deg);
+    animation-name: descend-destroyer;
+    animation-delay: 1s;
+}
+
+/* ---------------------------------------------------------------------------------------------------------------- */
+
+/* --- KEYFRAMES DE ANIMACIÓN --- */
+@keyframes shoot-1 {
+    0% {
+        opacity: 1;
+        transform: translateX(-100vw) translateY(-20vh) rotate(-30deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(100vw) translateY(80vh) rotate(-30deg);
+    }
+}
+
+@keyframes shoot-2 {
+    0% {
+        opacity: 1;
+        transform: translateX(100vw) translateY(-10vh) rotate(150deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(-100vw) translateY(60vh) rotate(150deg);
+    }
+}
+
+@keyframes shoot-3 {
+    0% {
+        opacity: 1;
+        transform: translateX(-50vw) translateY(-50vh) rotate(-10deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(150vw) translateY(20vh) rotate(-10deg);
+    }
+}
+
+@keyframes intro-fade {
+    0% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes logo-zoom {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(2.5);
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.1);
+    }
+}
+
+@keyframes show-crawl {
+    to {
+        opacity: 1;
+    }
+}
+
+/* animación de texto introductorio */
+@keyframes crawl {
+    from {
+        top: 100%;
+        transform: translateX(-50%) rotateX(20deg);
+    }
+
+    to {
+        top: -3000%;
+        /* suficiente recorrido para que nunca se corte */
+        transform: translateX(-50%) rotateX(20deg);
+    }
+}
+
+/* SOLUCIÓN: Se renombra la animación y se asegura que solo oculte el contenido */
+@keyframes fade-out-content {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Se elimina @keyframes show-battle-scene */
+
+
+@keyframes fly-in-falcon {
+    to {
+        opacity: 1;
+        left: 5%;
+    }
+}
+
+@keyframes descend-destroyer {
+    to {
+        opacity: 1;
+        top: 5%;
+    }
+}
+
+.death-star {
+    position: fixed;
+    /* Siempre pegada al viewport */
+    top: 25%;
+    /* Ajusta verticalmente */
+    right: 0;
+    /* Siempre pegada al borde derecho */
+    width: 70%;
+    max-width: 800px;
+    z-index: 1;
+    transform-origin: right center;
+    /* Escalado desde el borde derecho */
+    opacity: 0;
+    animation:
+        appear-death-star 5s ease-out forwards 100s,
+        shrink-move-death-star 20s ease-out forwards 2s;
+    animation-delay: 1s;
+}
+
+/* Animaciones de naves con posiciones finales corregidas */
+@keyframes appear-death-star {
+    from {
+        transform: translateX(100%) scale(1);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0%) scale(1.5);
+        opacity: 1;
+    }
+}
+
+@keyframes shrink-move-death-star {
+    to {
+        transform: translateY(0%) scale(1.5);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(-50%) scale(0.6);
+        opacity: 1;
+    }
+}
+
+.lucrehulk {
+    position: fixed;
+    top: 25%;
+    left: 0;
+    width: 10%;
+    max-width: 800px;
+    z-index: 12;
+    transform-origin: left center;
+    opacity: 0;
+    animation:
+        appear-lucrehulk 20s ease-out forwards 100s,
+        shrink-lucrehulk 50s ease-out forwards 100s;
+    animation-delay: 1s;
+}
+
+/* Entrada desde la izquierda */
+@keyframes appear-lucrehulk {
+    from {
+        transform: translateX(-100%) scale(1);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(50%) scale(4.5);
+        opacity: 1;
+    }
+}
+
+/* Opcional: reducción posterior */
+@keyframes shrink-lucrehulk {
+    to {
+        transform: translateY(5%) scale(4.5);
+        transform: translateX(10%) scale(4.5);
+        opacity: 1;
+    }
+
+
+    to {
+        transform: translateY(5%) scale(2.5);
+        transform: translateX(30%) scale(2.5);
+        opacity: 1;
+    }
+
+
+    to {
+        transform: translateY(5%) scale(0);
+        transform: translateX(30%) scale(0);
+        opacity: 1;
+    }
+}
+
+.caza-tie {
+    position: fixed;
+    width: 10%;
+    max-width: 150px;
+    top: 5%;
+    right: -20%;
+    z-index: 12;
+    opacity: 0;
+    filter:
+        drop-shadow(4px -4px 6px rgba(255, 0, 0, .8)) drop-shadow(6px -6px 14px rgba(255, 0, 0, .6)) drop-shadow(8px -8px 28px rgba(255, 0, 0, .4));
+    animation: fly-by-tie 18s linear 1s forwards, glow-pulse-cazaTie .4s infinite alternate;
+    animation-delay: 75s;
+}
+
+/* Animación del vuelo */
+@keyframes fly-by-tie {
+    0% {
+        opacity: 0;
+        transform: translate(0, 0) scale(0.1);
+    }
+
+    10% {
+        transform: translate(-25vw, 5vh) scale(0.5);
+        opacity: 1;
+    }
+
+    40% {
+        transform: translate(-25vw, 5vh) scale(0.5);
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-450vw, 450vh) scale(6);
+    }
+}
+
+/* Animación del brillo del motor */
+@keyframes glow-pulse-cazaTie {
+    from {
+        filter:
+            drop-shadow(4px -4px 4px rgba(255, 0, 0, .6)) drop-shadow(6px -6px 10px rgba(255, 0, 0, .4));
+    }
+
+    to {
+        filter:
+            drop-shadow(4px -4px 12px rgba(255, 0, 0, 1)) drop-shadow(6px -6px 26px rgba(255, 0, 0, .7));
+    }
+}
+
+.x-wing1 {
+    /* background-color: rgba(223, 76, 76, 0.253); */
+    position: fixed;
+    width: 5%;
+    max-width: 180px;
+    top: 20%;
+    left: 0%;
+    z-index: 12;
+    opacity: 0;
+    transform: scale(0.5) rotate(-15deg);
+    filter:
+        drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
+    animation: glow-pulse-xwing 0.4s infinite alternate,
+        fly-by-Xwing1 15s ease-in-out 1s forwards;
+    animation-delay: 80s;
+}
+
+.x-wing2 {
+    /* background-color: rgba(255, 243, 11, 0.253); */
+    position: fixed;
+    width: 5%;
+    max-width: 180px;
+    top: 20%;
+    left: 2%;
+    z-index: 12;
+    opacity: 0;
+    transform: scale(0.5) rotate(-15deg);
+    filter:
+        drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
+    animation: glow-pulse-xwing 0.4s infinite alternate,
+        fly-by-Xwing2 15s ease-in-out 1s forwards;
+    animation-delay: 80s;
+}
+
+.x-wing3 {
+    /* background-color: rgba(0, 170, 255, 0.253); */
+    position: fixed;
+    width: 5%;
+    max-width: 180px;
+    top: 20%;
+    left: 0%;
+    z-index: 12;
+    opacity: 0;
+    transform: scale(0.5) rotate(-15deg);
+    filter:
+    drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
+    animation: glow-pulse-xwing 0.4s infinite alternate,
+    fly-by-Xwing3 15s ease-in-out 1s forwards;
+    animation-delay: 80s;
+}
+
+@keyframes fly-by-Xwing1 {
+    0% {
+        opacity: 0;
+        left: -10%;
+        top: 20%;
+        transform: scale(0.5) rotate(-15deg);
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    40% {
+        left: 150%;
+        top: -15%;
+        transform: scale(1) rotate(-15deg);
+        opacity: 1;
+    }
+
+    41% {
+        left: 150%;
+        top: -15%;
+        transform: scaleX(-1) scale(1) rotate(15deg);
+        opacity: 1;
+    }
+
+    90% {
+        left: -150%;
+        top: 300%;
+        transform: scaleX(-1) scale(10) rotate(20deg);
+        opacity: 1;
+    }
+
+    100% {
+        left: -150%;
+        top: 300%;
+        transform: scaleX(-1) scale(10) rotate(20deg);
+        opacity: 0;
+    }
+}
+
+
+
+@keyframes fly-by-Xwing2 {
+    0% {
+        opacity: 0;
+        left: -12%;
+        top: 25%;
+        transform: scale(0.5) rotate(-15deg);
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    40% {
+        left: 160%;
+        top: -5%;
+        transform: scale(1) rotate(-15deg);
+        opacity: 1;
+    }
+
+    41% {
+        left: 160%;
+        top: -5%;
+        transform: scaleX(-1) scale(1) rotate(15deg);
+        opacity: 1;
+    }
+
+    90% {
+        left: -150%;
+        top: 300%;
+        transform: scaleX(-1) scale(10) rotate(10deg);
+        opacity: 1;
+    }
+
+    100% {
+        left: -150%;
+        top: 300%;
+        transform: scaleX(-1) scale(10) rotate(10deg);
+        opacity: 0;
+    }
+}
+
+@keyframes fly-by-Xwing3 {
+    0% {
+        opacity: 0;
+        left: -10%;
+        top: 30%;
+        transform: scale(0.5) rotate(-15deg);
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    40% {
+        left: 150%;
+        top: 0%;
+        transform: scale(1) rotate(-15deg);
+        opacity: 1;
+    }
+
+    41% {
+        left: 150%;
+        top: 0%;
+        transform: scaleX(-1) scale(1) rotate(15deg);
+        opacity: 1;
+    }
+
+    90% {
+        left: -200%;
+        top: 200%;
+        transform: scaleX(-1) scale(10) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        left: -200%;
+        top: 200%;
+        transform: scaleX(-1) scale(10) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes glow-pulse-xwing {
+    from {
+        filter: drop-shadow(0 0 4px rgba(0, 162, 255, .6)) drop-shadow(0 0 10px rgba(0, 162, 255, .4));
+    }
+
+    to {
+        filter: drop-shadow(0 0 12px rgba(0, 162, 255, 1)) drop-shadow(0 0 26px rgba(0, 162, 255, .7));
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---------------------------------------------------------------------------------------------------------------- */
+/* --- MEDIA QUERIES PARA RESPONSIVIDAD --- */
+@media (max-width: 768px) {
+    .intro-text {
+        font-size: 1.5em;
+    }
+
+    .crawl-container {
+        perspective: 400px;
+    }
+
+    .crawl-text {
+        position: absolute;
+        top: 100%;
+        width: 90%;
+        max-width: 1000px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #ffc909;
+        text-align: justify;
+        font-weight: bold;
+        font-size: clamp(22px, 4.5vw, 48px);
+        line-height: 1.6;
+        /* espaciado entre líneas más cómodo */
+        letter-spacing: 1px;
+        /* sensación más “épica” */
+        animation: crawl 800s linear 13s forwards;
+        transform-origin: 50% 100%;
+    }
+
+    .millennium-falcon {
+        width: 35%;
+    }
+
+    .star-destroyer {
+        width: 55%;
+    }
+
+    .death-star {
+        position: fixed;
+        /* Siempre pegada al viewport */
+        top: 25%;
+        /* Ajusta verticalmente */
+        right: -20%;
+        /* Siempre pegada al borde derecho */
+        width: 50%;
+        max-width: 800px;
+        z-index: 1;
+        transform-origin: right center;
+        /* Escalado desde el borde derecho */
+        opacity: 0;
+        animation:
+            appear-death-star 5s ease-out forwards 100s,
+            shrink-move-death-star 20s ease-out forwards 2s;
+        animation-delay: 1s;
+    }
+
+    /* Animaciones de naves con posiciones finales corregidas */
+    @keyframes appear-death-star {
+        from {
+            transform: translateX(60%) scale(1);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateX(-60%) scale(1.5);
+            opacity: 1;
+        }
+    }
+
+    @keyframes shrink-move-death-star {
+        to {
+            transform: translateY(-70%) scale(1.5);
+            opacity: 1;
+        }
+
+        to {
+            transform: translateY(-70%) scale(1.5);
+            opacity: 1;
+        }
+    }
+
+    .lucrehulk {
+        width: 95%;
+    }
+
+    /* Entrada desde la izquierda */
+    @keyframes appear-lucrehulk {
+        from {
+            transform: translateX(-100%) scale(1);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateX(0%) scale(1.5);
+            opacity: 1;
+        }
+    }
+
+    /* Opcional: reducción posterior */
+    @keyframes shrink-lucrehulk {
+        to {
+            transform: translateY(0%) scale(0.5);
+            opacity: 1;
+        }
+
+        to {
+            transform: translateY(5%) scale(1);
+            opacity: 1;
+        }
+
+        to {
+            transform: translateY(5%) scale(1.5);
+            opacity: 1;
+        }
+
+        to {
+            transform: translateY(5%) scale(1);
+            opacity: 1;
+        }
+
+        to {
+            transform: translateY(-50%) scale(0.1);
+            opacity: 1;
+        }
+
+        to {
+            transform: translateY(-50%) scale(0);
+            opacity: 1;
+        }
+    }
+
+    .caza-tie {
+        position: fixed;
+        width: 10%;
+        max-width: 150px;
+        top: 5%;
+        right: -20%;
+        z-index: 12;
+        opacity: 0;
+        filter:
+            drop-shadow(4px -4px 6px rgba(255, 0, 0, .8)) drop-shadow(6px -6px 14px rgba(255, 0, 0, .6)) drop-shadow(8px -8px 28px rgba(255, 0, 0, .4));
+        animation: fly-by-tie 18s linear 1s forwards, glow-pulse-cazaTie .4s infinite alternate;
+        animation-delay: 75s;
+    }
+
+    /* Animación del vuelo */
+    @keyframes fly-by-tie {
+        0% {
+            opacity: 0;
+            transform: translate(0, 0) scale(0.1);
+        }
+
+        10% {
+            transform: translate(-25vw, 5vh) scale(0.5);
+            opacity: 1;
+        }
+
+        40% {
+            transform: translate(-25vw, 5vh) scale(0.5);
+            opacity: 1;
+        }
+
+        90% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+            transform: translate(-450vw, 450vh) scale(6);
+        }
+    }
+
+    /* Animación del brillo del motor */
+    @keyframes glow-pulse-cazaTie {
+        from {
+            filter:
+                drop-shadow(4px -4px 4px rgba(255, 0, 0, .6)) drop-shadow(6px -6px 10px rgba(255, 0, 0, .4));
+        }
+
+        to {
+            filter:
+                drop-shadow(4px -4px 12px rgba(255, 0, 0, 1)) drop-shadow(6px -6px 26px rgba(255, 0, 0, .7));
+        }
+    }
+
+    .x-wing1 {
+        /* background-color: rgba(223, 76, 76, 0.253); */
+        position: fixed;
+        width: 20%;
+        max-width: 180px;
+        top: 20%;
+        left: 0%;
+        z-index: 12;
+        opacity: 0;
+        transform: scale(0.5) rotate(-15deg);
+        filter:
+        drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
+        animation: glow-pulse-xwing 0.4s infinite alternate,
+        fly-by-Xwing1 15s ease-in-out 1s forwards;
+        animation-delay: 80s;
+    }
+
+    .x-wing2 {
+        /* background-color: rgba(255, 243, 11, 0.253); */
+        position: fixed;
+        width: 20%;
+        max-width: 180px;
+        top: 20%;
+        left: 2%;
+        z-index: 12;
+        opacity: 0;
+        transform: scale(0.5) rotate(-15deg);
+        filter:
+            drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
+        animation: glow-pulse-xwing 0.4s infinite alternate,
+            fly-by-Xwing2 15s ease-in-out 1s forwards;
+        animation-delay: 80s;
+    }
+
+    .x-wing3 {
+        /* background-color: rgba(0, 170, 255, 0.253); */
+        position: fixed;
+        width: 20%;
+        max-width: 180px;
+        top: 20%;
+        left: 0%;
+        z-index: 12;
+        opacity: 0;
+        transform: scale(0.5) rotate(-15deg);
+        filter:
+        drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
+        animation: glow-pulse-xwing 0.4s infinite alternate,
+        fly-by-Xwing3 15s ease-in-out 1s forwards;
+        animation-delay: 80s;
+    }
+
+    @keyframes fly-by-Xwing1 {
+        0% {
+            opacity: 0;
+            left: -20%;
+            top: 20%;
+            transform: scale(0.5) rotate(-15deg);
+        }
+
+        10% {
+            opacity: 1;
+        }
+
+        40% {
+            left: 150%;
+            top: -15%;
+            transform: scale(1) rotate(-15deg);
+            opacity: 1;
+        }
+
+        41% {
+            left: 150%;
+            top: -15%;
+            transform: scaleX(-1) scale(1) rotate(15deg);
+            opacity: 1;
+        }
+
+        90% {
+            left: -450%;
+            top: 350%;
+            transform: scaleX(-1) scale(10) rotate(20deg);
+            opacity: 1;
+        }
+
+        100% {
+            left: -450%;
+            top: 350%;
+            transform: scaleX(-1) scale(10) rotate(20deg);
+            opacity: 0;
+        }
+    }
+
+    @keyframes fly-by-Xwing2 {
+        0% {
+            opacity: 0;
+            left: -22%;
+            top: 25%;
+            transform: scale(0.5) rotate(-15deg);
+        }
+
+        10% {
+            opacity: 1;
+        }
+
+        40% {
+            left: 160%;
+            top: -5%;
+            transform: scale(1) rotate(-15deg);
+            opacity: 1;
+        }
+
+        41% {
+            left: 160%;
+            top: -5%;
+            transform: scaleX(-1) scale(1) rotate(15deg);
+            opacity: 1;
+        }
+
+        90% {
+            left: -550%;
+            top: 450%;
+            transform: scaleX(-1) scale(25) rotate(10deg);
+            opacity: 1;
+        }
+
+        100% {
+            left: -550%;
+            top: 450%;
+            transform: scaleX(-1) scale(25) rotate(10deg);
+            opacity: 0;
+        }
+    }
+
+    @keyframes fly-by-Xwing3 {
+        0% {
+            opacity: 0;
+            left: -20%;
+            top: 30%;
+            transform: scale(0.5) rotate(-15deg);
+        }
+
+        10% {
+            opacity: 1;
+        }
+
+        40% {
+            left: 150%;
+            top: 0%;
+            transform: scale(1) rotate(-15deg);
+            opacity: 1;
+        }
+
+        41% {
+            left: 150%;
+            top: 0%;
+            transform: scaleX(-1) scale(1) rotate(15deg);
+            opacity: 1;
+        }
+
+        90% {
+            left: -250%;
+            top: 350%;
+            transform: scaleX(-1) scale(10) rotate(0deg);
+            opacity: 1;
+        }
+
+        100% {
+            left: -250%;
+            top: 350%;
+            transform: scaleX(-1) scale(10) rotate(0deg);
+            opacity: 1;
+        }
+    }
+
+    @keyframes glow-pulse-xwing {
+        from {
+            filter: drop-shadow(0 0 4px rgba(0, 162, 255, .6)) drop-shadow(0 0 10px rgba(0, 162, 255, .4));
+        }
+
+        to {
+            filter: drop-shadow(0 0 12px rgba(0, 162, 255, 1)) drop-shadow(0 0 26px rgba(0, 162, 255, .7));
+        }
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 480px) {
+    .intro-text {
+        font-size: 1.2em;
+    }
+
+    .crawl-container {
+        perspective: 350px;
+    }
+
+    .crawl-text {
+        position: absolute;
+        top: 100%;
+        width: 90%;
+        max-width: 1000px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #ffc909;
+        text-align: justify;
+        font-weight: bold;
+        font-size: clamp(22px, 4.5vw, 48px);
+        line-height: 1.6;
+        /* espaciado entre líneas más cómodo */
+        letter-spacing: 1px;
+        /* sensación más “épica” */
+        animation: crawl 800s linear 13s forwards;
+        transform-origin: 50% 100%;
+    }
+
+    .death-star {
+        position: fixed;
+        /* Siempre pegada al viewport */
+        top: 25%;
+        /* Ajusta verticalmente */
+        right: -20%;
+        /* Siempre pegada al borde derecho */
+        width: 50%;
+        max-width: 800px;
+        z-index: 1;
+        transform-origin: right center;
+        /* Escalado desde el borde derecho */
+        opacity: 0;
+        animation:
+            appear-death-star 5s ease-out forwards 100s,
+            shrink-move-death-star 20s ease-out forwards 2s;
+        animation-delay: 1s;
+    }
+
+    .millennium-falcon {
+        width: 45%;
+    }
+
+    .star-destroyer {
+        width: 70%;
+    }
+
+    .x-wing {
+        width: 40%;
+    }
+
+    .lucrehulk {
+        width: 110%;
+    }
+
+    /* Animaciones de naves con posiciones finales corregidas */
+    @keyframes appear-death-star {
+        from {
+            transform: translateX(60%) scale(1);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateX(-60%) scale(1.5);
+            opacity: 1;
+        }
+    }
+
+    @keyframes shrink-move-death-star {
+        to {
+            transform: translateY(-70%) scale(1.5);
+            opacity: 1;
+        }
+
+        to {
+            transform: translateY(-70%) scale(1.5);
+            opacity: 1;
+        }
+    }
+
+    /* Entrada desde la izquierda */
+    @keyframes appear-lucrehulk {
+        from {
+            transform: translateX(-100%) scale(1);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateX(0%) scale(1.5);
+            opacity: 1;
+        }
+    }
+
+    /* Opcional: reducción posterior */
+    @keyframes shrink-lucrehulk {
+        to {
+            transform: translateY(0%) scale(0.5);
+            opacity: 1;
+        }
+
+        to {
+            transform: translateY(5%) scale(1);
+            opacity: 1;
+        }
+
+        to {
+            transform: translateY(5%) scale(1.5);
+            opacity: 1;
+        }
+
+        to {
+            transform: translateY(5%) scale(1);
+            opacity: 1;
+        }
+
+        to {
+            transform: translateY(-50%) scale(0.1);
+            opacity: 1;
+        }
+
+        to {
+            transform: translateY(-50%) scale(0);
+            opacity: 1;
+        }
+    }
+
+    /* Animación del vuelo */
+    @keyframes fly-by-tie {
+        0% {
+            opacity: 0;
+            transform: translate(0, 0) scale(0.5);
+        }
+
+        10% {
+            transform: translate(-25vw, 5vh) scale(1);
+            opacity: 1;
+        }
+
+        40% {
+            transform: translate(-25vw, 5vh) scale(1);
+            opacity: 1;
+        }
+
+        90% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+            transform: translate(-450vw, 450vh) scale(9);
+        }
+    }
+
+    .caza-tie {
+        position: fixed;
+        width: 10%;
+        max-width: 150px;
+        top: 5%;
+        right: -20%;
+        z-index: 12;
+        opacity: 0;
+        filter:
+            drop-shadow(4px -4px 6px rgba(255, 0, 0, .8)) drop-shadow(6px -6px 14px rgba(255, 0, 0, .6)) drop-shadow(8px -8px 28px rgba(255, 0, 0, .4));
+        animation: fly-by-tie 18s linear 1s forwards, glow-pulse-cazaTie .4s infinite alternate;
+        animation-delay: 75s;
+    }
+
+    /* Animación del brillo del motor */
+    @keyframes glow-pulse-cazaTie {
+        from {
+            filter:
+                drop-shadow(4px -4px 4px rgba(255, 0, 0, .6)) drop-shadow(6px -6px 10px rgba(255, 0, 0, .4));
+        }
+
+        to {
+            filter:
+                drop-shadow(4px -4px 12px rgba(255, 0, 0, 1)) drop-shadow(6px -6px 26px rgba(255, 0, 0, .7));
+        }
+    }
+
+    .x-wing1 {
+        /* background-color: rgba(223, 76, 76, 0.253); */
+        position: fixed;
+        width: 20%;
+        max-width: 180px;
+        top: 20%;
+        left: 0%;
+        z-index: 12;
+        opacity: 0;
+        transform: scale(0.5) rotate(-15deg);
+        filter:
+        drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
+        animation: glow-pulse-xwing 0.4s infinite alternate,
+        fly-by-Xwing1 15s ease-in-out 1s forwards;
+        animation-delay: 80s;
+    }
+
+    .x-wing2 {
+        /* background-color: rgba(255, 243, 11, 0.253); */
+        position: fixed;
+        width: 20%;
+        max-width: 180px;
+        top: 20%;
+        left: 2%;
+        z-index: 12;
+        opacity: 0;
+        transform: scale(0.5) rotate(-15deg);
+        filter:
+            drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
+        animation: glow-pulse-xwing 0.4s infinite alternate,
+            fly-by-Xwing2 15s ease-in-out 1s forwards;
+        animation-delay: 80s;
+    }
+
+    .x-wing3 {
+        /* background-color: rgba(0, 170, 255, 0.253); */
+        position: fixed;
+        width: 20%;
+        max-width: 180px;
+        top: 20%;
+        left: 0%;
+        z-index: 12;
+        opacity: 0;
+        transform: scale(0.5) rotate(-15deg);
+        filter:
+        drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
+        animation: glow-pulse-xwing 0.4s infinite alternate,
+        fly-by-Xwing3 15s ease-in-out 1s forwards;
+        animation-delay: 80s;
+    }
+
+    @keyframes fly-by-Xwing1 {
+        0% {
+            opacity: 0;
+            left: -20%;
+            top: 20%;
+            transform: scale(0.5) rotate(-15deg);
+        }
+
+        10% {
+            opacity: 1;
+        }
+
+        40% {
+            left: 150%;
+            top: -15%;
+            transform: scale(1) rotate(-15deg);
+            opacity: 1;
+        }
+
+        41% {
+            left: 150%;
+            top: -15%;
+            transform: scaleX(-1) scale(1) rotate(15deg);
+            opacity: 1;
+        }
+
+        90% {
+            left: -450%;
+            top: 350%;
+            transform: scaleX(-1) scale(10) rotate(20deg);
+            opacity: 1;
+        }
+
+        100% {
+            left: -450%;
+            top: 350%;
+            transform: scaleX(-1) scale(10) rotate(20deg);
+            opacity: 0;
+        }
+    }
+
+    @keyframes fly-by-Xwing2 {
+        0% {
+            opacity: 0;
+            left: -22%;
+            top: 25%;
+            transform: scale(0.5) rotate(-15deg);
+        }
+
+        10% {
+            opacity: 1;
+        }
+
+        40% {
+            left: 160%;
+            top: -5%;
+            transform: scale(1) rotate(-15deg);
+            opacity: 1;
+        }
+
+        41% {
+            left: 160%;
+            top: -5%;
+            transform: scaleX(-1) scale(1) rotate(15deg);
+            opacity: 1;
+        }
+
+        90% {
+            left: -550%;
+            top: 450%;
+            transform: scaleX(-1) scale(25) rotate(10deg);
+            opacity: 1;
+        }
+
+        100% {
+            left: -550%;
+            top: 450%;
+            transform: scaleX(-1) scale(25) rotate(10deg);
+            opacity: 0;
+        }
+    }
+
+    @keyframes fly-by-Xwing3 {
+        0% {
+            opacity: 0;
+            left: -20%;
+            top: 30%;
+            transform: scale(0.5) rotate(-15deg);
+        }
+
+        10% {
+            opacity: 1;
+        }
+
+        40% {
+            left: 150%;
+            top: 0%;
+            transform: scale(1) rotate(-15deg);
+            opacity: 1;
+        }
+
+        41% {
+            left: 150%;
+            top: 0%;
+            transform: scaleX(-1) scale(1) rotate(15deg);
+            opacity: 1;
+        }
+
+        90% {
+            left: -250%;
+            top: 350%;
+            transform: scaleX(-1) scale(10) rotate(0deg);
+            opacity: 1;
+        }
+
+        100% {
+            left: -250%;
+            top: 350%;
+            transform: scaleX(-1) scale(10) rotate(0deg);
+            opacity: 1;
+        }
+    }
+
+    @keyframes glow-pulse-xwing {
+        from {
+            filter: drop-shadow(0 0 4px rgba(0, 162, 255, .6)) drop-shadow(0 0 10px rgba(0, 162, 255, .4));
+        }
+
+        to {
+            filter: drop-shadow(0 0 12px rgba(0, 162, 255, 1)) drop-shadow(0 0 26px rgba(0, 162, 255, .7));
+        }
+    }
+}
+
+
+
+/* Para ver que no cambie nada */
