@@ -470,7 +470,7 @@ body {
     filter:
         drop-shadow(4px -4px 6px rgba(255, 0, 0, .8)) drop-shadow(6px -6px 14px rgba(255, 0, 0, .6)) drop-shadow(8px -8px 28px rgba(255, 0, 0, .4));
     animation: fly-by-tie 18s linear 1s forwards, glow-pulse-cazaTie .4s infinite alternate;
-    animation-delay: 70s;
+    animation-delay: 60s;
 }
 
 /* Animación del vuelo */
@@ -527,7 +527,7 @@ body {
         drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
     animation: glow-pulse-xwing 0.4s infinite alternate,
         fly-by-Xwing1 15s ease-in-out 1s forwards;
-    animation-delay: 75s;
+    animation-delay: 65s;
 }
 
 .x-wing2 {
@@ -544,7 +544,7 @@ body {
         drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
     animation: glow-pulse-xwing 0.4s infinite alternate,
         fly-by-Xwing2 15s ease-in-out 1s forwards;
-    animation-delay: 75s;
+    animation-delay: 65s;
 }
 
 .x-wing3 {
@@ -561,7 +561,7 @@ body {
     drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
     animation: glow-pulse-xwing 0.4s infinite alternate,
     fly-by-Xwing3 15s ease-in-out 1s forwards;
-    animation-delay: 75s;
+    animation-delay: 65s;
 }
 
 @keyframes fly-by-Xwing1 {
@@ -890,7 +890,7 @@ body {
         filter:
             drop-shadow(4px -4px 6px rgba(255, 0, 0, .8)) drop-shadow(6px -6px 14px rgba(255, 0, 0, .6)) drop-shadow(8px -8px 28px rgba(255, 0, 0, .4));
         animation: fly-by-tie 18s linear 1s forwards, glow-pulse-cazaTie .4s infinite alternate;
-        animation-delay: 70s;
+        animation-delay: 60s;
     }
 
     /* Animación del vuelo */
@@ -948,7 +948,7 @@ body {
         drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
         animation: glow-pulse-xwing 0.4s infinite alternate,
         fly-by-Xwing1 15s ease-in-out 1s forwards;
-        animation-delay: 75s;
+        animation-delay: 65s;
     }
 
     .x-wing2 {
@@ -965,7 +965,7 @@ body {
             drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
         animation: glow-pulse-xwing 0.4s infinite alternate,
             fly-by-Xwing2 15s ease-in-out 1s forwards;
-        animation-delay: 75s;
+        animation-delay: 65s;
     }
 
     .x-wing3 {
@@ -982,7 +982,7 @@ body {
         drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
         animation: glow-pulse-xwing 0.4s infinite alternate,
         fly-by-Xwing3 15s ease-in-out 1s forwards;
-        animation-delay: 75s;
+        animation-delay: 65s;
     }
 
     @keyframes fly-by-Xwing1 {
@@ -1338,7 +1338,7 @@ body {
         filter:
             drop-shadow(4px -4px 6px rgba(255, 0, 0, .8)) drop-shadow(6px -6px 14px rgba(255, 0, 0, .6)) drop-shadow(8px -8px 28px rgba(255, 0, 0, .4));
         animation: fly-by-tie 18s linear 1s forwards, glow-pulse-cazaTie .4s infinite alternate;
-        animation-delay: 70s;
+        animation-delay: 60s;
     }
 
     /* Animación del brillo del motor */
@@ -1368,7 +1368,7 @@ body {
         drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
         animation: glow-pulse-xwing 0.4s infinite alternate,
         fly-by-Xwing1 15s ease-in-out 1s forwards;
-        animation-delay: 75s;
+        animation-delay: 65s;
     }
 
     .x-wing2 {
@@ -1385,7 +1385,7 @@ body {
             drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
         animation: glow-pulse-xwing 0.4s infinite alternate,
             fly-by-Xwing2 15s ease-in-out 1s forwards;
-        animation-delay: 75s;
+        animation-delay: 65s;
     }
 
     .x-wing3 {
@@ -1402,7 +1402,7 @@ body {
         drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
         animation: glow-pulse-xwing 0.4s infinite alternate,
         fly-by-Xwing3 15s ease-in-out 1s forwards;
-        animation-delay: 75s;
+        animation-delay: 65s;
     }
 
     @keyframes fly-by-Xwing1 {
