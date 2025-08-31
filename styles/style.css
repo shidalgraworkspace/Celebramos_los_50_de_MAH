@@ -802,7 +802,7 @@ body.hyperspace-active #hyperspace {
 @media (max-width: 768px) {
     :root {
         /* Móvil: ajustamos el tiempo de espera para que coincida con la animación más larga */
-        --hyperspace-delay: 80s;
+        --hyperspace-delay: 82s;
         /* Ejemplo: 120 segundos para móvil */
     }
 
@@ -1217,7 +1217,7 @@ body.hyperspace-active #hyperspace {
 @media (max-width: 480px) {
     :root {
         /* Móvil: ajustamos el tiempo de espera para que coincida con la animación más larga */
-        --hyperspace-delay: 80s;
+        --hyperspace-delay: 82s;
     }
 
     .intro-text {
