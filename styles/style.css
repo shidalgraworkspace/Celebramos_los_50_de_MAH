@@ -7,8 +7,8 @@
 
     /* --- TIEMPOS DE HIPERESPACIO --- */
     /* Escritorio: se activa a los 65 segundos */
-    --hyperspace-delay: 50s;
-    --hyperspace-duration: 10s;
+    --hyperspace-delay: 70s;
+    --hyperspace-duration: 15s;
 }
 
 /* --- COCKPIT OVERLAY --- */
