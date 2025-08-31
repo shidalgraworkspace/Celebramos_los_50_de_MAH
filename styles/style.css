@@ -1,6 +1,32 @@
 /* --- Google Fonts --- */
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 
+:root {
+    --crawl-duration-desktop: 350s;
+    --crawl-duration-mobile: 800s;
+
+    /* --- TIEMPOS DE HIPERESPACIO --- */
+    /* Escritorio: se activa a los 65 segundos */
+    --hyperspace-delay: 50s;
+    --hyperspace-duration: 10s;
+}
+
+/* --- COCKPIT OVERLAY --- */
+.cockpit-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 100;
+    /* Asegura que esté por encima de todo */
+    pointer-events: none;
+    /* Permite hacer clic a través del overlay */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice"><defs><filter id="glow"><feGaussianBlur stdDeviation="3.5" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter><radialGradient id="grad" cx="50%" cy="50%" r="50%"><stop offset="75%" stop-color="transparent"/><stop offset="95%" stop-color="rgba(0,0,0,0.8)"/><stop offset="100%" stop-color="black"/></radialGradient><mask id="mask"><rect width="1920" height="1080" fill="url(%23grad)"/></mask></defs><rect width="1920" height="1080" fill="black" mask="url(%23mask)"/><path d="M 960,50 C 500,50 100,400 100,540 C 100,680 500,1030 960,1030 C 1420,1030 1820,680 1820,540 C 1820,400 1420,50 960,50 z M 960,100 C 1350,100 1720,420 1720,540 C 1720,660 1350,980 960,980 C 570,980 200,660 200,540 C 200,420 570,100 960,100 z" fill="rgba(20,20,20,0.9)"/><path d="M 960,100 C 570,100 200,420 200,540 C 200,660 570,980 960,980 C 1350,980 1720,660 1720,540 C 1720,420 1350,100 960,100 z" stroke="rgba(100,100,100,0.3)" stroke-width="5" fill="none" filter="url(%23glow)"/></svg>');
+    background-size: cover;
+    background-position: center;
+}
+
 /* --- RESET Y CONFIGURACIÓN BASE --- */
 * {
     margin: 0;
@@ -193,7 +219,7 @@ body {
     /* espaciado entre líneas más cómodo */
     letter-spacing: 1px;
     /* sensación más “épica” */
-    animation: crawl 350s linear 13s forwards;
+    animation: crawl var(--crawl-duration-desktop) linear 13s forwards;
     transform-origin: 50% 100%;
     z-index: 15;
 }
@@ -347,9 +373,6 @@ body {
     }
 }
 
-/* Se elimina @keyframes show-battle-scene */
-
-
 @keyframes fly-in-falcon {
     to {
         opacity: 1;
@@ -408,6 +431,18 @@ body {
     }
 }
 
+@keyframes leave-death-star-behind {
+    to {
+        transform: translateX(150vw) scale(5);
+        opacity: 0;
+    }
+}
+
+/* Se activa cuando el body tiene la clase .hyperspace-active */
+body.hyperspace-active #hyperspace {
+    display: block;
+}
+
 .lucrehulk {
     position: fixed;
     top: 25%;
@@ -427,7 +462,7 @@ body {
 @keyframes appear-lucrehulk {
     from {
         transform: translateX(-100%) scale(1);
-        opacity: 0;
+        opacity: 1;
     }
 
     to {
@@ -470,7 +505,7 @@ body {
     filter:
         drop-shadow(4px -4px 6px rgba(255, 0, 0, .8)) drop-shadow(6px -6px 14px rgba(255, 0, 0, .6)) drop-shadow(8px -8px 28px rgba(255, 0, 0, .4));
     animation: fly-by-tie 18s linear 1s forwards, glow-pulse-cazaTie .4s infinite alternate;
-    animation-delay: 60s;
+    animation-delay: 50s;
 }
 
 /* Animación del vuelo */
@@ -527,7 +562,7 @@ body {
         drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
     animation: glow-pulse-xwing 0.4s infinite alternate,
         fly-by-Xwing1 15s ease-in-out 1s forwards;
-    animation-delay: 65s;
+    animation-delay: 52s;
 }
 
 .x-wing2 {
@@ -544,7 +579,7 @@ body {
         drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
     animation: glow-pulse-xwing 0.4s infinite alternate,
         fly-by-Xwing2 15s ease-in-out 1s forwards;
-    animation-delay: 65s;
+    animation-delay: 52s;
 }
 
 .x-wing3 {
@@ -558,10 +593,10 @@ body {
     opacity: 0;
     transform: scale(0.5) rotate(-15deg);
     filter:
-    drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
+        drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
     animation: glow-pulse-xwing 0.4s infinite alternate,
-    fly-by-Xwing3 15s ease-in-out 1s forwards;
-    animation-delay: 65s;
+        fly-by-Xwing3 15s ease-in-out 1s forwards;
+    animation-delay: 52s;
 }
 
 @keyframes fly-by-Xwing1 {
@@ -605,8 +640,6 @@ body {
         visibility: hidden;
     }
 }
-
-
 
 @keyframes fly-by-Xwing2 {
     0% {
@@ -702,21 +735,44 @@ body {
     }
 }
 
+/* --- HYPERSPACE EFFECT --- */
+#hyperspace {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 14;
+    display: none;
+    pointer-events: none;
+}
 
+#hyperspace.active {
+    display: block;
+}
 
+.hyperspace-star {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 200px;
+    /* Longitud de la estela */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), white);
+    animation: hyperspace-travel 1.5s ease-out forwards;
+}
 
+@keyframes hyperspace-travel {
+    from {
+        transform: translate(-50%, -50%) rotate(var(--angle)) translateY(0) scaleY(0.1) scaleX(0.5);
+        opacity: 1;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
+    to {
+        transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-200vh) scaleY(2) scaleX(2);
+        opacity: 0;
+    }
+}
 
 
 
@@ -744,6 +800,12 @@ body {
 /* ---------------------------------------------------------------------------------------------------------------- */
 /* --- MEDIA QUERIES PARA RESPONSIVIDAD --- */
 @media (max-width: 768px) {
+    :root {
+        /* Móvil: ajustamos el tiempo de espera para que coincida con la animación más larga */
+        --hyperspace-delay: 80s;
+        /* Ejemplo: 120 segundos para móvil */
+    }
+
     .intro-text {
         font-size: 1.5em;
     }
@@ -767,7 +829,7 @@ body {
         /* espaciado entre líneas más cómodo */
         letter-spacing: 1px;
         /* sensación más “épica” */
-        animation: crawl 800s linear 13s forwards;
+        animation: crawl var(--crawl-duration-mobile) linear 13s forwards;
         transform-origin: 50% 100%;
     }
 
@@ -831,7 +893,7 @@ body {
     @keyframes appear-lucrehulk {
         from {
             transform: translateX(-100%) scale(1);
-            opacity: 0;
+            opacity: 1;
         }
 
         to {
@@ -874,7 +936,7 @@ body {
 
         to {
             transform: translateY(-50%) scale(0);
-            opacity: 0;
+            opacity: 1;
             visibility: hidden;
         }
     }
@@ -945,9 +1007,9 @@ body {
         opacity: 0;
         transform: scale(0.5) rotate(-15deg);
         filter:
-        drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
+            drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
         animation: glow-pulse-xwing 0.4s infinite alternate,
-        fly-by-Xwing1 15s ease-in-out 1s forwards;
+            fly-by-Xwing1 15s ease-in-out 1s forwards;
         animation-delay: 65s;
     }
 
@@ -979,9 +1041,9 @@ body {
         opacity: 0;
         transform: scale(0.5) rotate(-15deg);
         filter:
-        drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
+            drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
         animation: glow-pulse-xwing 0.4s infinite alternate,
-        fly-by-Xwing3 15s ease-in-out 1s forwards;
+            fly-by-Xwing3 15s ease-in-out 1s forwards;
         animation-delay: 65s;
     }
 
@@ -1152,19 +1214,12 @@ body {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 @media (max-width: 480px) {
+    :root {
+        /* Móvil: ajustamos el tiempo de espera para que coincida con la animación más larga */
+        --hyperspace-delay: 80s;
+    }
+
     .intro-text {
         font-size: 1.2em;
     }
@@ -1224,7 +1279,7 @@ body {
     }
 
     .lucrehulk {
-        width: 110%;
+        width: 60%;
     }
 
     /* Animaciones de naves con posiciones finales corregidas */
@@ -1256,7 +1311,7 @@ body {
     @keyframes appear-lucrehulk {
         from {
             transform: translateX(-100%) scale(1);
-            opacity: 0;
+            opacity: 1;
         }
 
         to {
@@ -1294,16 +1349,35 @@ body {
 
         to {
             transform: translateY(-50%) scale(0);
-            opacity: 0;
+            opacity: 1;
+        }
+
+        to {
+            transform: translateY(-50%) scale(0);
+            opacity: 1;
             visibility: hidden;
         }
+    }
+
+    .caza-tie {
+        position: fixed;
+        width: 10%;
+        max-width: 150px;
+        top: 5%;
+        right: -20%;
+        z-index: 12;
+        opacity: 0;
+        filter:
+            drop-shadow(4px -4px 6px rgba(255, 0, 0, .8)) drop-shadow(6px -6px 14px rgba(255, 0, 0, .6)) drop-shadow(8px -8px 28px rgba(255, 0, 0, .4));
+        animation: fly-by-tie 18s linear 1s forwards, glow-pulse-cazaTie .4s infinite alternate;
+        animation-delay: 60s;
     }
 
     /* Animación del vuelo */
     @keyframes fly-by-tie {
         0% {
             opacity: 0;
-            transform: translate(0, 0) scale(0.5);
+            transform: translate(0, 0) scale(0.1);
         }
 
         10% {
@@ -1325,20 +1399,6 @@ body {
             transform: translate(-450vw, 450vh) scale(9);
             visibility: hidden;
         }
-    }
-
-    .caza-tie {
-        position: fixed;
-        width: 10%;
-        max-width: 150px;
-        top: 5%;
-        right: -20%;
-        z-index: 12;
-        opacity: 0;
-        filter:
-            drop-shadow(4px -4px 6px rgba(255, 0, 0, .8)) drop-shadow(6px -6px 14px rgba(255, 0, 0, .6)) drop-shadow(8px -8px 28px rgba(255, 0, 0, .4));
-        animation: fly-by-tie 18s linear 1s forwards, glow-pulse-cazaTie .4s infinite alternate;
-        animation-delay: 60s;
     }
 
     /* Animación del brillo del motor */
@@ -1365,9 +1425,9 @@ body {
         opacity: 0;
         transform: scale(0.5) rotate(-15deg);
         filter:
-        drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
+            drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
         animation: glow-pulse-xwing 0.4s infinite alternate,
-        fly-by-Xwing1 15s ease-in-out 1s forwards;
+            fly-by-Xwing1 15s ease-in-out 1s forwards;
         animation-delay: 65s;
     }
 
@@ -1399,9 +1459,9 @@ body {
         opacity: 0;
         transform: scale(0.5) rotate(-15deg);
         filter:
-        drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
+            drop-shadow(15px 0 10px rgba(0, 162, 255, 0.8)) drop-shadow(20px 0 20px rgba(0, 162, 255, 0.5)) drop-shadow(25px 0 30px rgba(0, 162, 255, 0.3));
         animation: glow-pulse-xwing 0.4s infinite alternate,
-        fly-by-Xwing3 15s ease-in-out 1s forwards;
+            fly-by-Xwing3 15s ease-in-out 1s forwards;
         animation-delay: 65s;
     }
 
@@ -1540,8 +1600,5 @@ body {
             filter: drop-shadow(0 0 12px rgba(0, 162, 255, 1)) drop-shadow(0 0 26px rgba(0, 162, 255, .7));
         }
     }
+
 }
-
-
-
-/* Para ver que no cambie nada */

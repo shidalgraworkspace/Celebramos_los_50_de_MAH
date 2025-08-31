@@ -48,6 +48,7 @@
 </head>
 
 <body>
+    <div class="cockpit-overlay"></div>
     <!-- Preload de imágenes clave para mejorar el rendimiento -->
     <!-- <img style="display: none;" src="images/Te_invitamos.png" alt="Te_invitamos"> -->
 
@@ -90,13 +91,12 @@
                         épicas, donde la Fuerza que nos une brillará más que nunca. La galaxia nunca volverá a ser la
                         misma… ¡Prepárense para un viaje memorable lleno de alegría, aventuras y recuerdos que
                         perdurarán por siempre!</p>
-                    <p>¡Prepárense para una fiesta y que la Fuerza que nos acompañe a todos!
+                    <p>¡Prepárense para una fiesta y que la Fuerza nos acompañe a todos!
                     </p>
                 </div>
             </div>
-            <img src="images/SeccionStarWars/EstrellaDeLaMuerte.png" alt="Estrella de la Muerte" class="death-star">
-            <img src="images/SeccionStarWars/ControlDroidesClaseLucrehulk.png" alt="Nave de Control de Droides"
-                class="lucrehulk">
+            <img src="images/SeccionStarWars/EstrellaDeLaMuerte.png" alt="Estrella de la Muerte" class="death-star" id="death-star-anim">
+            <img src="images/SeccionStarWars/ControlDroidesClaseLucrehulk.png" alt="Nave de Control de Droides" class="lucrehulk">
             <img src="images/SeccionStarWars/Principal/X-Wing1.png" alt="X-wing" class="x-wing1">
             <img src="images/SeccionStarWars/Principal/X-Wing2.png" alt="X-wing" class="x-wing2">
             <img src="images/SeccionStarWars/Principal/X-Wing3.png" alt="X-wing" class="x-wing3">
@@ -104,6 +104,8 @@
             <!-- <img src="images/SeccionStarWars/destructorEstelar.png" alt="Destructor Estelar" class="star-destroyer"> -->
             <!-- <img src="images/SeccionStarWars/HalcónMilenarioYT-1300.png" alt="Halcón Milenario" class="millennium-falcon"> -->
         </div>
+
+        <div id="hyperspace"></div>
 
         <div class="contenedor-seccion" id="contenedor-seccion" style="display: none;">
             <div class="contenedor-reproductor" id="contenedor-reproductor">
@@ -120,6 +122,7 @@
     </section>
     <script src="https://kit.fontawesome.com/b1aeab81db.js" crossorigin="anonymous"></script>
     <script src="js/audio.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
