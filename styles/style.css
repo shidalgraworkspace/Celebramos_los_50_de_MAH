@@ -438,6 +438,22 @@ body {
     }
 }
 
+#countdown-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 101; /* Por encima de la cabina */
+    color: #49daff;
+    font-size: 3em;
+    font-weight: bold;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+    text-shadow: 0 0 8px #49daff;
+}
+
 /* Se activa cuando el body tiene la clase .hyperspace-active */
 body.hyperspace-active #hyperspace {
     display: block;

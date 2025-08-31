@@ -67,17 +67,48 @@ document.addEventListener('DOMContentLoaded', () => {
         }, hyperspaceDuration + 500); // Limpiamos un poco después de que termine la animación
     }
 
-    // Usamos window.onload para asegurarnos de que todo (incluido el CSS) esté cargado
+    // Nueva función para manejar la cuenta atrás
+    async function startCountdown() {
+        const countdownContainer = document.getElementById('countdown-container');
+        if (!countdownContainer) {
+            initiateHyperspace(); // Si no existe el contenedor, saltar directamente
+            return;
+        }
+
+        // Función para mostrar un mensaje por una duración determinada
+        const showMessage = (text, duration) => {
+            return new Promise(resolve => {
+                countdownContainer.innerText = text;
+                countdownContainer.style.opacity = '1';
+                setTimeout(() => {
+                    countdownContainer.style.opacity = '0';
+                    // Esperar a que termine la transición de fade-out antes de continuar
+                    setTimeout(resolve, 300); 
+                }, duration - 300);
+            });
+        };
+
+        await showMessage('Preparándose para saltar al hiperespacio', 2000);
+        await showMessage('3', 1000);
+        await showMessage('2', 1000);
+        await showMessage('1', 1000);
+
+        initiateHyperspace();
+    }
+
+    // Usamos window.onload para asegurarnos de que todo esté cargado
     window.onload = () => {
         const rootStyles = getComputedStyle(document.documentElement);
         const delayValue = rootStyles.getPropertyValue('--hyperspace-delay').trim();
         let hyperspaceDelay = parseFloat(delayValue);
 
-        // Convertir el valor de delay a milisegundos
         if (delayValue.endsWith('s')) {
-            hyperspaceDelay *= 1000; // Si son segundos, multiplicar por 1000
+            hyperspaceDelay *= 1000;
         }
+
+        // La cuenta atrás dura 5 segundos, así que la iniciamos 5 segundos antes del salto.
+        const countdownStartTime = hyperspaceDelay - 5000;
         
-        setTimeout(initiateHyperspace, hyperspaceDelay);
+        setTimeout(startCountdown, countdownStartTime > 0 ? countdownStartTime : 0);
     };
 });
