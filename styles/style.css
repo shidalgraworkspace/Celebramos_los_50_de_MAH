@@ -5,10 +5,9 @@
     --crawl-duration-desktop: 350s;
     --crawl-duration-mobile: 800s;
 
-    /* --- TIEMPOS DE HIPERESPACIO --- */
-    /* Escritorio: se activa a los 65 segundos */
-    --hyperspace-delay: 65s; 
-    --hyperspace-duration: 10s;
+    /* --- TIEMPOS DE ANIMACIÓN JS --- */
+    --tiempo-salto: 65s;
+    --tiempo-destello: 65.8s;
 }
 
 /* --- COCKPIT OVERLAY --- */
@@ -455,9 +454,17 @@ body {
 }
 
 @keyframes flash-effect {
-    0% { opacity: 0; }
-    50% { opacity: 1; }
-    100% { opacity: 0; }
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
 
 #countdown-container {
@@ -465,7 +472,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 101; /* Por encima de la cabina */
+    z-index: 101;
+    /* Por encima de la cabina */
     color: #49daff;
     font-size: 3em;
     font-weight: bold;
@@ -794,7 +802,8 @@ body.hyperspace-active #hyperspace {
     top: 50%;
     left: 50%;
     width: 2px;
-    height: 200px; /* Longitud de la estela */
+    height: 200px;
+    /* Longitud de la estela */
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0), white);
     /* La animación se asignará desde JS */
 }
@@ -816,18 +825,49 @@ body.hyperspace-active #hyperspace {
         transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-200vh) scaleY(2) scaleX(2);
         opacity: 0;
     }
+
     to {
         transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-250vh) scaleY(0.01) scaleX(0.01);
         opacity: 1;
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ---------------------------------------------------------------------------------------------------------------- */
 /* --- MEDIA QUERIES PARA RESPONSIVIDAD --- */
 @media (max-width: 768px) {
     :root {
         /* Móvil: ajustamos el tiempo de espera para que coincida con la animación más larga */
-        --hyperspace-delay: 80s; /* Ejemplo: 80 segundos para móvil */
+        --tiempo-salto: 80s;
+        --tiempo-destello: 80.8s;
     }
 
     .intro-text {
@@ -1241,7 +1281,8 @@ body.hyperspace-active #hyperspace {
 @media (max-width: 480px) {
     :root {
         /* Móvil: ajustamos el tiempo de espera para que coincida con la animación más larga */
-        --hyperspace-delay: 82s;
+        --tiempo-salto: 80s;
+        --tiempo-destello: 80.8s;
     }
 
     .intro-text {
