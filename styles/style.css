@@ -7,8 +7,8 @@
 
     /* --- TIEMPOS DE HIPERESPACIO --- */
     /* Escritorio: se activa a los 65 segundos */
-    --hyperspace-delay: 70s;
-    --hyperspace-duration: 15s;
+    --hyperspace-delay: 65s; 
+    --hyperspace-duration: 10s;
 }
 
 /* --- COCKPIT OVERLAY --- */
@@ -438,6 +438,28 @@ body {
     }
 }
 
+#flash-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 200;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#flash-overlay.active {
+    animation: flash-effect 0.5s ease-out;
+}
+
+@keyframes flash-effect {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
 #countdown-container {
     position: fixed;
     top: 50%;
@@ -772,10 +794,9 @@ body.hyperspace-active #hyperspace {
     top: 50%;
     left: 50%;
     width: 2px;
-    height: 200px;
-    /* Longitud de la estela */
+    height: 200px; /* Longitud de la estela */
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0), white);
-    animation: hyperspace-travel 1.5s ease-out forwards;
+    /* La animación se asignará desde JS */
 }
 
 @keyframes hyperspace-travel {
@@ -790,36 +811,23 @@ body.hyperspace-active #hyperspace {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@keyframes hyperspace-arrival {
+    from {
+        transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-200vh) scaleY(2) scaleX(2);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-250vh) scaleY(0.01) scaleX(0.01);
+        opacity: 1;
+    }
+}
 
 /* ---------------------------------------------------------------------------------------------------------------- */
 /* --- MEDIA QUERIES PARA RESPONSIVIDAD --- */
 @media (max-width: 768px) {
     :root {
         /* Móvil: ajustamos el tiempo de espera para que coincida con la animación más larga */
-        --hyperspace-delay: 82s;
-        /* Ejemplo: 120 segundos para móvil */
+        --hyperspace-delay: 80s; /* Ejemplo: 80 segundos para móvil */
     }
 
     .intro-text {

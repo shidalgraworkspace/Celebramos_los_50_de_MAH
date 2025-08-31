@@ -1,14 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Función para ocultar todos los elementos de la intro que ya no se necesitan
+    // Función para ocultar los elementos de la intro que ya no se necesitan
     function hideIntroElements() {
         const elementsToHide = [
-            '.lucrehulk-anim',
-            '.lucrehulk-container',
-            '.lucrehulk',
-            '.intro-container',
-            '.intro-text',
             '.crawl-container',
-            '.crawl-text',
+            '.lucrehulk',
             '.caza-tie',
             '.x-wing1',
             '.x-wing2',
@@ -24,66 +19,64 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Función para iniciar el efecto de hiperespacio
     function initiateHyperspace() {
-        // Ocultamos los elementos de la intro para que no interfieran
         hideIntroElements();
 
         const hyperspaceContainer = document.getElementById('hyperspace');
         const deathStar = document.getElementById('death-star-anim');
+        const flashOverlay = document.getElementById('flash-overlay');
         
-        if (!hyperspaceContainer || !deathStar) return;
+        if (!hyperspaceContainer || !deathStar || !flashOverlay) return;
 
-        // Leemos la duración de la animación desde el CSS
-        const rootStyles = getComputedStyle(document.documentElement);
-        const durationValue = rootStyles.getPropertyValue('--hyperspace-duration').trim();
-        let hyperspaceDuration = parseFloat(durationValue);
-        if (durationValue.endsWith('s')) {
-            hyperspaceDuration *= 1000; // Convertir segundos a milisegundos
-        }
+        const travelDuration = 2500;  // 2.5 segundos de aceleración
+        const arrivalDuration = 2000; // 2 segundos de desaceleración
 
-        // 1. Activar el contenedor del hiperespacio
+        // 1. Fase de Aceleración
         hyperspaceContainer.style.display = 'block';
+        deathStar.style.animation = `leave-death-star-behind ${travelDuration}ms ease-out forwards`;
 
-        // 2. Aplicar la animación a la Estrella de la Muerte
-        deathStar.style.animation = `leave-death-star-behind ${hyperspaceDuration}ms ease-out forwards`;
-
-        // 3. Generar las estrellas del hiperespacio
-        hyperspaceContainer.innerHTML = ''; // Limpiar estrellas anteriores
+        hyperspaceContainer.innerHTML = '';
         const starCount = 400;
+        const stars = [];
         for (let i = 0; i < starCount; i++) {
             const star = document.createElement('div');
             star.classList.add('hyperspace-star');
-
             const angle = Math.random() * 360;
             star.style.setProperty('--angle', `${angle}deg`);
+            star.style.animation = `hyperspace-travel ${travelDuration}ms ease-out forwards`;
             star.style.animationDelay = `${Math.random() * 0.5}s`;
-
             hyperspaceContainer.appendChild(star);
+            stars.push(star);
         }
 
-        // Ocultar el efecto después de que termine para no interferir
+        // 2. Destello y Fase de Desaceleración
         setTimeout(() => {
-            hyperspaceContainer.style.display = 'none';
-            hyperspaceContainer.innerHTML = '';
-        }, hyperspaceDuration + 500); // Limpiamos un poco después de que termine la animación
+            flashOverlay.classList.add('active');
+            stars.forEach(star => {
+                star.style.animation = `hyperspace-arrival ${arrivalDuration}ms ease-in forwards`;
+            });
+            setTimeout(() => {
+                hyperspaceContainer.style.display = 'none';
+                hyperspaceContainer.innerHTML = '';
+                flashOverlay.classList.remove('active');
+            }, arrivalDuration);
+        }, travelDuration);
     }
 
-    // Nueva función para manejar la cuenta atrás
+    // Función para manejar la cuenta atrás
     async function startCountdown() {
         const countdownContainer = document.getElementById('countdown-container');
         if (!countdownContainer) {
-            initiateHyperspace(); // Si no existe el contenedor, saltar directamente
+            initiateHyperspace();
             return;
         }
 
-        // Función para mostrar un mensaje por una duración determinada
         const showMessage = (text, duration) => {
             return new Promise(resolve => {
                 countdownContainer.innerText = text;
                 countdownContainer.style.opacity = '1';
                 setTimeout(() => {
                     countdownContainer.style.opacity = '0';
-                    // Esperar a que termine la transición de fade-out antes de continuar
-                    setTimeout(resolve, 300); 
+                    setTimeout(resolve, 300);
                 }, duration - 300);
             });
         };
@@ -93,11 +86,11 @@ document.addEventListener('DOMContentLoaded', () => {
         await showMessage('2', 1000);
         await showMessage('1', 1000);
 
-        initiateHyperspace();
+        initiateHyperspace(); // Iniciar el salto justo al terminar la cuenta atrás
     }
 
-    // Usamos window.onload para asegurarnos de que todo esté cargado
-    window.onload = () => {
+    // Función que configura el temporizador principal
+    function setupTimer() {
         const rootStyles = getComputedStyle(document.documentElement);
         const delayValue = rootStyles.getPropertyValue('--hyperspace-delay').trim();
         let hyperspaceDelay = parseFloat(delayValue);
@@ -110,5 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const countdownStartTime = hyperspaceDelay - 5000;
         
         setTimeout(startCountdown, countdownStartTime > 0 ? countdownStartTime : 0);
-    };
+    }
+
+    // Usamos window.onload para asegurarnos de que todo (incluido el CSS) esté cargado
+    window.onload = setupTimer;
 });
