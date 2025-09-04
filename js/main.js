@@ -137,16 +137,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 star.style.animationDelay = `${Math.random() * 0.5}s`;
                 hyperspaceContainer.appendChild(star);
             }
+
+            // Este es el bloque que vamos a corregir
             setTimeout(() => {
                 hyperspaceContainer.style.display = 'none';
                 hyperspaceContainer.innerHTML = '';
 
-                // --- AÑADE ESTO PARA MOSTRAR EL SLIDER ---
+                // --- SECUENCIA DE ANIMACIÓN CORREGIDA Y SECUENCIAL ---
+                const intermediateImageContainer = document.getElementById('intermediate-image-container');
                 const sliderSection = document.getElementById('fotos-deslizantes');
-                if (sliderSection) {
-                    sliderSection.classList.add('visible');
+
+                if (intermediateImageContainer && sliderSection) {
+                    
+                    // --- PRIMERA PARTE: La imagen que crece (Duración: 4 segundos) ---
+                    
+                    // 1. Muestra el contenedor de la imagen y activa su animación.
+                    intermediateImageContainer.classList.add('visible');
+                    intermediateImageContainer.classList.add('animate');
+
+                    // --- SEGUNDA PARTE: La galería que aparece DESPUÉS ---
+
+                    // 2. Espera 4 segundos, que es la duración COMPLETA de la animación de la imagen.
+                    setTimeout(() => {
+                        // 3. Oculta el contenedor de la imagen para que no moleste.
+                        intermediateImageContainer.style.display = 'none';
+                        
+                        // 4. Muestra la galería de fotos. Ahora sí aparecerá sin nada que la tape.
+                        sliderSection.classList.add('visible');
+                    }, 4000); // 4000ms = 4 segundos
                 }
-                // -----------------------------------------
+                // --- FIN DE LA SECUENCIA ---
 
             }, travelDuration);
         }

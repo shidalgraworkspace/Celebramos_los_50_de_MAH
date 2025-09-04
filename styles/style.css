@@ -921,14 +921,14 @@ body.hyperspace-active #hyperspace {
     width: 100%;
     height: 100%;
     z-index: 30;
-    display: flex; /* Cambiado de 'none' a 'flex' */
+    display: none;
     justify-content: center;
     align-items: center;
     perspective: 1000px;
-    background: radial-gradient(circle, rgba(0, 20, 40, 0.4) 0%, rgba(0, 0, 0, 0.8) 70%);
+    background: transparent; /* Cambia el radial-gradient por transparent */
     opacity: 0;
-    transform: translateY(100vh); /* Empieza abajo, fuera de la pantalla */
-    transition: opacity 1.5s ease-in, transform 1.5s ease-out; /* Añadimos 'transform' a la transición */
+    transform: translateY(100vh);
+    transition: opacity 1.5s ease-in, transform 1.5s ease-out;
 }
 
 .fotos-deslizantes.visible {
@@ -1082,11 +1082,11 @@ body.hyperspace-active #hyperspace {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 35; /* Por encima de la galería */
-    display: none; /* Oculto por defecto */
+    z-index: 35;
+    display: none;
     justify-content: center;
     align-items: center;
-    background-color: #000;
+    background-color: transparent; /* Cambia #000 por transparent */
 }
 
 #intermediate-image-container.visible {
