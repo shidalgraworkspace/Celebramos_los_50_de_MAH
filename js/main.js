@@ -16,50 +16,64 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Reanuda las animaciones y la secuencia normal de la página.
+     * Reanuda las animaciones y activa los temporizadores para la secuencia final.
      */
     function resumeAnimations() {
+        // Oculta el overlay
         playOverlay.classList.remove('visible');
         setTimeout(() => {
             playOverlay.style.display = 'none';
-        }, 500); // Espera a que termine la transición de opacidad
+        }, 500);
 
+        // Reanuda las animaciones CSS
         body.classList.remove('animations-paused');
+
+        // ¡SOLUCIÓN! Inicia los temporizadores de la cuenta regresiva AHORA,
+        // después de que el usuario ha hecho clic.
+        startCountdownTimers();
     }
+
+    /**
+     * Esta función contiene los temporizadores que antes se iniciaban al cargar la página.
+     * Ahora solo se ejecutan después de pulsar "Play".
+     */
+    function startCountdownTimers() {
+        const rootStyles = getComputedStyle(document.documentElement);
+
+        function parseCssTime(timeString) {
+            if (!timeString) return 0;
+            if (timeString.endsWith('s')) return parseFloat(timeString) * 1000;
+            if (timeString.endsWith('ms')) return parseFloat(timeString);
+            return parseFloat(timeString) * 1000;
+        }
+
+        // Leemos los tiempos desde el CSS
+        const tiempoParaSalto = parseCssTime(rootStyles.getPropertyValue('--tiempo-salto').trim());
+        const tiempoParaDestello = parseCssTime(rootStyles.getPropertyValue('--tiempo-destello').trim());
+
+        // Calculamos cuánto tiempo falta para la cuenta regresiva desde que se pulsó "Play".
+        // Restamos los 2 segundos que ya pasaron antes de la pausa.
+        const tiempoRestanteParaSalto = tiempoParaSalto - 2000;
+        const tiempoInicioCuentaRegresiva = tiempoRestanteParaSalto - 5000;
+
+        // Programamos la cuenta regresiva y el destello
+        setTimeout(startCountdown, tiempoInicioCuentaRegresiva > 0 ? tiempoInicioCuentaRegresiva : 0);
+        setTimeout(() => {
+            initiateHyperspace(false, true);
+        }, tiempoParaDestello - 2000); // También ajustamos el tiempo del destello
+    }
+
 
     // --- INICIO DE LA EJECUCIÓN ---
 
     // 1. Pausa la animación a los 2 segundos para mostrar el botón.
-    // Este es el momento justo después de que aparece "Hace mucho tiempo..."
-    // y antes de que aparezca el logo.
-    setTimeout(pauseAndShowButton, 3500); // 2000ms = 2 segundos
+    setTimeout(pauseAndShowButton, 3500);
 
     // 2. Asigna el evento de clic para reanudar todo.
     playOverlay.addEventListener('click', resumeAnimations, { once: true });
 
 
-    // --- LÓGICA ORIGINAL DE LA CUENTA REGRESIVA (se mantiene igual) ---
-
-    const rootStyles = getComputedStyle(document.documentElement);
-
-    function parseCssTime(timeString) {
-        if (!timeString) return 0;
-        if (timeString.endsWith('s')) return parseFloat(timeString) * 1000;
-        if (timeString.endsWith('ms')) return parseFloat(timeString);
-        return parseFloat(timeString) * 1000;
-    }
-
-    const tiempoParaSalto = parseCssTime(rootStyles.getPropertyValue('--tiempo-salto').trim());
-    const tiempoParaDestello = parseCssTime(rootStyles.getPropertyValue('--tiempo-destello').trim());
-    const tiempoInicioCuentaRegresiva = tiempoParaSalto - 5000;
-
-    setTimeout(startCountdown, tiempoInicioCuentaRegresiva > 0 ? tiempoInicioCuentaRegresiva : 0);
-    setTimeout(() => {
-        initiateHyperspace(false, true);
-    }, tiempoParaDestello);
-
-
-    // --- FUNCIONES ORIGINALES (se mantienen igual) ---
+    // --- FUNCIONES ORIGINALES (sin cambios en su lógica interna) ---
 
     async function startCountdown() {
         if (!countdownContainer) {
