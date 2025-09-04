@@ -119,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hyperspaceContainer.style.display = 'block';
             deathStar.style.animation = `leave-death-star-behind ${travelDuration}ms ease-out forwards`;
             hyperspaceContainer.innerHTML = '';
+
             const starCount = 400;
             for (let i = 0; i < starCount; i++) {
                 const star = document.createElement('div');
@@ -132,6 +133,14 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 hyperspaceContainer.style.display = 'none';
                 hyperspaceContainer.innerHTML = '';
+
+                // --- AÑADE ESTO PARA MOSTRAR EL SLIDER ---
+                const sliderSection = document.getElementById('fotos-deslizantes');
+                if (sliderSection) {
+                    sliderSection.classList.add('visible');
+                }
+                // -----------------------------------------
+
             }, travelDuration);
         }
 
