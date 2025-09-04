@@ -2,8 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 
 :root {
-    --crawl-duration-desktop: 350s;
-    --crawl-duration-mobile: 800s;
+    --crawl-duration-desktop: 450s;
+    --crawl-duration-mobile: 900s;
 
     /* --- TIEMPOS DE ANIMACIÓN JS --- */
     --tiempo-salto: 65s;
@@ -193,7 +193,7 @@ body {
     left: 0;
     width: 100%;
     height: 100vh;
-    perspective: 900px;
+    perspective: 400px;
     opacity: 0;
     animation: show-crawl 1s 10s forwards;
     z-index: 15;
@@ -207,11 +207,11 @@ body {
     position: absolute;
     top: 100%;
     width: 90%;
-    max-width: 1000px;
+    max-width: 2500px;
     left: 50%;
     transform: translateX(-50%);
     color: #ffc909;
-    text-align: justify;
+    text-align: center;
     font-weight: bold;
     font-size: clamp(22px, 4.5vw, 48px);
     line-height: 1.6;
@@ -354,13 +354,13 @@ body {
 @keyframes crawl {
     from {
         top: 100%;
-        transform: translateX(-50%) rotateX(20deg);
+        transform: translateX(-50%) rotateX(30deg)
     }
 
     to {
         top: -3000%;
         /* suficiente recorrido para que nunca se corte */
-        transform: translateX(-50%) rotateX(20deg);
+        transform: translateX(-50%) rotateX(30deg)
     }
 }
 

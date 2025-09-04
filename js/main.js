@@ -1,10 +1,33 @@
+// Limpia cualquier temporizador pendiente de una recarga anterior.
+if (window.countdownTimeout) clearTimeout(window.countdownTimeout);
+if (window.flashTimeout) clearTimeout(window.flashTimeout);
+
 let countdownTimeout;
 let flashTimeout;
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Limpiar cualquier temporizador pendiente al cargar la página
-    if (window.countdownTimeout) clearTimeout(window.countdownTimeout);
-    if (window.flashTimeout) clearTimeout(window.flashTimeout);
+    /**
+     * Calcula el tiempo total de las animaciones de introducción para saber cuándo deben terminar.
+     * @returns {number} El tiempo en milisegundos en el que finaliza la última animación.
+     */
+    function obtenerTiempoFinalAnimaciones() {
+        const elementosAnimados = document.querySelectorAll('.caza-tie, .x-wing1, .x-wing2, .x-wing3');
+        let maxAnimationTime = 0;
+
+        elementosAnimados.forEach(element => {
+            const styles = getComputedStyle(element);
+            const animationDelay = parseFloat(styles.animationDelay) * 1000;
+            const animationDuration = parseFloat(styles.animationDuration) * 1000;
+            const totalTime = animationDelay + animationDuration;
+
+            if (totalTime > maxAnimationTime) {
+                maxAnimationTime = totalTime;
+            }
+        });
+
+        // Si no se encontraron animaciones, devuelve un valor por defecto (ej. 65s)
+        return maxAnimationTime > 0 ? maxAnimationTime : 65000;
+    }
 
     /**
      * Gestiona los efectos de hiperespacio (salto de estrellas y destello).
@@ -18,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // --- LÓGICA PARA EL SALTO DE ESTRELLAS ---
         if (activarSalto) {
-            // Oculta elementos de la intro que ya no se necesitan
             const elementsToHide = ['.crawl-container', '.lucrehulk', '.caza-tie', '.x-wing1', '.x-wing2', '.x-wing3'];
             elementsToHide.forEach(selector => {
                 const element = document.querySelector(selector);
@@ -44,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 hyperspaceContainer.appendChild(star);
             }
 
-            // Limpia el contenedor después de la animación
             setTimeout(() => {
                 hyperspaceContainer.style.display = 'none';
                 hyperspaceContainer.innerHTML = '';
@@ -57,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
             flashOverlay.classList.add('active');
             
-            // La animación CSS dura 0.5s. Tras ese tiempo, quitamos la clase.
             setTimeout(() => {
                 flashOverlay.classList.remove('active');
             }, 500);
@@ -70,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function startCountdown() {
         const countdownContainer = document.getElementById('countdown-container');
         if (!countdownContainer) {
-            initiateHyperspace(true, false); // Si no hay contenedor, salta directamente
+            initiateHyperspace(true, false);
             return;
         }
 
@@ -90,41 +110,27 @@ document.addEventListener('DOMContentLoaded', () => {
         await showMessage('2', 1000);
         await showMessage('1', 1000);
 
-        initiateHyperspace(true, false); // Inicia el salto al terminar la cuenta atrás
+        initiateHyperspace(true, false);
     }
 
-    // --- CONTROL DE TIEMPO DESDE CSS ---
-    // Lee las variables de tiempo desde el archivo CSS.
-    const rootStyles = getComputedStyle(document.documentElement);
+    // --- CONTROL DE TIEMPO DINÁMICO ---
+    const tiempoParaSalto = obtenerTiempoFinalAnimaciones();
+    const tiempoParaDestello = tiempoParaSalto + 800; // 0.8s después del salto
 
-    function parseCssTime(timeString) {
-        if (!timeString) return 0;
-        if (timeString.endsWith('s')) {
-            return parseFloat(timeString) * 1000;
-        }
-        if (timeString.endsWith('ms')) {
-            return parseFloat(timeString);
-        }
-        return parseFloat(timeString) * 1000; // Asumir segundos si no hay unidad
-    }
-
-    const tiempoParaSalto = parseCssTime(rootStyles.getPropertyValue('--tiempo-salto').trim());
-    const tiempoParaDestello = parseCssTime(rootStyles.getPropertyValue('--tiempo-destello').trim());
-
-    // La cuenta atrás dura 5 segundos. La iniciamos 5 segundos ANTES del tiempo del salto.
+    // La cuenta atrás dura 5 segundos, así que la iniciamos 5 segundos ANTES del salto.
     const tiempoInicioCuentaRegresiva = tiempoParaSalto - 5000;
 
     // Llama a la función para iniciar la cuenta regresiva.
-    countdownTimeout = setTimeout(startCountdown, tiempoInicioCuentaRegresiva > 0 ? tiempoInicioCuentaRegresiva : 0);
+    window.countdownTimeout = setTimeout(startCountdown, tiempoInicioCuentaRegresiva > 0 ? tiempoInicioCuentaRegresiva : 0);
 
     // Llama a la función para activar solo el destello en el tiempo definido.
-    flashTimeout = setTimeout(() => {
+    window.flashTimeout = setTimeout(() => {
         initiateHyperspace(false, true);
     }, tiempoParaDestello);
 });
 
 // Limpia los temporizadores si el usuario navega fuera de la página
 window.addEventListener('beforeunload', () => {
-    if (countdownTimeout) clearTimeout(countdownTimeout);
-    if (flashTimeout) clearTimeout(flashTimeout);
+    if (window.countdownTimeout) clearTimeout(window.countdownTimeout);
+    if (window.flashTimeout) clearTimeout(window.flashTimeout);
 });
