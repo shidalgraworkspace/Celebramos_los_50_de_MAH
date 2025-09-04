@@ -148,9 +148,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const sliderSection = document.getElementById('fotos-deslizantes');
 
                 if (intermediateImageContainer && sliderSection) {
-                    
+
                     // --- PRIMERA PARTE: La imagen que crece (Duración: 4 segundos) ---
-                    
+
                     // 1. Muestra el contenedor de la imagen y activa su animación.
                     intermediateImageContainer.classList.add('visible');
                     intermediateImageContainer.classList.add('animate');
@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     setTimeout(() => {
                         // 3. Oculta el contenedor de la imagen para que no moleste.
                         intermediateImageContainer.style.display = 'none';
-                        
+
                         // 4. Muestra la galería de fotos. Ahora sí aparecerá sin nada que la tape.
                         sliderSection.classList.add('visible');
                     }, 4000); // 4000ms = 4 segundos
@@ -178,6 +178,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 flashOverlay.classList.remove('active');
             }, 500);
         }
+    }
+
+    // Pausar la canción en caso de que esté reproduciendo
+    const musicBtn = document.getElementById('play-music-btn');
+    const music = document.getElementById('player');
+    let isPlaying = false;
+
+    if (musicBtn && music) {
+        musicBtn.addEventListener('click', function () {
+            if (isPlaying) {
+                music.pause();
+                musicBtn.innerHTML = '&#x1F507;'; // icono mute
+            } else {
+                music.play();
+                musicBtn.innerHTML = '&#x1F50A;'; // icono sonido
+            }
+            isPlaying = !isPlaying;
+        });
     }
 });
 
