@@ -1702,8 +1702,8 @@ body.hyperspace-active #hyperspace {
 
     .contenedor-fotos_deslizantes {
         width: 100%;
-        max-width: 200px;
-        height: 300px;
+        max-width: 250px;
+        height: 350px;
         overflow: hidden;
         /* Oculta las imágenes que se salen del marco */
         border: 2px solid rgba(73, 218, 255, 0.3);
