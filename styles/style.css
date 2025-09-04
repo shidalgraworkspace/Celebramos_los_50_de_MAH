@@ -229,7 +229,7 @@ body {
     top: 50%;
     left: 50%;
     width: 90%;
-    max-width: 500px;
+    max-width: 750px;
     transform: translate(-50%, -50%);
     opacity: 0;
     animation: logo-zoom 10s 4s ease-out forwards, fade-out-content 1s linear 14s forwards;
