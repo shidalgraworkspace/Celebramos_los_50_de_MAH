@@ -2,12 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 
 :root {
-    --crawl-duration-desktop: 450s;
-    --crawl-duration-mobile: 900s;
+    --crawl-duration-desktop: 350s;
+    --crawl-duration-mobile: 800s;
 
-    /* --- TIEMPOS DE ANIMACIÓN JS --- */
-    --tiempo-salto: 65s;
-    --tiempo-destello: 65.8s;
+    /* --- TIEMPOS DE HIPERESPACIO --- */
+    /* Escritorio: se activa a los 65 segundos */
+    --hyperspace-delay: 65s; 
+    --hyperspace-duration: 10s;
 }
 
 /* --- COCKPIT OVERLAY --- */
@@ -193,7 +194,7 @@ body {
     left: 0;
     width: 100%;
     height: 100vh;
-    perspective: 400px;
+    perspective: 900px;
     opacity: 0;
     animation: show-crawl 1s 10s forwards;
     z-index: 15;
@@ -207,11 +208,11 @@ body {
     position: absolute;
     top: 100%;
     width: 90%;
-    max-width: 2500px;
+    max-width: 1000px;
     left: 50%;
     transform: translateX(-50%);
     color: #ffc909;
-    text-align: center;
+    text-align: justify;
     font-weight: bold;
     font-size: clamp(22px, 4.5vw, 48px);
     line-height: 1.6;
@@ -354,13 +355,13 @@ body {
 @keyframes crawl {
     from {
         top: 100%;
-        transform: translateX(-50%) rotateX(30deg)
+        transform: translateX(-50%) rotateX(20deg);
     }
 
     to {
         top: -3000%;
         /* suficiente recorrido para que nunca se corte */
-        transform: translateX(-50%) rotateX(30deg)
+        transform: translateX(-50%) rotateX(20deg);
     }
 }
 
@@ -454,17 +455,9 @@ body {
 }
 
 @keyframes flash-effect {
-    0% {
-        opacity: 0;
-    }
-
-    50% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-    }
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 #countdown-container {
@@ -472,8 +465,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 101;
-    /* Por encima de la cabina */
+    z-index: 101; /* Por encima de la cabina */
     color: #49daff;
     font-size: 3em;
     font-weight: bold;
@@ -802,8 +794,7 @@ body.hyperspace-active #hyperspace {
     top: 50%;
     left: 50%;
     width: 2px;
-    height: 200px;
-    /* Longitud de la estela */
+    height: 200px; /* Longitud de la estela */
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0), white);
     /* La animación se asignará desde JS */
 }
@@ -825,49 +816,18 @@ body.hyperspace-active #hyperspace {
         transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-200vh) scaleY(2) scaleX(2);
         opacity: 0;
     }
-
     to {
         transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-250vh) scaleY(0.01) scaleX(0.01);
         opacity: 1;
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ---------------------------------------------------------------------------------------------------------------- */
 /* --- MEDIA QUERIES PARA RESPONSIVIDAD --- */
 @media (max-width: 768px) {
     :root {
         /* Móvil: ajustamos el tiempo de espera para que coincida con la animación más larga */
-        --tiempo-salto: 80s;
-        --tiempo-destello: 80.8s;
+        --hyperspace-delay: 80s; /* Ejemplo: 80 segundos para móvil */
     }
 
     .intro-text {
@@ -1281,8 +1241,7 @@ body.hyperspace-active #hyperspace {
 @media (max-width: 480px) {
     :root {
         /* Móvil: ajustamos el tiempo de espera para que coincida con la animación más larga */
-        --tiempo-salto: 80s;
-        --tiempo-destello: 80.8s;
+        --hyperspace-delay: 82s;
     }
 
     .intro-text {
