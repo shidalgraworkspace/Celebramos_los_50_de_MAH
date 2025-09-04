@@ -921,20 +921,19 @@ body.hyperspace-active #hyperspace {
     width: 100%;
     height: 100%;
     z-index: 30;
-    display: none;
-    /* Oculto por defecto */
+    display: flex; /* Cambiado de 'none' a 'flex' */
     justify-content: center;
     align-items: center;
     perspective: 1000px;
-    /* Necesario para el efecto 3D */
     background: radial-gradient(circle, rgba(0, 20, 40, 0.4) 0%, rgba(0, 0, 0, 0.8) 70%);
     opacity: 0;
-    transition: opacity 1.5s ease-in;
+    transform: translateY(100vh); /* Empieza abajo, fuera de la pantalla */
+    transition: opacity 1.5s ease-in, transform 1.5s ease-out; /* Añadimos 'transform' a la transición */
 }
 
 .fotos-deslizantes.visible {
-    display: flex;
     opacity: 1;
+    transform: translateY(0); /* Se mueve al centro */
 }
 
 .contenedor-seccion-fotos_deslizantes {
@@ -946,11 +945,10 @@ body.hyperspace-active #hyperspace {
 }
 
 
-
 .contenedor-fotos_deslizantes {
-    width: 80%;
-    max-width: 900px;
-    height: 450px;
+    width: 100%;
+    max-width: 500px;
+    height: 700px;
     overflow: hidden;
     /* Oculta las imágenes que se salen del marco */
     border: 2px solid rgba(73, 218, 255, 0.3);
@@ -1074,6 +1072,55 @@ body.hyperspace-active #hyperspace {
     /* Pausa en foto 6 */
     100% {
         transform: translateX(-83.333%);
+    }
+}
+
+/* --- SECCIÓN IMAGEN INTERMEDIA --- */
+#intermediate-image-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 35; /* Por encima de la galería */
+    display: none; /* Oculto por defecto */
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+}
+
+#intermediate-image-container.visible {
+    display: flex;
+}
+
+#intermediate-image-container img {
+    max-width: 90%;
+    max-height: 90%;
+    transform: scale(0);
+    opacity: 0;
+}
+
+/* Clase que activa la animación */
+#intermediate-image-container.animate img {
+    animation: scale-up-and-fade-out 4s ease-out forwards;
+}
+
+@keyframes scale-up-and-fade-out {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    80% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.2);
+        opacity: 0;
     }
 }
 

@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- AÑADE ESTAS LÍNEAS AQUÍ ---
+    const audioPlayer = document.getElementById('player');
+    if (audioPlayer) {
+        audioPlayer.pause();
+        audioPlayer.currentTime = 0;
+    }
+    // ---------------------------------
+
     const playOverlay = document.getElementById('play-overlay');
     const body = document.body;
     const countdownContainer = document.getElementById('countdown-container');
@@ -28,12 +36,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reanuda las animaciones CSS
         body.classList.remove('animations-paused');
 
-        // --- AÑADE ESTAS LÍNEAS ---
-        const audioPlayer = document.getElementById('player');
+        // Inicia la reproducción del audio
+        const audioPlayer = document.getElementById('player'); // O usa la constante global
         if (audioPlayer) {
             audioPlayer.play();
         }
-        // -------------------------
 
         // Inicia los temporizadores de la cuenta regresiva
         startCountdownTimers();
