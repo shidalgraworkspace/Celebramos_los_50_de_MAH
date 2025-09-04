@@ -26,28 +26,38 @@
     <meta property="og:locale" content="es_LA"> <!-- Idioma y región -->
     <meta property="og:url" content="https://shidalgraworkspace.github.io/CumpleMAH/">
     <!-- URL canónica de la página -->
-    <meta property="og:title" content="¡50 años de MAH! 🎉"> <!-- Título que aparecerá al compartir -->
+    <meta property="og:title" content="¡50 años de MAH!"> <!-- Título que aparecerá al compartir -->
     <meta property="og:description"
         content="Acompáñanos a celebrar el cumpleaños de MAH con mucha alegría y sorpresas."> <!-- Descripción -->
-
-    <!-- Imagen que se mostrará al compartir -->
+    <!-- Imagen que se mostrará al compartir URL de tu imagen -->
+    <meta property="og:image" content="https://shidalgraworkspace.github.io/CumpleMAH/images/EtiquetaMAH.png">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <!-- <meta property="og:image" content=""> -->
     <meta property="og:image:alt" content="Invitación al 50 cumpleaños de MAH"> <!-- Descripción de la imagen -->
-
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image"> <!-- Tipo de tarjeta: summary o summary_large_image -->
     <meta name="twitter:site" content="@TuUsuarioTwitter"> <!-- Usuario de Twitter del sitio -->
     <meta property="twitter:url" content="https://shidalgraworkspace.github.io/CumpleMAH/">
-    <meta property="twitter:title" content="¡50 años de MAH! 🎉">
+    <meta property="twitter:title" content="¡50 años de MAH!">
     <meta property="twitter:description"
         content="Acompáñanos a celebrar el cumpleaños de MAH con mucha alegría y sorpresas.">
-
     <!-- Imagen que se mostrará al compartir -->
-    <meta property="twitter:image" content="">
+    <meta property="twitter:image" content="https://shidalgraworkspace.github.io/CumpleMAH/images/EtiquetaMAH.png">
     <meta property="twitter:image:alt" content="Invitación al 50 cumpleaños de MAH">
 </head>
 
 <body>
+    <div id="event-timer-gauge" class="gauge-hidden">
+        <div class="gauge">
+            <div class="gauge-face"></div>
+            <div class="gauge-needle" id="gauge-needle"></div>
+            <div class="gauge-center"></div>
+            <div class="gauge-label" id="gauge-label"></div>
+        </div>
+    </div>
+    <div id="event-timer" class="event-timer-hidden"></div>
     <div id="play-overlay" style="display: none;">
         <div id="play-button-container">
             <i class="fas fa-play" id="play-icon"></i>
@@ -83,7 +93,8 @@
         <div class="animation-content">
             <p class="intro-text">Hace mucho tiempo, en una galaxia no muy lejana...</p>
             <div class="logo-container">
-                <img src="images/SeccionStarWars/MAH_Wars_Logo.png" alt="Logo Star Wars" class="main-logo">
+                <img src="images/SeccionStarWars/MAH_Wars_Logo.png" alt="Logo Star Wars" class="main-logo"
+                    id="main-logo">
             </div>
             <div class="crawl-container">
                 <div class="crawl-text">
@@ -129,44 +140,45 @@
 
         <!-- <div class="contenedor-seccion" id="contenedor-seccion" style="display: block;">
             <div class="contenedor-reproductor" id="contenedor-reproductor"> -->
-                <button id="play-music-btn" title="Reproducir música">
-                    &#x1F50A;
-                </button>
-                <audio id="player" class="player" loop>
-                    <source src="Audio/EpicStarWarsBattleOfTheHeroes.mp3" type="audio/mpeg">
-                    <source src="Audio/EpicStarWarsBattleOfTheHeroes.ogg" type="audio/ogg">
-                    <source src="Audio/EpicStarWarsBattleOfTheHeroes.aac" type="audio/aac">
-                    Your browser does not support the audio element.
-                </audio>
-            <!-- </div>
+        <button id="play-music-btn" title="Reproducir música">
+            &#x1F50A;
+        </button>
+        <audio id="player" class="player" loop>
+            <source src="Audio/EpicStarWarsBattleOfTheHeroes.mp3" type="audio/mpeg">
+            <source src="Audio/EpicStarWarsBattleOfTheHeroes.ogg" type="audio/ogg">
+            <source src="Audio/EpicStarWarsBattleOfTheHeroes.aac" type="audio/aac">
+            Your browser does not support the audio element.
+        </audio>
+        <!-- </div>
         </div> -->
-    <!-- </section> Aquí termina la sección de la intro -->
+        <!-- </section> Aquí termina la sección de la intro -->
 
-    <div id="intermediate-image-container">
-        <img src="images/primeraImagen.png" alt="ImagenPrincipal">
-    </div>
-
-    <section class="fotos-deslizantes" id="fotos-deslizantes">
-        <div class="contenedor-seccion-fotosDeslizantes slider-projector-effect">
-            <div class="contenedor-fotos_deslizantes">
-                <ul>
-                    <li><img src="images/slider-Images/slider-1.jpg" alt="Recuerdo_1"></li>
-                    <li><img src="images/slider-Images/slider-2.jpg" alt="Recuerdo_2"></li>
-                    <li><img src="images/slider-Images/slider-3.jpg" alt="Recuerdo_3"></li>
-                    <li><img src="images/slider-Images/slider-4.jpg" alt="Recuerdo_4"></li>
-                    <li><img src="images/slider-Images/slider-5.jpg" alt="Recuerdo_5"></li>
-                    <li><img src="images/slider-Images/slider-6.jpg" alt="Recuerdo_6"></li>
-                    <li><img src="images/slider-Images/slider-7.jpg" alt="Recuerdo_7"></li>
-                    <li><img src="images/slider-Images/slider-8.jpg" alt="Recuerdo_8"></li>
-                    <li><img src="images/slider-Images/slider-9.jpg" alt="Recuerdo_9"></li>
-                    <li><img src="images/slider-Images/slider-10.jpg" alt="Recuerdo_10"></li>
-                    <li><img src="images/slider-Images/slider-1.jpg" alt="Recuerdo_1"></li>
-                </ul>
-            </div>
+        <div id="intermediate-image-container">
+            <img src="images/primeraImagen.png" alt="ImagenPrincipal">
         </div>
-    </section>
-    <script src="https://kit.fontawesome.com/b1aeab81db.js" crossorigin="anonymous"></script>
-    <script src="js/main.js"></script>
+
+        <section class="fotos-deslizantes" id="fotos-deslizantes">
+            <div class="contenedor-seccion-fotosDeslizantes slider-projector-effect">
+                <div class="contenedor-fotos_deslizantes">
+                    <ul>
+                        <li><img src="images/slider-Images/slider-1.jpg" alt="Recuerdo_1"></li>
+                        <li><img src="images/slider-Images/slider-2.jpg" alt="Recuerdo_2"></li>
+                        <li><img src="images/slider-Images/slider-3.jpg" alt="Recuerdo_3"></li>
+                        <li><img src="images/slider-Images/slider-4.jpg" alt="Recuerdo_4"></li>
+                        <li><img src="images/slider-Images/slider-5.jpg" alt="Recuerdo_5"></li>
+                        <li><img src="images/slider-Images/slider-6.jpg" alt="Recuerdo_6"></li>
+                        <li><img src="images/slider-Images/slider-7.jpg" alt="Recuerdo_7"></li>
+                        <li><img src="images/slider-Images/slider-8.jpg" alt="Recuerdo_8"></li>
+                        <li><img src="images/slider-Images/slider-9.jpg" alt="Recuerdo_9"></li>
+                        <li><img src="images/slider-Images/slider-10.jpg" alt="Recuerdo_10"></li>
+                        <li><img src="images/slider-Images/slider-1.jpg" alt="Recuerdo_1"></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <script src="https://kit.fontawesome.com/b1aeab81db.js" crossorigin="anonymous"></script>
+        <script src="js/main.js"></script>
 </body>
 
 </html>

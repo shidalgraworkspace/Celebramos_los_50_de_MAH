@@ -1226,10 +1226,110 @@ body.hyperspace-active #hyperspace {
     opacity: 1;
 }
 
+/* ---------------------------------------------------------------------------------------------- */
+/* Temporizador de eventos */
+#event-timer {
+    position: absolute;
+    bottom: -40%;
+    z-index: 2000;
+    background: transparent;
+    color: #a4a4a4;
+    font-size: clamp(1em, 1.1em + 0.2vw, 1.3em);
+    font-weight: bold;
+    font-family: 'Titillium Web', sans-serif;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px #0002;
+    text-align: center;
+    opacity: 0;
+    transition: left 1s cubic-bezier(.77, 0, .18, 1), opacity 0.7s;
+    white-space: pre-line; /* respeta saltos de línea */
+}
+
+#event-timer.event-timer-visible {
+    bottom: 24px;
+    text-align: center;
+    /* Se mueve a la esquina superior izquierda */
+    opacity: 1;
+}
 
 
 
+/* ------------------------------------------------------------------------------------------------ */
+#event-timer-gauge {
+  position: fixed;
+  top: 24px;
+  left: -220px; /* Empieza fuera de pantalla */
+  z-index: 2000;
+  transition: left 1s cubic-bezier(.77,0,.18,1), opacity 0.7s;
+  opacity: 0;
+}
 
+#event-timer-gauge.gauge-visible {
+  left: 24px;
+  opacity: 1;
+}
+
+.gauge {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  background: #222;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px #0006;
+  border: 3px solid #49daff;
+  overflow: hidden;
+}
+
+.gauge-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(
+    #49daff 0% 10%,
+    #fff 10% 20%,
+    #ffc909 20% 40%,
+    #ff4d4d 40% 100%
+  );
+  opacity: 0.15;
+}
+
+.gauge-needle {
+  position: absolute;
+  width: 4px;
+  height: 60px;
+  background: #ffc909;
+  left: 58px;
+  top: 20px;
+  border-radius: 2px;
+  transform-origin: 50% 80%;
+  transition: transform 0.5s cubic-bezier(.77,0,.18,1);
+  box-shadow: 0 0 8px #ffc909;
+}
+
+.gauge-center {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 51px;
+  top: 51px;
+  background: #222;
+  border-radius: 50%;
+  border: 2px solid #49daff;
+  box-shadow: 0 0 4px #49daff;
+}
+
+.gauge-label {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: 8px;
+  left: 0;
+  color: #fff;
+  font-size: 0.95em;
+  font-family: 'Titillium Web', sans-serif;
+  text-shadow: 0 0 4px #222;
+}
 
 
 
@@ -1977,7 +2077,26 @@ body.hyperspace-active #hyperspace {
         opacity: 1;
     }
 
+    #event-timer {
+        position: fixed;
+        bottom: -20%;
+        z-index: 2000;
+        background: transparent;
+        color: #a4a4a4;
+        font-size: clamp(1em, 1.1em + 0.2vw, 1.3em);
+        font-family: 'Titillium Web', sans-serif;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px #0002;
+        padding: 8px 18px;
+        opacity: 0;
+        transition: left 1s cubic-bezier(.77, 0, .18, 1), opacity 0.7s;
+    }
 
+    #event-timer.event-timer-visible {
+        bottom: 24px;
+        /* Se mueve a la esquina superior izquierda */
+        opacity: 1;
+    }
 }
 
 
