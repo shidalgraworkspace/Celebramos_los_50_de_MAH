@@ -31,6 +31,55 @@
     background-position: center;
 }
 
+/* --- ESTILOS PARA EL BOTÓN DE PLAY --- */
+#play-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* Fondo oscuro semitransparente */
+    z-index: 250;
+    display: flex; /* Usamos flex para centrar el contenido */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    opacity: 0; /* Empezará invisible para una transición suave */
+    transition: opacity 0.5s ease;
+}
+
+#play-overlay.visible {
+    opacity: 1; /* Lo hacemos visible cuando tenga la clase */
+}
+
+#play-button-container {
+    text-align: center;
+    color: #ffc909;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+#play-icon {
+    font-size: 60px;
+    margin-bottom: 15px;
+    color: #ffc909;
+    transition: transform 0.2s ease;
+}
+
+#play-button-container:hover #play-icon {
+    transform: scale(1.1);
+}
+
+#play-button-container p {
+    font-size: 1.2em;
+    letter-spacing: 1px;
+}
+
+/* Clase para pausar TODAS las animaciones */
+.animations-paused * {
+    animation-play-state: paused !important;
+}
+
 /* --- RESET Y CONFIGURACIÓN BASE --- */
 * {
     margin: 0;
