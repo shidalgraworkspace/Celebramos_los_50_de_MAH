@@ -28,8 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reanuda las animaciones CSS
         body.classList.remove('animations-paused');
 
-        // ¡SOLUCIÓN! Inicia los temporizadores de la cuenta regresiva AHORA,
-        // después de que el usuario ha hecho clic.
+        // --- AÑADE ESTAS LÍNEAS ---
+        const audioPlayer = document.getElementById('player');
+        if (audioPlayer) {
+            audioPlayer.play();
+        }
+        // -------------------------
+
+        // Inicia los temporizadores de la cuenta regresiva
         startCountdownTimers();
     }
 
