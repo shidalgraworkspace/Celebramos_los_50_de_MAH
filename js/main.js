@@ -1,4 +1,11 @@
+let countdownTimeout;
+let flashTimeout;
+
 document.addEventListener('DOMContentLoaded', () => {
+    // Limpiar cualquier temporizador pendiente al cargar la página
+    if (window.countdownTimeout) clearTimeout(window.countdownTimeout);
+    if (window.flashTimeout) clearTimeout(window.flashTimeout);
+
     /**
      * Gestiona los efectos de hiperespacio (salto de estrellas y destello).
      * @param {boolean} activarSalto - Si es true, inicia la animación de las estrellas.
@@ -108,10 +115,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const tiempoInicioCuentaRegresiva = tiempoParaSalto - 5000;
 
     // Llama a la función para iniciar la cuenta regresiva.
-    setTimeout(startCountdown, tiempoInicioCuentaRegresiva > 0 ? tiempoInicioCuentaRegresiva : 0);
+    countdownTimeout = setTimeout(startCountdown, tiempoInicioCuentaRegresiva > 0 ? tiempoInicioCuentaRegresiva : 0);
 
     // Llama a la función para activar solo el destello en el tiempo definido.
-    setTimeout(() => {
+    flashTimeout = setTimeout(() => {
         initiateHyperspace(false, true);
     }, tiempoParaDestello);
+});
+
+// Limpia los temporizadores si el usuario navega fuera de la página
+window.addEventListener('beforeunload', () => {
+    if (countdownTimeout) clearTimeout(countdownTimeout);
+    if (flashTimeout) clearTimeout(flashTimeout);
 });
