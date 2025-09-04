@@ -1,5 +1,7 @@
 /* --- Google Fonts --- */
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Petit+Formal+Script&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&family=Yellowtail&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 :root {
     --crawl-duration-desktop: 500s;
@@ -31,6 +33,26 @@
     background-position: center;
 }
 
+/* --- ESTILOS PARA LOS CRÉDITOS --- */
+#credits {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: rgba(255, 255, 255, 0.5);
+    /* Color blanco semitransparente para que sea sutil */
+    font-family: 'Alex Brush', cursive, 'Titillium Web', sans-serif;
+    font-size: 20px;
+    text-align: right;
+    line-height: 1.4;
+    pointer-events: none;
+    /* Importante: permite hacer clic "a través" del texto */
+}
+
+#credits p {
+    margin: 0;
+    /* Quitamos cualquier margen por defecto del párrafo */
+}
+
 /* --- ESTILOS PARA EL BOTÓN DE PLAY --- */
 #play-overlay {
     position: fixed;
@@ -38,19 +60,23 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.85); /* Fondo oscuro semitransparente */
+    background-color: rgba(0, 0, 0, 0.85);
+    /* Fondo oscuro semitransparente */
     z-index: 250;
-    display: flex; /* Usamos flex para centrar el contenido */
+    display: flex;
+    /* Usamos flex para centrar el contenido */
     justify-content: center;
     align-items: center;
     flex-direction: column;
     cursor: pointer;
-    opacity: 0; /* Empezará invisible para una transición suave */
+    opacity: 0;
+    /* Empezará invisible para una transición suave */
     transition: opacity 0.5s ease;
 }
 
 #play-overlay.visible {
-    opacity: 1; /* Lo hacemos visible cuando tenga la clase */
+    opacity: 1;
+    /* Lo hacemos visible cuando tenga la clase */
 }
 
 #play-button-container {
