@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const observer = new MutationObserver(function (mutations) {
             mutations.forEach(function (mutation) {
                 if (sliderSection.classList.contains('visible')) {
-                    setTimeout(function() {
+                    setTimeout(function () {
                         digitalDiv.classList.add('digital-timer-visible');
                         showDigitalTimer();
                     }, 5000);
@@ -252,6 +252,22 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(sliderSection, { attributes: true, attributeFilter: ['class'] });
     }
 
+
+    const planetEarth = document.getElementById('planet-earth');
+
+    if (sliderSection && planetEarth) {
+        const observer = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+                if (sliderSection.classList.contains('visible')) {
+                    setTimeout(function () {
+                        planetEarth.classList.add('planet-earth-visible');
+                    }, 10000); // 10 segundos
+                    observer.disconnect();
+                }
+            });
+        });
+        observer.observe(sliderSection, { attributes: true, attributeFilter: ['class'] });
+    }
 });
 
 

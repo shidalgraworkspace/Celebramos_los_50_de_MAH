@@ -44,11 +44,14 @@
     <meta property="twitter:title" content="¡50 años de MAH!">
     <meta property="twitter:description" content="Acompáñanos al cumpleaños de MAH con mucha alegría y sorpresas.">
     <!-- Imagen que se mostrará al compartir -->
-    <meta property="twitter:image" content="https://shidalgraworkspace.github.io/CumpleMAH/images/EtiquetaComparteMAH.png">
+    <meta property="twitter:image"
+        content="https://shidalgraworkspace.github.io/CumpleMAH/images/EtiquetaComparteMAH.png">
     <meta property="twitter:image:alt" content="Invitación al 50 cumpleaños de MAH">
 </head>
 
 <body>
+    <!-- Preload de imágenes clave para mejorar el rendimiento -->
+    <img style="display: none;" src="images/EtiquetaComparteMAH.png" alt="EtiquetaComparteMAH">
 
     <div id="event-timer-digital" class="digital-timer-hidden">
         <div class="digital-timer-casing">
@@ -59,7 +62,7 @@
         </div>
     </div>
 
-
+    <img id="planet-earth" src="images/PlanetaTierra.png" alt="Planeta Tierra" class="planet-earth-hidden">
 
     <div id="play-overlay" style="display: none;">
         <div id="play-button-container">
@@ -75,8 +78,6 @@
         </div>
     </div>
     <div class="cockpit-overlay"></div>
-    <!-- Preload de imágenes clave para mejorar el rendimiento -->
-    <!-- <img style="display: none;" src="images/Te_invitamos.png" alt="Te_invitamos"> -->
 
     <!-- SECCIÓN 1: INTRO STAR WARS -->
     <section class="intro-star-wars">

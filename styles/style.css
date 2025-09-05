@@ -1305,8 +1305,28 @@ body.hyperspace-active #hyperspace {
     pointer-events: none;
 }
 
+#planet-earth {
+  position: fixed;
+  top: -120px; /* Oculto arriba */
+  right: 24px;
+  width: 800px;
+  height: 800px;
+  opacity: 0;
+  transition: top 1.2s cubic-bezier(.77,0,.18,1), opacity 0.7s;
+  z-index: 15;
+  filter: drop-shadow(0 4px 16px #0008);
+  pointer-events: none;
+}
 
+#planet-earth.planet-earth-visible {
+  top: -9%; /* Se asoma en la esquina superior derecha */
+  right: -12%;
+  opacity: 1;
+}
 
+keyframes planet {
+    
+}
 
 
 
