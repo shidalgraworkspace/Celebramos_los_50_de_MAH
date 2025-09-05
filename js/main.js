@@ -200,101 +200,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // // Funcion de temporizador------------------------------------------------------------------
-    // function showEventTimer() {
-    //     const timerDiv = document.getElementById('event-timer');
-    //     if (!timerDiv) return;
-
-    //     // Fecha del evento: 10 de octubre, 16:30 (4:30pm)
-    //     const eventDate = new Date('2025-10-10T16:30:00-06:00'); // Ajusta zona horaria si es necesario
-
-    //     function updateTimer() {
-    //         const now = new Date();
-    //         const diff = eventDate - now;
-    //         if (diff <= 0) {
-    //             timerDiv.textContent = "¡El evento ha comenzado!";
-    //             return;
-    //         }
-    //         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    //         const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    //         const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    //         const seconds = Math.floor((diff / 1000) % 60);
-
-    //         timerDiv.textContent = `Faltan ${days} Días\nCon ${hours}:${minutes}:${seconds} Para el evento`;
-    //     }
-
-    //     updateTimer();
-    //     setInterval(updateTimer, 1000);
-    // }
-
-    // // Cuando el slider se muestre, espera 5 segundos y muestra el temporizador
-    // const sliderSection = document.getElementById('fotos-deslizantes');
-    // const timerDiv = document.getElementById('event-timer');
-
-    // if (sliderSection && timerDiv) {
-    //     const observer = new MutationObserver(function (mutations) {
-    //         mutations.forEach(function (mutation) {
-    //             if (sliderSection.classList.contains('visible')) {
-    //                 setTimeout(function () {
-    //                     timerDiv.classList.add('event-timer-visible');
-    //                     showEventTimer();
-    //                 }, 5000);
-    //                 observer.disconnect();
-    //             }
-    //         });
-    //     });
-    //     observer.observe(sliderSection, { attributes: true, attributeFilter: ['class'] });
-    // }
-
-    // Gauge timer-------------------------------------------------------------------------------------------
-    function showGaugeTimer() {
-        const gaugeDiv = document.getElementById('event-timer-gauge');
-        const needle = document.getElementById('gauge-needle');
-        const label = document.getElementById('gauge-label');
-        if (!gaugeDiv || !needle || !label) return;
+    function showDigitalTimer() {
+        const daysDiv = document.getElementById('digital-timer-days');
+        const hmsSpan = document.getElementById('digital-timer-hms');
+        if (!daysDiv || !hmsSpan) return;
 
         // Fecha del evento: 10 de octubre, 16:30 (4:30pm)
         const eventDate = new Date('2025-10-10T16:30:00-06:00'); // Ajusta zona horaria si es necesario
 
-        function updateGauge() {
+        function updateDigitalTimer() {
             const now = new Date();
             const diff = eventDate - now;
             if (diff <= 0) {
-                label.textContent = "¡Evento!";
-                needle.style.transform = `rotate(180deg)`;
+                daysDiv.textContent = "¡Evento!";
+                hmsSpan.textContent = "00:00:00";
                 return;
             }
-            // Total segundos hasta el evento
             const totalSeconds = Math.max(0, Math.floor(diff / 1000));
-            // Para el gauge, 0° es inicio, 180° es evento
-            // Puedes ajustar el rango según lo que quieras mostrar
-            // Ejemplo: 7 días = 604800 segundos
-            const maxSeconds = 604800; // 7 días
-            let angle = Math.min(180, (totalSeconds / maxSeconds) * 180);
-            needle.style.transform = `rotate(${angle}deg)`;
-
-            // Muestra días, horas, minutos, segundos
             const days = Math.floor(totalSeconds / (60 * 60 * 24));
             const hours = Math.floor((totalSeconds / (60 * 60)) % 24);
             const minutes = Math.floor((totalSeconds / 60) % 60);
             const seconds = totalSeconds % 60;
-            label.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            daysDiv.textContent = `DÍAS: ${days}`;
+            hmsSpan.textContent =
+                `${String(hours).padStart(2, '0')}:` +
+                `${String(minutes).padStart(2, '0')}:` +
+                `${String(seconds).padStart(2, '0')}`;
         }
 
-        updateGauge();
-        setInterval(updateGauge, 1000);
+        updateDigitalTimer();
+        setInterval(updateDigitalTimer, 1000);
     }
 
-    // Cuando el slider se muestre, espera 5 segundos y muestra el gauge
+    // Cuando el slider se muestre, espera 5 segundos y muestra el digital timer
     const sliderSection = document.getElementById('fotos-deslizantes');
-    const gaugeDiv = document.getElementById('event-timer-gauge');
+    const digitalDiv = document.getElementById('event-timer-digital');
 
-    if (sliderSection && gaugeDiv) {
+    if (sliderSection && digitalDiv) {
         const observer = new MutationObserver(function (mutations) {
             mutations.forEach(function (mutation) {
                 if (sliderSection.classList.contains('visible')) {
-                    setTimeout(function () {
-                        gaugeDiv.classList.add('gauge-visible');
-                        showGaugeTimer();
+                    setTimeout(function() {
+                        digitalDiv.classList.add('digital-timer-visible');
+                        showDigitalTimer();
                     }, 5000);
                     observer.disconnect();
                 }

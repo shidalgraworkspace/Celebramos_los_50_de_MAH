@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <!-- primary meta tags -->
     <meta name="title" content="Cumpleaños de MAH">
     <meta name="description" content="Acompáñanos a celebrar el cumpleaños de MAH con mucha alegría y sorpresas.">
@@ -27,10 +28,10 @@
     <meta property="og:url" content="https://shidalgraworkspace.github.io/CumpleMAH/">
     <!-- URL canónica de la página -->
     <meta property="og:title" content="¡50 años de MAH!"> <!-- Título que aparecerá al compartir -->
-    <meta property="og:description"
-        content="Acompáñanos al cumpleaños de MAH con mucha alegría y sorpresas."> <!-- Descripción -->
+    <meta property="og:description" content="Acompáñanos al cumpleaños de MAH con mucha alegría y sorpresas.">
+    <!-- Descripción -->
     <!-- Imagen que se mostrará al compartir URL de tu imagen -->
-    <meta property="og:image" content="https://shidalgraworkspace.github.io/CumpleMAH/images/EtiquetaMAH.png">
+    <meta property="og:image" content="https://shidalgraworkspace.github.io/CumpleMAH/images/EtiquetaComparteMAH.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -41,23 +42,25 @@
     <meta name="twitter:site" content="@TuUsuarioTwitter"> <!-- Usuario de Twitter del sitio -->
     <meta property="twitter:url" content="https://shidalgraworkspace.github.io/CumpleMAH/">
     <meta property="twitter:title" content="¡50 años de MAH!">
-    <meta property="twitter:description"
-        content="Acompáñanos al cumpleaños de MAH con mucha alegría y sorpresas.">
+    <meta property="twitter:description" content="Acompáñanos al cumpleaños de MAH con mucha alegría y sorpresas.">
     <!-- Imagen que se mostrará al compartir -->
-    <meta property="twitter:image" content="https://shidalgraworkspace.github.io/CumpleMAH/images/EtiquetaMAH.png">
+    <meta property="twitter:image" content="https://shidalgraworkspace.github.io/CumpleMAH/images/EtiquetaComparteMAH.png">
     <meta property="twitter:image:alt" content="Invitación al 50 cumpleaños de MAH">
 </head>
 
 <body>
-    <div id="event-timer-gauge" class="gauge-hidden">
-        <div class="gauge">
-            <div class="gauge-face"></div>
-            <div class="gauge-needle" id="gauge-needle"></div>
-            <div class="gauge-center"></div>
-            <div class="gauge-label" id="gauge-label"></div>
+
+    <div id="event-timer-digital" class="digital-timer-hidden">
+        <div class="digital-timer-casing">
+            <div class="digital-timer-days" id="digital-timer-days"></div>
+            <div class="digital-timer-screen">
+                <span id="digital-timer-hms"></span>
+            </div>
         </div>
     </div>
-    <div id="event-timer" class="event-timer-hidden"></div>
+
+
+
     <div id="play-overlay" style="display: none;">
         <div id="play-button-container">
             <i class="fas fa-play" id="play-icon"></i>

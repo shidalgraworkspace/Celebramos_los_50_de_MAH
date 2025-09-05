@@ -1228,107 +1228,81 @@ body.hyperspace-active #hyperspace {
 
 /* ---------------------------------------------------------------------------------------------- */
 /* Temporizador de eventos */
-#event-timer {
-    position: absolute;
-    bottom: -40%;
+#event-timer-digital {
+    position: fixed;
+    top: -20%;
+    left: -20%;
+    /* Empieza fuera de pantalla */
     z-index: 2000;
-    background: transparent;
-    color: #a4a4a4;
-    font-size: clamp(1em, 1.1em + 0.2vw, 1.3em);
-    font-weight: bold;
-    font-family: 'Titillium Web', sans-serif;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px #0002;
-    text-align: center;
-    opacity: 0;
     transition: left 1s cubic-bezier(.77, 0, .18, 1), opacity 0.7s;
-    white-space: pre-line; /* respeta saltos de línea */
+    opacity: 0;
 }
 
-#event-timer.event-timer-visible {
-    bottom: 24px;
-    text-align: center;
-    /* Se mueve a la esquina superior izquierda */
+#event-timer-digital.digital-timer-visible {
+    top: 2%;
+    left: 1%;
     opacity: 1;
 }
 
-
-
-/* ------------------------------------------------------------------------------------------------ */
-#event-timer-gauge {
-  position: fixed;
-  top: 24px;
-  left: -220px; /* Empieza fuera de pantalla */
-  z-index: 2000;
-  transition: left 1s cubic-bezier(.77,0,.18,1), opacity 0.7s;
-  opacity: 0;
+.digital-timer-casing {
+    width: 160px;
+    height: 110px;
+    background: linear-gradient(145deg, #222 80%, #444 100%);
+    border-radius: 18px 18px 22px 22px / 22px 22px 18px 18px;
+    box-shadow:
+        0 4px 18px 4px #000a,
+        0 0 0 6px #333,
+        0 0 0 12px #222;
+    border: 3px solid #505050;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0 10px 0;
+    position: relative;
 }
 
-#event-timer-gauge.gauge-visible {
-  left: 24px;
-  opacity: 1;
+.digital-timer-days {
+    width: 90%;
+    text-align: center;
+    font-size: 1.2em;
+    color: #49daff;
+    font-family: 'Titillium Web', monospace;
+    letter-spacing: 2px;
+    background: #111;
+    border-radius: 8px 8px 4px 4px;
+    box-shadow: 0 2px 8px #49daff44 inset;
+    margin-bottom: 6px;
+    padding: 4px 0;
 }
 
-.gauge {
-  position: relative;
-  width: 120px;
-  height: 120px;
-  background: #222;
-  border-radius: 50%;
-  box-shadow: 0 2px 8px #0006;
-  border: 3px solid #49daff;
-  overflow: hidden;
+.digital-timer-screen {
+    width: 90%;
+    height: 38px;
+    background: linear-gradient(180deg, #222 60%, #111 100%);
+    border-radius: 6px 6px 12px 12px;
+    box-shadow: 0 2px 8px #49daff44 inset, 0 2px 8px #0008;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Titillium Web', monospace;
+    font-size: 1.5em;
+    color: #ffc909;
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px #ffc909, 0 0 2px #fff;
+    margin-bottom: 2px;
 }
 
-.gauge-face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: conic-gradient(
-    #49daff 0% 10%,
-    #fff 10% 20%,
-    #ffc909 20% 40%,
-    #ff4d4d 40% 100%
-  );
-  opacity: 0.15;
-}
-
-.gauge-needle {
-  position: absolute;
-  width: 4px;
-  height: 60px;
-  background: #ffc909;
-  left: 58px;
-  top: 20px;
-  border-radius: 2px;
-  transform-origin: 50% 80%;
-  transition: transform 0.5s cubic-bezier(.77,0,.18,1);
-  box-shadow: 0 0 8px #ffc909;
-}
-
-.gauge-center {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  left: 51px;
-  top: 51px;
-  background: #222;
-  border-radius: 50%;
-  border: 2px solid #49daff;
-  box-shadow: 0 0 4px #49daff;
-}
-
-.gauge-label {
-  position: absolute;
-  width: 100%;
-  text-align: center;
-  bottom: 8px;
-  left: 0;
-  color: #fff;
-  font-size: 0.95em;
-  font-family: 'Titillium Web', sans-serif;
-  text-shadow: 0 0 4px #222;
+.digital-timer-casing::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    top: 8px;
+    bottom: 8px;
+    border-radius: 14px 14px 18px 18px / 18px 18px 14px 14px;
+    box-shadow: 0 0 18px 4px #49daff33 inset;
+    pointer-events: none;
 }
 
 
@@ -1366,6 +1340,7 @@ body.hyperspace-active #hyperspace {
 /* ---------------------------------------------------------------------------------------------------------------- */
 /* --- MEDIA QUERIES PARA RESPONSIVIDAD --- */
 @media (max-width: 768px) {
+
     :root {
         /* Móvil: ajustamos el tiempo de espera para que coincida con la animación más larga */
         --tiempo-salto: 80s;
@@ -2077,26 +2052,86 @@ body.hyperspace-active #hyperspace {
         opacity: 1;
     }
 
-    #event-timer {
+
+/* ------------------------------------------------------------------------------------------------ */
+/* Temporizador de eventos */
+    #event-timer-digital {
         position: fixed;
-        bottom: -20%;
+        top: 24px;
+        left: -220px;
+        /* Empieza fuera de pantalla */
         z-index: 2000;
-        background: transparent;
-        color: #a4a4a4;
-        font-size: clamp(1em, 1.1em + 0.2vw, 1.3em);
-        font-family: 'Titillium Web', sans-serif;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px #0002;
-        padding: 8px 18px;
-        opacity: 0;
         transition: left 1s cubic-bezier(.77, 0, .18, 1), opacity 0.7s;
+        opacity: 0;
     }
 
-    #event-timer.event-timer-visible {
-        bottom: 24px;
-        /* Se mueve a la esquina superior izquierda */
+    #event-timer-digital.digital-timer-visible {
+        left: 24px;
         opacity: 1;
     }
+
+    .digital-timer-casing {
+        width: 160px;
+        height: 110px;
+        background: linear-gradient(145deg, #222 80%, #444 100%);
+        border-radius: 18px 18px 22px 22px / 22px 22px 18px 18px;
+        box-shadow:
+            0 4px 18px 4px #000a,
+            0 0 0 6px #333,
+            0 0 0 12px #222;
+        border: 3px solid #505050;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0 10px 0;
+        position: relative;
+    }
+
+    .digital-timer-days {
+        width: 90%;
+        text-align: center;
+        font-size: 1.2em;
+        color: #49daff;
+        font-family: 'Titillium Web', monospace;
+        letter-spacing: 2px;
+        background: #111;
+        border-radius: 8px 8px 4px 4px;
+        box-shadow: 0 2px 8px #49daff44 inset;
+        margin-bottom: 6px;
+        padding: 4px 0;
+    }
+
+    .digital-timer-screen {
+        width: 90%;
+        height: 38px;
+        background: linear-gradient(180deg, #222 60%, #111 100%);
+        border-radius: 6px 6px 12px 12px;
+        box-shadow: 0 2px 8px #49daff44 inset, 0 2px 8px #0008;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Titillium Web', monospace;
+        font-size: 1.5em;
+        color: #ffc909;
+        letter-spacing: 2px;
+        text-shadow: 0 0 8px #ffc909, 0 0 2px #fff;
+        margin-bottom: 2px;
+    }
+
+    .digital-timer-casing::before {
+        content: "";
+        position: absolute;
+        left: 8px;
+        right: 8px;
+        top: 8px;
+        bottom: 8px;
+        border-radius: 14px 14px 18px 18px / 18px 18px 14px 14px;
+        box-shadow: 0 0 18px 4px #49daff33 inset;
+        pointer-events: none;
+    }
+
+
 }
 
 
@@ -2524,4 +2559,83 @@ body.hyperspace-active #hyperspace {
         }
     }
 
+    /* ---------------------------------------------------------------------------------------------- */
+    /* Temporizador de eventos */
+    #event-timer-digital {
+        top: -30%;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: top 1.2s cubic-bezier(.77, 0, .18, 1), opacity 0.7s;
+    }
+
+    #event-timer-digital.digital-timer-visible {
+        top: 6%;
+        left: 50%;
+        /* centro vertical */
+        transform: translate(-50%, -50%);
+        /* centro exacto */
+        opacity: 1;
+        /* visible */
+    }
+
+    .digital-timer-casing {
+        width: 140px;
+        height: 100px;
+        background: linear-gradient(145deg, #222 80%, #444 100%);
+        border-radius: 18px 18px 22px 22px / 22px 22px 18px 18px;
+        box-shadow:
+            0 4px 18px 4px #000a,
+            0 0 0 6px #333,
+            0 0 0 12px #222;
+        border: 3px solid #505050;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0 10px 0;
+        position: relative;
+    }
+
+    .digital-timer-days {
+        width: 90%;
+        text-align: center;
+        font-size: 1.2em;
+        color: #414aad;
+        font-family: 'Titillium Web', monospace;
+        letter-spacing: 2px;
+        background: #111;
+        border-radius: 8px 8px 4px 4px;
+        box-shadow: 0 2px 8px #0c0d0d44 inset;
+        margin-bottom: 6px;
+        padding: 4px 0;
+    }
+
+    .digital-timer-screen {
+        width: 90%;
+        height: 38px;
+        background: linear-gradient(180deg, #222 60%, #111 100%);
+        border-radius: 6px 6px 12px 12px;
+        box-shadow: 0 2px 8px #49daff44 inset, 0 2px 8px #0008;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Titillium Web', monospace;
+        font-size: 1.5em;
+        color: #ffc909;
+        letter-spacing: 2px;
+        text-shadow: 0 0 8px #ffc909, 0 0 2px #a8a8a8;
+        margin-bottom: 2px;
+    }
+
+    .digital-timer-casing::before {
+        content: "";
+        position: absolute;
+        left: 8px;
+        right: 8px;
+        top: 8px;
+        bottom: 8px;
+        border-radius: 14px 14px 18px 18px / 18px 18px 14px 14px;
+        box-shadow: 0 0 18px 4px #49daff33 inset;
+        pointer-events: none;
+    }
 }
