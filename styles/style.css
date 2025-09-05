@@ -24,7 +24,7 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    z-index: 100;
+    z-index: 99;
     /* Asegura que esté por encima de todo */
     pointer-events: none;
     /* Permite hacer clic a través del overlay */
@@ -62,7 +62,7 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.85);
     /* Fondo oscuro semitransparente */
-    z-index: 250;
+    z-index: 105;
     display: flex;
     /* Usamos flex para centrar el contenido */
     justify-content: center;
@@ -129,7 +129,7 @@ body {
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    z-index: 10;
+    z-index: 1;
     background-image: url(../images/Evidencia/EspacioExterior.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -143,7 +143,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 11;
+    z-index: 2;
+    pointer-events: none;
 }
 
 .shooting-star {
@@ -151,7 +152,7 @@ body {
     width: 2px;
     height: 2px;
     background: transparent;
-    z-index: 12;
+    z-index: 3;
     opacity: 0;
 }
 
@@ -195,9 +196,8 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
-    z-index: 13;
-    /* SOLUCIÓN: La animación de fade-out se aplica solo al contenido de la intro */
-    /* animation: fade-out-content 1s linear 21s forwards; */
+    z-index: 5;
+    pointer-events: none;
 }
 
 .intro-text {
@@ -239,7 +239,7 @@ body {
     perspective: 400px;
     opacity: 0;
     animation: show-crawl 1s 10s forwards;
-    z-index: 15;
+    z-index: 10;
     /*Para hacer que el texto se muestre de abajo hacia arriba y que no desaparezca bruscamente*/
     -webkit-mask-image: linear-gradient(to top, transparent 0%, black 20%, black 80%, transparent 100%);
     mask-image: linear-gradient(to top, transparent 0%, black 20%, black 80%, transparent 100%);
@@ -264,7 +264,7 @@ body {
     /* sensación más “épica” */
     animation: crawl var(--crawl-duration-desktop) linear 13s forwards;
     transform-origin: 50% 100%;
-    z-index: 15;
+    z-index: 11;
 }
 
 .episode-title {
@@ -447,6 +447,7 @@ body {
         appear-death-star 5s ease-out forwards 100s,
         shrink-move-death-star 20s ease-out forwards 2s;
     animation-delay: 10s;
+    pointer-events: none;
 }
 
 /* Animaciones de naves con posiciones finales corregidas */
@@ -894,6 +895,7 @@ body.hyperspace-active #hyperspace {
     opacity: 0;
     transform: translateY(100vh);
     transition: opacity 1.5s ease-in, transform 1.5s ease-out;
+    pointer-events: none;
 }
 
 .fotos-deslizantes.visible {
@@ -1191,7 +1193,7 @@ body.hyperspace-active #hyperspace {
     top: -20%;
     left: -20%;
     /* Empieza fuera de pantalla */
-    z-index: 2000;
+    z-index: 600;
     transition: left 1s cubic-bezier(.77, 0, .18, 1), opacity 0.7s;
     opacity: 0;
 }
@@ -1273,7 +1275,6 @@ body.hyperspace-active #hyperspace {
     z-index: 15;
     filter: drop-shadow(0 4px 16px #0008);
     transition: none;
-    pointer-events: none;
 }
 
 #planet-earth.planet-earth-visible {
@@ -1307,7 +1308,7 @@ body.hyperspace-active #hyperspace {
     position: fixed;
     top: 10%;
     right: 6%;
-    z-index: 3000;
+    z-index: 500;
     pointer-events: none;
 }
 
@@ -1331,13 +1332,13 @@ body.hyperspace-active #hyperspace {
 /* ------------------------------------------------------------------------------------------------- */
 /* --- Botón para ver la ubicación en el mapa --- */
 #btn-ver-ubicacion {
+    position: fixed;
     width: 220px;
     height: 50px;
-    position: fixed;
     top: 10%;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 3001;
+    z-index: 500;
     background: linear-gradient(145deg, #222 80%, #444 100%);
     border-radius: 18px 18px 22px 22px / 22px 22px 18px 18px;
     box-shadow:
@@ -1377,12 +1378,11 @@ body.hyperspace-active #hyperspace {
 /* --- Ventanas de información y botones en el slider --- */
 .slider-buttons-container {
     position: absolute;
+    display: none;
     top: 50%;
     left: 0;
     width: 100%;
-    display: flex;
-    z-index: 3002;
-    pointer-events: none;
+    z-index: 101;
     transform: translateY(-50%);
     justify-content: space-evenly;
     /* reparte equitativamente */
@@ -1393,7 +1393,6 @@ body.hyperspace-active #hyperspace {
     height: 40px;
     display: flex;
     align-items: center;
-    /* centra verticalmente */
     justify-content: center;
     pointer-events: auto;
     background: linear-gradient(145deg, #222 80%, #444 100%);
@@ -1415,13 +1414,14 @@ body.hyperspace-active #hyperspace {
     text-shadow: 0 0 8px #49daff44;
     cursor: pointer;
     position: relative;
-    z-index: 3003;
+    z-index: 1000;
 }
 
 .slider-action-btn:hover {
-    background: linear-gradient(145deg, #444 80%, #222 100%);
+    background: linear-gradient(145deg, #444 70%, #222 100%);
     color: #ffc909;
-    box-shadow: 0 0 24px #49daff88, 0 2px 8px #0006;
+    box-shadow: 0 0 24px #49daff88, 0 4px 12px #0008, 0 0 12px #ffc90944 inset;
+    transform: translateY(-2px);
     border-color: #49daff;
 }
 
@@ -1429,21 +1429,24 @@ body.hyperspace-active #hyperspace {
     position: absolute;
     min-width: 320px;
     max-width: 400px;
-    min-height: 180px;
-    display: none; /* Oculta por defecto */
-    z-index: 4000;
-    border-radius: 22px 22px 28px 28px / 28px 28px 22px 22px;
+    display: none;
+    opacity: 0;
+    border-radius: 22px;
     box-shadow: 0 8px 32px 8px #000a, 0 0 0 8px #333, 0 0 0 16px #222;
     overflow: hidden;
     background: rgba(34, 34, 44, 0.98);
     border: 3px solid #49daff;
-    opacity: 0;
-    transition: opacity 0.3s;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform: translateY(-10px);
+    z-index: 1001;
 }
 
 .slider-info-window.visible {
-    display: block; /* Muestra la ventana */
+    display: block;
     opacity: 1;
+    transform: translateY(0);
+    animation: slideDownFade 0.4s ease forwards;
+    z-index: 1001;
 }
 
 @keyframes window-slide-down {
@@ -1458,48 +1461,20 @@ body.hyperspace-active #hyperspace {
     }
 }
 
-.info-right,
-.info-left {
-    position: absolute;
-    top: 50%;               /* centrado vertical */
-    left: 50%;              /* centrado horizontal */
-    right: 50%;
-    transform: translate(-50%, -50%); /* mueve el punto de referencia al centro */
-}
-/* 
-.info-right {
-    right: 40%;
-    transform: translateX(40%);
-    animation-name: window-slide-right;
-}
-
-.info-left {
-    left: 50%;
-    animation-name: window-slide-left;
-} */
-
-@keyframes window-slide-right {
+@keyframes slideDownFade {
     0% {
         opacity: 0;
-        transform: translateX(0) scaleX(0.7);
+        transform: translateY(-20px);
     }
 
     100% {
         opacity: 1;
-        transform: translateX(0) scaleX(1);
+        transform: translateY(0);
     }
 }
 
-@keyframes window-slide-left {
-    0% {
-        opacity: 0;
-        transform: translateX(0) scaleX(0.7);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX(0) scaleX(1);
-    }
+.slider-info-window.visible {
+    animation: slideDownFade 0.4s ease forwards;
 }
 
 .window-bg {
@@ -1511,22 +1486,13 @@ body.hyperspace-active #hyperspace {
     opacity: 0.18;
     background-size: cover;
     background-position: center;
-    z-index: 0;
-}
-
-.window-bg-xwing {
-    background-image: url('images/SeccionStarWars/xwing-shield.png');
-    /* pon aquí tu escudo de x-wing */
-}
-
-.window-bg-radar {
-    background-image: url('images/SeccionStarWars/radar-mapa.png');
-    /* pon aquí tu radar/mapa */
+    filter: blur(2px) brightness(1.2);
+    mix-blend-mode: overlay;
 }
 
 .window-content {
     position: relative;
-    z-index: 1;
+    z-index: 50;
     padding: 24px 32px;
     color: #ffc909;
     font-family: 'Titillium Web', monospace;
@@ -1547,12 +1513,61 @@ body.hyperspace-active #hyperspace {
 .window-content b {
     color: #49daff;
 }
+/* -------------------------------------------------------------------------------------------------*/
+/* boton de confirmar llegada  */
+.confirmar-llegada-container {
+    position: fixed;
+    left: 50%;
+    bottom: 10%;
+    transform: translateX(-50%);
+    display: none; /* visible solo cuando lo actives por JS */
+    z-index: 1000;
+}
 
+/* Oculta por defecto */
+#btn-ver-ubicacion,
+#btn-confirmar-whatsapp,
+#btn-info-general,
+#btn-carinito {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
 
+/* Animaciones */
+@keyframes slide-down {
+    from { transform: translateY(-60px); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+}
+@keyframes slide-up {
+    from { transform: translateY(60px); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+}
+@keyframes slide-left {
+    from { transform: translateX(-60px); opacity: 0; }
+    to   { transform: translateX(0); opacity: 1; }
+}
+@keyframes slide-right {
+    from { transform: translateX(60px); opacity: 0; }
+    to   { transform: translateX(0); opacity: 1; }
+}
 
-
-
-
+/* Clases para activar animación */
+.btn-animate-down {
+    animation: slide-down 5s cubic-bezier(.77,0,.18,1) forwards;
+    pointer-events: auto;
+}
+.btn-animate-up {
+    animation: slide-up 5s cubic-bezier(.77,0,.18,1) forwards;
+    pointer-events: auto;
+}
+.btn-animate-left {
+    animation: slide-left 5s cubic-bezier(.77,0,.18,1) forwards;
+    pointer-events: auto;
+}
+.btn-animate-right {
+    animation: slide-right 5s cubic-bezier(.77,0,.18,1) forwards;
+    pointer-events: auto;
+}
 
 
 
@@ -1628,7 +1643,7 @@ body.hyperspace-active #hyperspace {
         /* Siempre pegada al borde derecho */
         width: 50%;
         max-width: 800px;
-        z-index: 1;
+        z-index: 25;
         transform-origin: right center;
         /* Escalado desde el borde derecho */
         opacity: 0;
@@ -1670,7 +1685,7 @@ body.hyperspace-active #hyperspace {
         left: 0;
         width: 30%;
         max-width: 800px;
-        z-index: 12;
+        z-index: 25;
         transform-origin: left center;
         opacity: 0;
         animation:
@@ -1737,7 +1752,7 @@ body.hyperspace-active #hyperspace {
         max-width: 150px;
         top: 5%;
         right: -20%;
-        z-index: 12;
+        z-index: 50;
         opacity: 0;
         filter:
             drop-shadow(4px -4px 6px rgba(255, 0, 0, .8)) drop-shadow(6px -6px 14px rgba(255, 0, 0, .6)) drop-shadow(8px -8px 28px rgba(255, 0, 0, .4));
@@ -1793,7 +1808,7 @@ body.hyperspace-active #hyperspace {
         max-width: 180px;
         top: 20%;
         left: 0%;
-        z-index: 12;
+        z-index: 50;
         opacity: 0;
         transform: scale(0.5) rotate(-15deg);
         filter:
@@ -1810,7 +1825,7 @@ body.hyperspace-active #hyperspace {
         max-width: 180px;
         top: 20%;
         left: 2%;
-        z-index: 12;
+        z-index: 50;
         opacity: 0;
         transform: scale(0.5) rotate(-15deg);
         filter:
@@ -1827,7 +1842,7 @@ body.hyperspace-active #hyperspace {
         max-width: 180px;
         top: 20%;
         left: 0%;
-        z-index: 12;
+        z-index: 50;
         opacity: 0;
         transform: scale(0.5) rotate(-15deg);
         filter:
@@ -2295,7 +2310,7 @@ body.hyperspace-active #hyperspace {
         top: 24px;
         left: -220px;
         /* Empieza fuera de pantalla */
-        z-index: 2000;
+        z-index: 500;
         transition: left 1s cubic-bezier(.77, 0, .18, 1), opacity 0.7s;
         opacity: 0;
     }
@@ -2435,6 +2450,9 @@ body.hyperspace-active #hyperspace {
     /* ---------------------------------------------------------------------------------------------- */
     /* --- Botón para ver la ubicación en el mapa --- */
     #btn-ver-ubicacion {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 150px;
         height: 40px;
         padding: 9px 20px;
@@ -2442,7 +2460,7 @@ body.hyperspace-active #hyperspace {
         top: 20%;
         left: 50%;
         transform: translateX(-50%);
-        z-index: 3001;
+        z-index: 500;
         background: linear-gradient(145deg, #222 80%, #444 100%);
         border-radius: 18px 18px 22px 22px / 22px 22px 18px 18px;
         box-shadow:
@@ -2459,9 +2477,6 @@ body.hyperspace-active #hyperspace {
         transition: opacity 0.7s;
         display: none;
         text-shadow: 0 0 8px #49daff44;
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 
     #btn-ver-ubicacion.visible {
@@ -2546,7 +2561,7 @@ body.hyperspace-active #hyperspace {
         /* Siempre pegada al borde derecho */
         width: 50%;
         max-width: 800px;
-        z-index: 1;
+        z-index: 25;
         transform-origin: right center;
         /* Escalado desde el borde derecho */
         opacity: 0;
@@ -2574,7 +2589,7 @@ body.hyperspace-active #hyperspace {
         left: 0;
         width: 30%;
         max-width: 800px;
-        z-index: 12;
+        z-index: 25;
         transform-origin: left center;
         opacity: 0;
         animation:
@@ -2666,7 +2681,7 @@ body.hyperspace-active #hyperspace {
         max-width: 150px;
         top: 5%;
         right: -20%;
-        z-index: 12;
+        z-index: 50;
         opacity: 0;
         filter:
             drop-shadow(4px -4px 6px rgba(255, 0, 0, .8)) drop-shadow(6px -6px 14px rgba(255, 0, 0, .6)) drop-shadow(8px -8px 28px rgba(255, 0, 0, .4));
@@ -2722,7 +2737,7 @@ body.hyperspace-active #hyperspace {
         max-width: 180px;
         top: 20%;
         left: 0%;
-        z-index: 12;
+        z-index: 50;
         opacity: 0;
         transform: scale(0.5) rotate(-15deg);
         filter:
@@ -2739,7 +2754,7 @@ body.hyperspace-active #hyperspace {
         max-width: 180px;
         top: 20%;
         left: 2%;
-        z-index: 12;
+        z-index: 50;
         opacity: 0;
         transform: scale(0.5) rotate(-15deg);
         filter:
@@ -2756,7 +2771,7 @@ body.hyperspace-active #hyperspace {
         max-width: 180px;
         top: 20%;
         left: 0%;
-        z-index: 12;
+        z-index: 50;
         opacity: 0;
         transform: scale(0.5) rotate(-15deg);
         filter:
@@ -2989,7 +3004,7 @@ body.hyperspace-active #hyperspace {
         width: 250px;
         height: 700px;
         opacity: 0;
-        z-index: 15;
+        z-index: 50;
         filter: drop-shadow(0 4px 16px #0008);
         transition: none;
         pointer-events: none;
@@ -3026,7 +3041,7 @@ body.hyperspace-active #hyperspace {
         position: fixed;
         top: 5%;
         right: 4%;
-        z-index: 20;
+        z-index: 60;
         pointer-events: none;
     }
 
@@ -3057,7 +3072,7 @@ body.hyperspace-active #hyperspace {
         top: 20%;
         left: 50%;
         transform: translateX(-50%);
-        z-index: 3001;
+        z-index: 500;
         background: linear-gradient(145deg, #222 80%, #444 100%);
         border-radius: 18px 18px 22px 22px / 22px 22px 18px 18px;
         box-shadow:

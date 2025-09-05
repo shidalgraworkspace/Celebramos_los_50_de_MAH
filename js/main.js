@@ -244,6 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     setTimeout(function () {
                         digitalDiv.classList.add('digital-timer-visible');
                         showDigitalTimer();
+                        document.querySelector('.slider-buttons-container').style.display = 'flex';
                     }, 5000);
                     observer.disconnect();
                 }
@@ -251,7 +252,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         observer.observe(sliderSection, { attributes: true, attributeFilter: ['class'] });
     }
-
 
     const planetEarth = document.getElementById('planet-earth');
 
@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (sliderSection.classList.contains('visible')) {
                     setTimeout(function () {
                         planetEarth.classList.add('planet-earth-visible');
-                    }, 10000); // 10 segundos
+                    }, 5000); // 5 segundos
                     observer.disconnect();
                 }
             });
@@ -272,6 +272,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mostrar flecha y botón tras animación del planeta
     const arrowContainer = document.getElementById('arrow-location-container');
     const btnUbicacion = document.getElementById('btn-ver-ubicacion');
+    const btnConfirmar = document.getElementById('btn-confirmar-whatsapp');
+    const btnInfoGeneral = document.getElementById('btn-info-general');
+    const btnCarinito = document.getElementById('btn-carinito');
+
+    
 
     // Detecta el final de la animación earth-slide-in
     if (planetEarth) {
@@ -279,7 +284,24 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.animationName === 'earth-slide-in') {
                 arrowContainer.style.display = 'block';
                 btnUbicacion.style.display = 'block';
-                setTimeout(() => btnUbicacion.classList.add('visible'), 100); // transición
+                setTimeout(() => {
+                    btnUbicacion.classList.add('visible');
+                    btnUbicacion.classList.add('btn-animate-down'); // animación de arriba hacia abajo
+                }, 100);
+                // Mostrar el botón de confirmación 3 segundos después
+                setTimeout(() => {
+                    document.querySelector('.confirmar-llegada-container').style.display = 'flex';
+                }, 100); // 3 segundos después de la ubicación
+                setTimeout(() => {
+                    btnConfirmar.classList.add('btn-animate-up');
+                }, 100);
+
+                setTimeout(() => {
+                    btnInfoGeneral.classList.add('btn-animate-left');
+                }, 100);
+                setTimeout(() => {
+                    btnCarinito.classList.add('btn-animate-right');
+                }, 100);
             }
         });
     }
@@ -384,15 +406,13 @@ document.addEventListener('DOMContentLoaded', () => {
                                     document.body.removeChild(hyperspaceDiv);
                                 }, 400);
                             }, 1000); // destello visible 1s
-                        }, 1200); // Espera 1.5s para que se vean las estrellas acelerando
+                        }, 1000); // Espera 1s para que se vean las estrellas acelerando
                     }, 700);
                 }
             }, 700);
         });
     }
 
-    const btnInfoGeneral = document.getElementById('btn-info-general');
-    const btnCarinito = document.getElementById('btn-carinito');
     const infoGeneralWindow = document.getElementById('info-general-window');
     const carinitoWindow = document.getElementById('carinito-window');
 
@@ -400,10 +420,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function showWindow(windowEl, btnEl) {
         const rect = btnEl.getBoundingClientRect();
         const windowWidth = windowEl.offsetWidth || 360;
+
         const left = rect.left + (rect.width / 2) - (windowWidth / 2) + window.scrollX;
-        windowEl.style.top = (rect.bottom + window.scrollY) + 'px';
-        windowEl.style.left = left + 'px';
-        // Solo agrega la clase visible, no cambies display manualmente
+        const top = rect.bottom + 12 + window.scrollY; // 12px de separación
+        windowEl.style.left = `${left}px`;
+        windowEl.style.top = `${top}px`;
     }
 
     // Mostrar/ocultar ventanas al hacer clic
@@ -429,6 +450,12 @@ document.addEventListener('DOMContentLoaded', () => {
             carinitoWindow.classList.remove('visible');
         }
     });
+
+    document.getElementById('btn-confirmar-whatsapp').addEventListener('click', function () {
+        window.open('https://wa.me/50687900909?text=¡Confirmo mi llegada al evento!', '_blank');
+    });
+    
+    
 });
 
 

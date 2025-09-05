@@ -70,9 +70,9 @@
     <div id="play-overlay" style="display: none;">
         <div id="play-button-container">
             <i class="fas fa-play" id="play-icon"></i>
-            <p>¡Baja un poco el volumen</p>
-            <p>antes de continuar</p>
-            <p>sí quieres ver más!</p>
+            <p>¡Unete a la aventura!</p>
+            <p>¿te atreves?</p>
+            <p>Vamos!!!</p>
         </div>
         <div id="credits">
             <p>Realizado por:</p>
@@ -89,6 +89,39 @@
     <button id="btn-ver-ubicacion" style="display:none;">Ver ubicación
         <i class="fas fa-location-arrow"></i>
     </button>
+
+
+    <div class="slider-buttons-container">
+        <div class="slider-btn-group">
+            <button id="btn-info-general" class="slider-action-btn">Información general</button>
+        </div>
+        <div class="slider-btn-group">
+            <button id="btn-carinito" class="slider-action-btn">Cariñito</button>
+        </div>
+    </div>
+
+    <!-- Ventanas flotantes -->
+    <div id="info-general-window" class="slider-info-window">
+        <div class="window-bg window-bg-xwing"></div>
+        <div class="window-content">
+            <ul>
+                <li>El evento será el <b>Sábado 11 de octubre</b> a partir de las <b>7:00 pm</b>.</li>
+                <li>San Pedro, Del Farolito de Barrio Escalante 100 m al sur y 25 m al este.</li>
+                <li>Se incluirá música en Vivo y DJ.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="carinito-window" class="slider-info-window">
+        <div class="window-bg window-bg-radar"></div>
+        <div class="window-content">
+            <p>
+                Su compañía y compartir con ustedes es el mejor regalo que me pueden obsequiar.<br>
+                Sin embargo, si desean de alguna manera brindar muestras de cariño podrán ser en efectivo el día
+                del evento (mediante sobre) o vía SINPE al número <b>8790-0909</b>
+            </p>
+        </div>
+    </div>
 
     <div class="cockpit-overlay"></div>
 
@@ -185,43 +218,27 @@
                     </ul>
                 </div>
             </div>
-            <div class="slider-buttons-container">
-                <div class="slider-btn-group">
-                    <button id="btn-info-general" class="slider-action-btn">Información general</button>
-                    <div id="info-general-window" class="slider-info-window">
-                        <!-- contenido aquí -->
-                    </div>
-                </div>
-                <div class="slider-btn-group">
-                    <button id="btn-carinito" class="slider-action-btn">Cariñito</button>
-                    <div id="carinito-window" class="slider-info-window">
-                        <!-- contenido aquí -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Ventanas desplegables -->
-            <div id="info-general-window" class="slider-info-window info-right">
-                <div class="window-bg window-bg-xwing"></div>
-                <div class="window-content">
-                    <ul>
-                        <li>El evento será el <b>Sábado 11 de octubre</b> a partir de las <b>7:00 pm</b>.</li>
-                        <li>San Pedro, Del Farolito de Barrio Escalante 100 m al sur y 25 m al este.</li>
-                        <li>Se incluirá música en Vivo y DJ.</li>
-                    </ul>
-                </div>
-            </div>
-            <div id="carinito-window" class="slider-info-window info-left">
-                <div class="window-bg window-bg-radar"></div>
-                <div class="window-content">
-                    <p>
-                        Su compañía y compartir con ustedes es el mejor regalo que me pueden obsequiar.<br>
-                        Sin embargo, si desean de alguna manera brindar muestras de cariño podrán ser en efectivo el día
-                        del evento (mediante sobre) o vía SINPE al número <b>8790-0909</b>
-                    </p>
-                </div>
-            </div>
         </section>
+
+        <div class="confirmar-llegada-container">
+            <button id="btn-confirmar-whatsapp" class="slider-action-btn">
+                <i class="fa-brands fa-whatsapp" style="margin-right: 10px;"></i>
+                Confirmar llegada
+            </button>
+        </div>
+
+        <meta name="format-detection" content="telephone=no">
+        <div>
+            <button class="whatsapp" id="whatsapp1">
+                <a href="https://wa.me/50687900909">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    Confirmar
+                </a>
+            </button>
+        </div>
+
+
+
 
         <script src="https://kit.fontawesome.com/b1aeab81db.js" crossorigin="anonymous"></script>
         <script src="js/main.js"></script>
