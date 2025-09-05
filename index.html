@@ -22,31 +22,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;700&display=swap" rel="stylesheet">
     <!-- Open Graph Facebook -->
-    <meta property="og:type" content="website"> <!-- Tipo de contenido: website, article, video, etc. -->
-    <meta property="og:site_name" content="Shidalgra_Solution"> <!-- Nombre de tu sitio web -->
-    <meta property="og:locale" content="es_LA"> <!-- Idioma y región -->
-    <meta property="og:url" content="https://shidalgraworkspace.github.io/CumpleMAH/">
-    <!-- URL canónica de la página -->
-    <meta property="og:title" content="¡50 años de MAH!"> <!-- Título que aparecerá al compartir -->
-    <meta property="og:description" content="Acompáñanos al cumpleaños de MAH con mucha alegría y sorpresas.">
-    <!-- Descripción -->
-    <!-- Imagen que se mostrará al compartir URL de tu imagen -->
-    <meta property="og:image" content="https://shidalgraworkspace.github.io/CumpleMAH/images/EtiquetaComparteMAH.png">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <!-- <meta property="og:image" content=""> -->
-    <meta property="og:image:alt" content="Invitación al 50 cumpleaños de MAH"> <!-- Descripción de la imagen -->
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image"> <!-- Tipo de tarjeta: summary o summary_large_image -->
-    <meta name="twitter:site" content="@TuUsuarioTwitter"> <!-- Usuario de Twitter del sitio -->
-    <meta property="twitter:url" content="https://shidalgraworkspace.github.io/CumpleMAH/">
-    <meta property="twitter:title" content="¡50 años de MAH!">
-    <meta property="twitter:description" content="Acompáñanos al cumpleaños de MAH con mucha alegría y sorpresas.">
-    <!-- Imagen que se mostrará al compartir -->
-    <meta property="twitter:image"
-        content="https://shidalgraworkspace.github.io/CumpleMAH/images/EtiquetaComparteMAH.png">
-    <meta property="twitter:image:alt" content="Invitación al 50 cumpleaños de MAH">
+    
 </head>
 
 <body>
@@ -62,7 +38,7 @@
         </div>
     </div>
 
-    <img id="planet-earth" src="images/PlanetaTierra.png" alt="Planeta Tierra" class="planet-earth-visible">
+    <img id="planet-earth" src="images/PlanetaTierra.png" alt="Planeta Tierra" class="planet-earth-hidden">
 
     <div id="play-overlay" style="display: none;">
         <div id="play-button-container">
@@ -77,6 +53,16 @@
             <p>Teléfono #72657605</p>
         </div>
     </div>
+
+    <!-- Flecha animada señalando la bandera -->
+    <div id="arrow-location-container" style="display:none;">
+        <img id="arrow-location" src="images/SeccionStarWars/flecha-ubicacion.png" alt="Flecha ubicación">
+    </div>
+    <!-- Botón "Ver ubicación" -->
+    <button id="btn-ver-ubicacion" style="display:none;">Ver ubicación 
+        <i class="fas fa-location-arrow"></i>
+    </button>
+
     <div class="cockpit-overlay"></div>
 
     <!-- SECCIÓN 1: INTRO STAR WARS -->
@@ -134,28 +120,21 @@
             <img src="images/SeccionStarWars/Principal/X-Wing2.png" alt="X-wing" class="x-wing2">
             <img src="images/SeccionStarWars/Principal/X-Wing3.png" alt="X-wing" class="x-wing3">
             <img src="images/SeccionStarWars/CazaTie.png" alt="Caza-tie" class="caza-tie">
-            <!-- <img src="images/SeccionStarWars/destructorEstelar.png" alt="Destructor Estelar" class="star-destroyer"> -->
-            <!-- <img src="images/SeccionStarWars/HalcónMilenarioYT-1300.png" alt="Halcón Milenario" class="millennium-falcon"> -->
         </div>
 
         <div id="countdown-container"></div>
         <div id="hyperspace"></div>
         <div id="flash-overlay"></div>
 
-        <!-- <div class="contenedor-seccion" id="contenedor-seccion" style="display: block;">
-            <div class="contenedor-reproductor" id="contenedor-reproductor"> -->
         <button id="play-music-btn" title="Reproducir música">
             &#x1F50A;
         </button>
         <audio id="player" class="player" loop>
-            <!-- <source src="Audio/EpicStarWarsBattleOfTheHeroes.mp3" type="audio/mpeg">
+            <source src="Audio/EpicStarWarsBattleOfTheHeroes.mp3" type="audio/mpeg">
             <source src="Audio/EpicStarWarsBattleOfTheHeroes.ogg" type="audio/ogg">
-            <source src="Audio/EpicStarWarsBattleOfTheHeroes.aac" type="audio/aac"> -->
+            <source src="Audio/EpicStarWarsBattleOfTheHeroes.aac" type="audio/aac">
             Your browser does not support the audio element.
         </audio>
-        <!-- </div>
-        </div> -->
-        <!-- </section> Aquí termina la sección de la intro -->
 
         <div id="intermediate-image-container">
             <img src="images/primeraImagen.png" alt="ImagenPrincipal">

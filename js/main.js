@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!daysDiv || !hmsSpan) return;
 
         // Fecha del evento: 10 de octubre, 16:30 (4:30pm)
-        const eventDate = new Date('2025-10-10T16:30:00-06:00'); // Ajusta zona horaria si es necesario
+        const eventDate = new Date('2025-10-11T19:00:00-06:00'); // Ajusta zona horaria si es necesario
 
         function updateDigitalTimer() {
             const now = new Date();
@@ -267,6 +267,128 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
         observer.observe(sliderSection, { attributes: true, attributeFilter: ['class'] });
+    }
+
+    // Mostrar flecha y botón tras animación del planeta
+    const arrowContainer = document.getElementById('arrow-location-container');
+    const btnUbicacion = document.getElementById('btn-ver-ubicacion');
+
+    // Detecta el final de la animación earth-slide-in
+    if (planetEarth) {
+        planetEarth.addEventListener('animationend', function (e) {
+            if (e.animationName === 'earth-slide-in') {
+                arrowContainer.style.display = 'block';
+                btnUbicacion.style.display = 'block';
+                setTimeout(() => btnUbicacion.classList.add('visible'), 100); // transición
+            }
+        });
+    }
+
+    // Animación de salto al hiperespacio y redirección
+    if (btnUbicacion) {
+        btnUbicacion.addEventListener('click', function () {
+            // 1. Conteo regresivo
+            let countdownDiv = document.createElement('div');
+            countdownDiv.style.position = 'fixed';
+            countdownDiv.style.top = '50%';
+            countdownDiv.style.left = '50%';
+            countdownDiv.style.transform = 'translate(-50%, -50%)';
+            countdownDiv.style.fontSize = '5em';
+            countdownDiv.style.color = '#ffc909';
+            countdownDiv.style.zIndex = '9999';
+            countdownDiv.style.fontFamily = "'Titillium Web', sans-serif";
+            countdownDiv.style.textShadow = '0 0 40px #fff, 0 0 80px #ffc909';
+            countdownDiv.style.fontWeight = 'bold';
+            countdownDiv.style.letterSpacing = '0.1em';
+            document.body.appendChild(countdownDiv);
+
+            let count = 3;
+            countdownDiv.textContent = count;
+            let interval = setInterval(() => {
+                count--;
+                if (count > 0) {
+                    countdownDiv.textContent = count;
+                } else {
+                    clearInterval(interval);
+                    countdownDiv.textContent = "¡Salto!";
+                    setTimeout(() => {
+                        document.body.removeChild(countdownDiv);
+
+                        // 2. Hiperespacio: estrellas estiradas radialmente desde el centro (duración aumentada)
+                        let hyperspaceDiv = document.createElement('div');
+                        hyperspaceDiv.style.position = 'fixed';
+                        hyperspaceDiv.style.top = '0';
+                        hyperspaceDiv.style.left = '0';
+                        hyperspaceDiv.style.width = '100vw';
+                        hyperspaceDiv.style.height = '100vh';
+                        hyperspaceDiv.style.zIndex = '9998';
+                        hyperspaceDiv.style.overflow = 'hidden';
+                        hyperspaceDiv.style.background = 'black';
+                        document.body.appendChild(hyperspaceDiv);
+
+                        const centerX = window.innerWidth / 2;
+                        const centerY = window.innerHeight / 2;
+                        const starCount = 180;
+                        for (let i = 0; i < starCount; i++) {
+                            let star = document.createElement('div');
+                            let size = Math.random() * 2 + 1;
+                            let angle = Math.random() * 2 * Math.PI;
+                            let distance = Math.random() * (window.innerWidth / 2);
+                            let x = centerX + Math.cos(angle) * distance;
+                            let y = centerY + Math.sin(angle) * distance;
+                            star.style.position = 'absolute';
+                            star.style.width = size + 'px';
+                            star.style.height = size + 'px';
+                            star.style.background = '#fff';
+                            star.style.borderRadius = '50%';
+                            star.style.left = centerX + 'px';
+                            star.style.top = centerY + 'px';
+                            star.style.opacity = Math.random() * 0.7 + 0.3;
+                            star.style.boxShadow = '0 0 8px #fff';
+                            // Animación radial: estira la estrella desde el centro hacia afuera
+                            star.animate([
+                                { transform: 'scaleY(1)', left: centerX + 'px', top: centerY + 'px', opacity: star.style.opacity },
+                                { transform: 'scaleY(18)', left: x + 'px', top: y + 'px', opacity: 0 }
+                            ], {
+                                duration: 1800, // Duración aumentada para el efecto de velocidad
+                                easing: 'cubic-bezier(.77,0,.18,1)'
+                            });
+                            hyperspaceDiv.appendChild(star);
+                        }
+
+                        // 3. Espera 1.5s antes de mostrar el destello (estrellas acelerando)
+                        setTimeout(() => {
+                            let flash = document.createElement('div');
+                            flash.style.position = 'fixed';
+                            flash.style.top = '0';
+                            flash.style.left = '0';
+                            flash.style.width = '100vw';
+                            flash.style.height = '100vh';
+                            flash.style.background = 'white';
+                            flash.style.opacity = '0';
+                            flash.style.zIndex = '9999';
+                            flash.style.transition = 'opacity 0.3s';
+                            document.body.appendChild(flash);
+                            setTimeout(() => { flash.style.opacity = '1'; }, 300);
+
+                            // Destello dura 1 segundo, redirige de inmediato
+                            setTimeout(() => {
+                                window.open('https://maps.app.goo.gl/2mCgSHZahjnBiMir7', '_blank');
+                            }, 100); // Redirección casi instantánea tras el destello
+
+                            // Quita el destello y las estrellas después de 1 segundo
+                            setTimeout(() => {
+                                flash.style.opacity = '0';
+                                setTimeout(() => {
+                                    document.body.removeChild(flash);
+                                    document.body.removeChild(hyperspaceDiv);
+                                }, 400);
+                            }, 1000); // destello visible 1s
+                        }, 1200); // Espera 1.5s para que se vean las estrellas acelerando
+                    }, 700);
+                }
+            }, 700);
+        });
     }
 });
 

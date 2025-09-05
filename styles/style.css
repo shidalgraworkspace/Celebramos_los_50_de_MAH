@@ -137,43 +137,6 @@ body {
     /* La animación de fade-out se elimina de aquí */
 }
 
-/* --- SOLUCIÓN: FONDO ESTELAR DENSO Y PERSISTENTE --- */
-/* .starfield {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
-
-.starfield div {
-    position: absolute;
-    border-radius: 50%;
-    background: transparent;
-} */
-
-/* Capa de estrellas lejanas y diminutas (muchas más) */
-/* .stars-layer1 {
-    width: 1px;
-    height: 1px;
-    box-shadow: 537px 1389px #555, 1969px 192px #555, 1099px 1038px #555, 1190px 1043px #555, 1156px 510px #555, 1018px 111px #555, 1141px 1352px #555, 1390px 1235px #555, 1184px 119px #555, 1305px 137px #555, 1387px 1245px #555, 1592px 1189px #555, 1183px 129px #555, 102px 1438px #555, 1461px 1236px #555, 1885px 118px #555, 859px 1093px #555, 1490px 131px #555, 1335px 336px #555, 501px 142px #555, 1149px 1232px #555, 45px 1114px #555, 1624px 1146px #555, 110px 1231px #555, 1185px 133px #555, 1430px 1388px #555, 333px 128px #555, 124px 1398px #555, 1159px 1108px #555, 1941px 1014px #555, 250px 500px #555, 750px 900px #555, 1250px 1500px #555, 1750px 200px #555, 300px 800px #555, 600px 1200px #555, 900px 1800px #555, 1400px 400px #555, 1800px 1000px #555, 200px 1700px #555, 500px 1900px #555, 800px 200px #555, 1200px 500px #555, 1500px 800px #555;
-} */
-
-/* Capa de estrellas intermedias */
-/* .stars-layer2 {
-    width: 2px;
-    height: 2px;
-    box-shadow: 1597px 1505px #999, 1835px 573px #999, 1402px 109px #999, 1339px 1343px #999, 649px 1360px #999, 152px 1146px #999, 1873px 1282px #999, 1652px 1116px #999, 233px 1160px #999, 1537px 1112px #999, 1119px 131px #999, 1038px 113px #999, 999px 1293px #999, 598px 1117px #999, 1496px 137px #999, 350px 700px #999, 700px 1400px #999, 1050px 100px #999, 1400px 500px #999, 1800px 900px #999;
-} */
-
-/* Capa de estrellas más cercanas y brillantes */
-/* .stars-layer3 {
-    width: 3px;
-    height: 3px;
-    box-shadow: 1565px 1350px #fff, 1189px 113px #fff, 1130px 1313px #fff, 1143px 130px #fff, 1105px 133px #fff, 114px 1393px #fff, 119px 1133px #fff, 104px 139px #fff, 139px 1193px #fff, 1194px 139px #fff, 200px 400px #fff, 400px 800px #fff, 600px 1200px #fff, 800px 1600px #fff;
-} */
-
 .moving-stars-background {
     position: absolute;
     top: 0;
@@ -950,18 +913,13 @@ body.hyperspace-active #hyperspace {
 
 .contenedor-fotos_deslizantes {
     width: 100%;
-    max-width: 400px;
-    height: 500px;
+    max-width: 300px;
+    height: 445px;
     overflow: hidden;
-    /* Oculta las imágenes que se salen del marco */
     border: 2px solid rgba(73, 218, 255, 0.3);
     border-radius: 10px;
-    box-shadow:
-        0 0 15px rgba(73, 218, 255, 0.4),
-        0 0 30px rgba(73, 218, 255, 0.3),
-        inset 0 0 10px rgba(73, 218, 255, 0.2);
+    box-shadow: 0 0 15px rgba(73, 218, 255, 0.4), 0 0 30px rgba(73, 218, 255, 0.3), inset 0 0 10px rgba(73, 218, 255, 0.2);
     transform: rotateX(10deg) rotateY(-5deg);
-    /* Ángulo de la proyección */
     background-color: rgba(10, 25, 40, 0.5);
     position: relative;
 }
@@ -1343,9 +1301,73 @@ body.hyperspace-active #hyperspace {
     }
 }
 
+/* ------------------------------------------------------------------------------------------------- */
+/* --- Flecha animada señalando la bandera --- */
+#arrow-location-container {
+    position: fixed;
+    top: 10%;
+    right: 6%;
+    z-index: 3000;
+    pointer-events: none;
+}
 
+#arrow-location {
+    width: 60px;
+    animation: arrow-bounce 1s infinite;
+}
 
+@keyframes arrow-bounce {
 
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------- */
+/* --- Botón para ver la ubicación en el mapa --- */
+#btn-ver-ubicacion {
+    width: 220px;
+    height: 50px;
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3001;
+    background: linear-gradient(145deg, #222 80%, #444 100%);
+    border-radius: 18px 18px 22px 22px / 22px 22px 18px 18px;
+    box-shadow:
+        0 4px 18px 4px #000a,
+        0 0 0 6px #333,
+        0 0 0 12px #222;
+    border: 3px solid #505050;
+    color: #49daff;
+    font-family: 'Titillium Web', monospace;
+    font-size: clamp(0.5em, 1vw, 1.8em);
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding: 12px 32px;
+    opacity: 0;
+    transition: opacity 0.7s;
+    display: none;
+    text-shadow: 0 0 8px #49daff44;
+}
+
+#btn-ver-ubicacion.visible {
+    opacity: 1;
+    display: block;
+}
+
+#btn-ver-ubicacion:hover {
+    background: linear-gradient(145deg, #444 80%, #222 100%);
+    color: #ffc909;
+    box-shadow: 0 0 24px #49daff88, 0 2px 8px #0006;
+    border-color: #49daff;
+}
 
 
 
@@ -1811,11 +1833,10 @@ body.hyperspace-active #hyperspace {
         filter: drop-shadow(10px 10px 10px rgb(0 0 0 / 0.8));
     }
 
-
     .contenedor-fotos_deslizantes {
         width: 100%;
-        max-width: 250px;
-        height: 350px;
+        max-width: 200px;
+        height: 300px;
         overflow: hidden;
         /* Oculta las imágenes que se salen del marco */
         border: 2px solid rgba(73, 218, 255, 0.3);
@@ -2071,7 +2092,7 @@ body.hyperspace-active #hyperspace {
     #play-music-btn {
         position: fixed;
         top: 8px;
-        right: 12px;
+        left: 12px;
         z-index: 1000;
         width: 32px;
         height: 32px;
@@ -2205,6 +2226,74 @@ body.hyperspace-active #hyperspace {
             opacity: 1;
             transform: scale(0.7)
         }
+    }
+
+    /* ------------------------------------------------------------------------------------------------- */
+    /* --- Flecha animada señalando la bandera --- */
+    #arrow-location-container {
+        position: fixed;
+        top: 5%;
+        right: 4%;
+        z-index: 20;
+        pointer-events: none;
+    }
+
+    #arrow-location {
+        width: 60px;
+        animation: arrow-bounce 1s infinite;
+    }
+
+    @keyframes arrow-bounce {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-20px);
+        }
+    }
+
+/* ---------------------------------------------------------------------------------------------- */
+/* --- Botón para ver la ubicación en el mapa --- */
+    #btn-ver-ubicacion {
+        width: 150px;
+        height: 40px;
+        padding: 9px 20px;
+        position: fixed;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 3001;
+        background: linear-gradient(145deg, #222 80%, #444 100%);
+        border-radius: 18px 18px 22px 22px / 22px 22px 18px 18px;
+        box-shadow:
+            0 4px 18px 4px #000a,
+            0 0 0 6px #333,
+            0 0 0 12px #222;
+        border: 3px solid #505050;
+        color: #49daff;
+        font-family: 'Titillium Web', monospace;
+        font-size: clamp(0.6em, 1vw, 1.4em);
+        font-weight: bold;
+        letter-spacing: 2px;
+        opacity: 0;
+        transition: opacity 0.7s;
+        display: none;
+        text-shadow: 0 0 8px #49daff44;
+    }
+
+    #btn-ver-ubicacion.visible {
+        opacity: 1;
+        display: block;
+    }
+
+    #btn-ver-ubicacion:hover {
+        background: linear-gradient(145deg, #444 80%, #222 100%);
+        color: #ffc909;
+        box-shadow: 0 0 24px #49daff88, 0 2px 8px #0006;
+        border-color: #49daff;
     }
 }
 
