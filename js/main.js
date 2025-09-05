@@ -390,6 +390,45 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 700);
         });
     }
+
+    const btnInfoGeneral = document.getElementById('btn-info-general');
+    const btnCarinito = document.getElementById('btn-carinito');
+    const infoGeneralWindow = document.getElementById('info-general-window');
+    const carinitoWindow = document.getElementById('carinito-window');
+
+    // Función para mostrar la ventana justo debajo y alineada al botón
+    function showWindow(windowEl, btnEl) {
+        const rect = btnEl.getBoundingClientRect();
+        const windowWidth = windowEl.offsetWidth || 360;
+        const left = rect.left + (rect.width / 2) - (windowWidth / 2) + window.scrollX;
+        windowEl.style.top = (rect.bottom + window.scrollY) + 'px';
+        windowEl.style.left = left + 'px';
+        // Solo agrega la clase visible, no cambies display manualmente
+    }
+
+    // Mostrar/ocultar ventanas al hacer clic
+    btnInfoGeneral.addEventListener('click', () => {
+        infoGeneralWindow.classList.toggle('visible');
+        carinitoWindow.classList.remove('visible');
+        if (infoGeneralWindow.classList.contains('visible')) {
+            showWindow(infoGeneralWindow, btnInfoGeneral);
+        }
+    });
+    btnCarinito.addEventListener('click', () => {
+        carinitoWindow.classList.toggle('visible');
+        infoGeneralWindow.classList.remove('visible');
+        if (carinitoWindow.classList.contains('visible')) {
+            showWindow(carinitoWindow, btnCarinito);
+        }
+    });
+
+    // Opcional: cerrar ventana al hacer clic fuera
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.slider-action-btn') && !e.target.closest('.slider-info-window')) {
+            infoGeneralWindow.classList.remove('visible');
+            carinitoWindow.classList.remove('visible');
+        }
+    });
 });
 
 

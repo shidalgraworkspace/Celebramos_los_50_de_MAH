@@ -1355,6 +1355,9 @@ body.hyperspace-active #hyperspace {
     transition: opacity 0.7s;
     display: none;
     text-shadow: 0 0 8px #49daff44;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #btn-ver-ubicacion.visible {
@@ -1370,6 +1373,180 @@ body.hyperspace-active #hyperspace {
 }
 
 
+/* ----------------------------------------------------------------------------------------- */
+/* --- Ventanas de información y botones en el slider --- */
+.slider-buttons-container {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    z-index: 3002;
+    pointer-events: none;
+    transform: translateY(-50%);
+    justify-content: space-evenly;
+    /* reparte equitativamente */
+}
+
+.slider-action-btn {
+    width: 270px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    /* centra verticalmente */
+    justify-content: center;
+    pointer-events: auto;
+    background: linear-gradient(145deg, #222 80%, #444 100%);
+    border-radius: 18px 18px 22px 22px / 22px 22px 18px 18px;
+    box-shadow:
+        0 4px 18px 4px #000a,
+        0 0 0 6px #333,
+        0 0 0 12px #222;
+    border: 3px solid #505050;
+    color: #49daff;
+    font-family: 'Titillium Web', monospace;
+    font-size: clamp(0.6em, 1vw, 1.4em);
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding: 12px 28px;
+    margin: 0 70px;
+    opacity: 0.95;
+    transition: box-shadow 0.3s, background 0.3s;
+    text-shadow: 0 0 8px #49daff44;
+    cursor: pointer;
+    position: relative;
+    z-index: 3003;
+}
+
+.slider-action-btn:hover {
+    background: linear-gradient(145deg, #444 80%, #222 100%);
+    color: #ffc909;
+    box-shadow: 0 0 24px #49daff88, 0 2px 8px #0006;
+    border-color: #49daff;
+}
+
+.slider-info-window {
+    position: absolute;
+    min-width: 320px;
+    max-width: 400px;
+    min-height: 180px;
+    display: none; /* Oculta por defecto */
+    z-index: 4000;
+    border-radius: 22px 22px 28px 28px / 28px 28px 22px 22px;
+    box-shadow: 0 8px 32px 8px #000a, 0 0 0 8px #333, 0 0 0 16px #222;
+    overflow: hidden;
+    background: rgba(34, 34, 44, 0.98);
+    border: 3px solid #49daff;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.slider-info-window.visible {
+    display: block; /* Muestra la ventana */
+    opacity: 1;
+}
+
+@keyframes window-slide-down {
+    0% {
+        opacity: 0;
+        transform: translateY(0) scaleY(0.7);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scaleY(1);
+    }
+}
+
+.info-right,
+.info-left {
+    position: absolute;
+    top: 50%;               /* centrado vertical */
+    left: 50%;              /* centrado horizontal */
+    right: 50%;
+    transform: translate(-50%, -50%); /* mueve el punto de referencia al centro */
+}
+/* 
+.info-right {
+    right: 40%;
+    transform: translateX(40%);
+    animation-name: window-slide-right;
+}
+
+.info-left {
+    left: 50%;
+    animation-name: window-slide-left;
+} */
+
+@keyframes window-slide-right {
+    0% {
+        opacity: 0;
+        transform: translateX(0) scaleX(0.7);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0) scaleX(1);
+    }
+}
+
+@keyframes window-slide-left {
+    0% {
+        opacity: 0;
+        transform: translateX(0) scaleX(0.7);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0) scaleX(1);
+    }
+}
+
+.window-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.18;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+}
+
+.window-bg-xwing {
+    background-image: url('images/SeccionStarWars/xwing-shield.png');
+    /* pon aquí tu escudo de x-wing */
+}
+
+.window-bg-radar {
+    background-image: url('images/SeccionStarWars/radar-mapa.png');
+    /* pon aquí tu radar/mapa */
+}
+
+.window-content {
+    position: relative;
+    z-index: 1;
+    padding: 24px 32px;
+    color: #ffc909;
+    font-family: 'Titillium Web', monospace;
+    font-size: 1.1em;
+    text-shadow: 0 0 8px #222, 0 0 2px #49daff;
+}
+
+.window-content ul {
+    list-style: disc inside;
+    margin: 0;
+    padding: 0;
+}
+
+.window-content li {
+    margin-bottom: 12px;
+}
+
+.window-content b {
+    color: #49daff;
+}
 
 
 
@@ -2255,8 +2432,8 @@ body.hyperspace-active #hyperspace {
         }
     }
 
-/* ---------------------------------------------------------------------------------------------- */
-/* --- Botón para ver la ubicación en el mapa --- */
+    /* ---------------------------------------------------------------------------------------------- */
+    /* --- Botón para ver la ubicación en el mapa --- */
     #btn-ver-ubicacion {
         width: 150px;
         height: 40px;
@@ -2282,6 +2459,9 @@ body.hyperspace-active #hyperspace {
         transition: opacity 0.7s;
         display: none;
         text-shadow: 0 0 8px #49daff44;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     #btn-ver-ubicacion.visible {
@@ -2763,7 +2943,7 @@ body.hyperspace-active #hyperspace {
         width: 90%;
         text-align: center;
         font-size: 1.2em;
-        color: #414aad;
+        color: #49daff;
         font-family: 'Titillium Web', monospace;
         letter-spacing: 2px;
         background: #111;
@@ -2800,5 +2980,114 @@ body.hyperspace-active #hyperspace {
         border-radius: 14px 14px 18px 18px / 18px 18px 14px 14px;
         box-shadow: 0 0 18px 4px #49daff33 inset;
         pointer-events: none;
+    }
+
+    #planet-earth {
+        position: fixed;
+        top: -50%;
+        right: -50%;
+        width: 250px;
+        height: 700px;
+        opacity: 0;
+        z-index: 15;
+        filter: drop-shadow(0 4px 16px #0008);
+        transition: none;
+        pointer-events: none;
+    }
+
+    #planet-earth.planet-earth-visible {
+        animation: earth-slide-in 10s ease-out forwards;
+    }
+
+    @keyframes earth-slide-in {
+        0% {
+            top: -50%;
+            right: -50%;
+            opacity: 0;
+            transform: scale(0.7)
+        }
+
+        60% {
+            opacity: 1;
+            transform: scale(0.7)
+        }
+
+        100% {
+            top: -25%;
+            right: -25%;
+            opacity: 1;
+            transform: scale(0.7)
+        }
+    }
+
+    /* ------------------------------------------------------------------------------------------------- */
+    /* --- Flecha animada señalando la bandera --- */
+    #arrow-location-container {
+        position: fixed;
+        top: 5%;
+        right: 4%;
+        z-index: 20;
+        pointer-events: none;
+    }
+
+    #arrow-location {
+        width: 60px;
+        animation: arrow-bounce 1s infinite;
+    }
+
+    @keyframes arrow-bounce {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-20px);
+        }
+    }
+
+    /* ---------------------------------------------------------------------------------------------- */
+    /* --- Botón para ver la ubicación en el mapa --- */
+    #btn-ver-ubicacion {
+        width: 150px;
+        height: 40px;
+        padding: 9px 20px;
+        position: fixed;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 3001;
+        background: linear-gradient(145deg, #222 80%, #444 100%);
+        border-radius: 18px 18px 22px 22px / 22px 22px 18px 18px;
+        box-shadow:
+            0 4px 18px 4px #000a,
+            0 0 0 6px #333,
+            0 0 0 12px #222;
+        border: 3px solid #505050;
+        color: #49daff;
+        font-family: 'Titillium Web', monospace;
+        font-size: clamp(0.6em, 1vw, 1.4em);
+        font-weight: bold;
+        letter-spacing: 2px;
+        opacity: 0;
+        transition: opacity 0.7s;
+        display: none;
+        text-shadow: 0 0 8px #49daff44;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #btn-ver-ubicacion.visible {
+        opacity: 1;
+        display: block;
+    }
+
+    #btn-ver-ubicacion:hover {
+        background: linear-gradient(145deg, #444 80%, #222 100%);
+        color: #ffc909;
+        box-shadow: 0 0 24px #49daff88, 0 2px 8px #0006;
+        border-color: #49daff;
     }
 }

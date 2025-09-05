@@ -22,7 +22,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;700&display=swap" rel="stylesheet">
     <!-- Open Graph Facebook -->
-    
+
 </head>
 
 <body>
@@ -59,7 +59,7 @@
         <img id="arrow-location" src="images/SeccionStarWars/flecha-ubicacion.png" alt="Flecha ubicación">
     </div>
     <!-- Botón "Ver ubicación" -->
-    <button id="btn-ver-ubicacion" style="display:none;">Ver ubicación 
+    <button id="btn-ver-ubicacion" style="display:none;">Ver ubicación
         <i class="fas fa-location-arrow"></i>
     </button>
 
@@ -130,9 +130,9 @@
             &#x1F50A;
         </button>
         <audio id="player" class="player" loop>
-            <source src="Audio/EpicStarWarsBattleOfTheHeroes.mp3" type="audio/mpeg">
+            <!-- <source src="Audio/EpicStarWarsBattleOfTheHeroes.mp3" type="audio/mpeg">
             <source src="Audio/EpicStarWarsBattleOfTheHeroes.ogg" type="audio/ogg">
-            <source src="Audio/EpicStarWarsBattleOfTheHeroes.aac" type="audio/aac">
+            <source src="Audio/EpicStarWarsBattleOfTheHeroes.aac" type="audio/aac"> -->
             Your browser does not support the audio element.
         </audio>
 
@@ -156,6 +156,32 @@
                         <li><img src="images/slider-Images/slider-10.jpg" alt="Recuerdo_10"></li>
                         <li><img src="images/slider-Images/slider-1.jpg" alt="Recuerdo_1"></li>
                     </ul>
+                </div>
+            </div>
+            <div class="slider-buttons-container">
+                <button id="btn-info-general" class="slider-action-btn">Información general</button>
+                <button id="btn-carinito" class="slider-action-btn">Cariñito</button>
+            </div>
+
+            <!-- Ventanas desplegables -->
+            <div id="info-general-window" class="slider-info-window info-right">
+                <div class="window-bg window-bg-xwing"></div>
+                <div class="window-content">
+                    <ul>
+                        <li>El evento será el <b>Sábado 11 de octubre</b> a partir de las <b>7:00 pm</b>.</li>
+                        <li>San Pedro, Del Farolito de Barrio Escalante 100 m al sur y 25 m al este.</li>
+                        <li>Se incluirá música en Vivo y DJ.</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="carinito-window" class="slider-info-window info-left">
+                <div class="window-bg window-bg-radar"></div>
+                <div class="window-content">
+                    <p>
+                        Su compañía y compartir con ustedes es el mejor regalo que me pueden obsequiar.<br>
+                        Sin embargo, si desean de alguna manera brindar muestras de cariño podrán ser en efectivo el día
+                        del evento (mediante sobre) o vía SINPE al número <b>8790-0909</b>
+                    </p>
                 </div>
             </div>
         </section>
