@@ -284,18 +284,19 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.animationName === 'earth-slide-in') {
                 arrowContainer.style.display = 'block';
                 btnUbicacion.style.display = 'block';
+
                 setTimeout(() => {
-                    btnUbicacion.classList.add('visible');
-                    btnUbicacion.classList.add('btn-animate-down'); // animación de arriba hacia abajo
+                    document.querySelector('.ver-ubicacion-container').style.display = 'flex';
                 }, 100);
-                // Mostrar el botón de confirmación 3 segundos después
                 setTimeout(() => {
                     document.querySelector('.confirmar-llegada-container').style.display = 'flex';
-                }, 100); // 3 segundos después de la ubicación
+                }, 100);
+                setTimeout(() => {
+                    btnUbicacion.classList.add('btn-animate-down');
+                }, 100);
                 setTimeout(() => {
                     btnConfirmar.classList.add('btn-animate-up');
                 }, 100);
-
                 setTimeout(() => {
                     btnInfoGeneral.classList.add('btn-animate-left');
                 }, 100);
@@ -443,9 +444,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Opcional: cerrar ventana al hacer clic fuera
+    // Opcional: cerrar ventana al hacer clic fuera infoGeneral
     document.addEventListener('click', (e) => {
-        if (!e.target.closest('.slider-action-btn') && !e.target.closest('.slider-info-window')) {
+        if (!e.target.closest('.slider-action-btn') && !e.target.closest('.slider-infoGeneral-window')) {
+            infoGeneralWindow.classList.remove('visible');
+            carinitoWindow.classList.remove('visible');
+        }
+    });
+
+    // Opcional: cerrar ventana al hacer clic fuera infoCarinito
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.slider-action-btn') && !e.target.closest('.slider-infoCarinito-window')) {
             infoGeneralWindow.classList.remove('visible');
             carinitoWindow.classList.remove('visible');
         }

@@ -1331,47 +1331,9 @@ body.hyperspace-active #hyperspace {
 
 /* ------------------------------------------------------------------------------------------------- */
 /* --- Botón para ver la ubicación en el mapa --- */
-#btn-ver-ubicacion {
-    position: fixed;
-    width: 220px;
-    height: 50px;
-    top: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 500;
-    background: linear-gradient(145deg, #222 80%, #444 100%);
-    border-radius: 18px 18px 22px 22px / 22px 22px 18px 18px;
-    box-shadow:
-        0 4px 18px 4px #000a,
-        0 0 0 6px #333,
-        0 0 0 12px #222;
-    border: 3px solid #505050;
-    color: #49daff;
-    font-family: 'Titillium Web', monospace;
-    font-size: clamp(0.5em, 1vw, 1.8em);
-    font-weight: bold;
-    letter-spacing: 2px;
-    padding: 12px 32px;
-    opacity: 0;
-    transition: opacity 0.7s;
-    display: none;
-    text-shadow: 0 0 8px #49daff44;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-#btn-ver-ubicacion.visible {
-    opacity: 1;
-    display: block;
-}
 
-#btn-ver-ubicacion:hover {
-    background: linear-gradient(145deg, #444 80%, #222 100%);
-    color: #ffc909;
-    box-shadow: 0 0 24px #49daff88, 0 2px 8px #0006;
-    border-color: #49daff;
-}
+
 
 
 /* ----------------------------------------------------------------------------------------- */
@@ -1425,10 +1387,10 @@ body.hyperspace-active #hyperspace {
     border-color: #49daff;
 }
 
-.slider-info-window {
+.slider-infoGeneral-window {
     position: absolute;
     min-width: 320px;
-    max-width: 400px;
+    max-width: 700px;
     display: none;
     opacity: 0;
     border-radius: 22px;
@@ -1441,7 +1403,31 @@ body.hyperspace-active #hyperspace {
     z-index: 1001;
 }
 
-.slider-info-window.visible {
+.slider-infoGeneral-window.visible {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    animation: slideDownFade 0.4s ease forwards;
+    z-index: 1001;
+}
+
+.slider-infoCarinito-window {
+    position: absolute;
+    min-width: 320px;
+    max-width: 700px;
+    display: none;
+    opacity: 0;
+    border-radius: 22px;
+    box-shadow: 0 8px 32px 8px #000a, 0 0 0 8px #333, 0 0 0 16px #222;
+    overflow: hidden;
+    background: rgba(34, 34, 44, 0.98);
+    border: 3px solid #49daff;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform: translateY(-10px);
+    z-index: 1001;
+}
+
+.slider-infoCarinito-window.visible {
     display: block;
     opacity: 1;
     transform: translateY(0);
@@ -1473,7 +1459,11 @@ body.hyperspace-active #hyperspace {
     }
 }
 
-.slider-info-window.visible {
+.slider-infoGeneral-window.visible {
+    animation: slideDownFade 0.4s ease forwards;
+}
+
+.slider-infoCarinito-window.visible {
     animation: slideDownFade 0.4s ease forwards;
 }
 
@@ -1514,6 +1504,16 @@ body.hyperspace-active #hyperspace {
     color: #49daff;
 }
 /* -------------------------------------------------------------------------------------------------*/
+/* --- Botón para ver la ubicación en el mapa --- */
+.ver-ubicacion-container {
+    position: fixed;
+    left: 50%;
+    top: 10%;
+    transform: translateX(-50%);
+    display: none; /* visible solo cuando lo actives por JS */
+    z-index: 1000;
+}
+
 /* boton de confirmar llegada  */
 .confirmar-llegada-container {
     position: fixed;
@@ -1569,9 +1569,25 @@ body.hyperspace-active #hyperspace {
     pointer-events: auto;
 }
 
+/*------------------------------------------------------------------------------------------------------------------------*/
+/* --- Estilos para la lista --- */
+.lista-principal {
+  list-style-type: disc; /* círculo sólido */
+  margin-left: 100px;
+}
+
+/* Sub-lista con rayitas */
+.sub-lista {
+  list-style-type: "- "; /* truco para rayitas */
+  margin-left: 30px;     /* sangría */
+  padding-left: 10px;
+}
 
 
-
+.sub-lista li::marker {
+  content: "– "; /* raya */
+  color: #ffc909; /* opcional: darle color */
+}
 
 
 

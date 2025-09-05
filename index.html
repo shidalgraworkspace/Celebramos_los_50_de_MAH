@@ -80,17 +80,10 @@
             <p>Teléfono #72657605</p>
         </div>
     </div>
-
     <!-- Flecha animada señalando la bandera -->
     <div id="arrow-location-container" style="display:none;">
         <img id="arrow-location" src="images/SeccionStarWars/flecha-ubicacion.png" alt="Flecha ubicación">
     </div>
-    <!-- Botón "Ver ubicación" -->
-    <button id="btn-ver-ubicacion" style="display:none;">Ver ubicación
-        <i class="fas fa-location-arrow"></i>
-    </button>
-
-
     <div class="slider-buttons-container">
         <div class="slider-btn-group">
             <button id="btn-info-general" class="slider-action-btn">Información general</button>
@@ -101,25 +94,52 @@
     </div>
 
     <!-- Ventanas flotantes -->
-    <div id="info-general-window" class="slider-info-window">
+    <div id="info-general-window" class="slider-infoGeneral-window">
         <div class="window-bg window-bg-xwing"></div>
         <div class="window-content">
-            <ul>
-                <li>El evento será el <b>Sábado 11 de octubre</b> a partir de las <b>7:00 pm</b>.</li>
-                <li>San Pedro, Del Farolito de Barrio Escalante 100 m al sur y 25 m al este.</li>
-                <li>Se incluirá música en Vivo y DJ.</li>
+            <ul class="lista-principal">
+                <li><Strong>Cuando será:</Strong>
+                    <ul class="sub-lista">
+                        <li><b>Sábado 11 de octubre</b></li>
+                        <li>A partir de las <b>7:00 pm</b>.</li>
+                    </ul>
+                </li>
+                <li><Strong>Dirección:</Strong>
+                    <ul class="sub-lista">
+                        <li><b>San José</b>, San Pedro, Del Farolito de Barrio Escalante 100 m al sur y 25 m al este.
+                        </li>
+                    </ul>
+                </li>
+                <li><Strong>Qué se incluirá:</Strong>
+                    <ul class="sub-lista">
+                        <li><b>Música</b>en vivo y con DJ</li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
 
-    <div id="carinito-window" class="slider-info-window">
+    <div id="carinito-window" class="slider-infoCarinito-window">
         <div class="window-bg window-bg-radar"></div>
         <div class="window-content">
-            <p>
-                Su compañía y compartir con ustedes es el mejor regalo que me pueden obsequiar.<br>
-                Sin embargo, si desean de alguna manera brindar muestras de cariño podrán ser en efectivo el día
-                del evento (mediante sobre) o vía SINPE al número <b>8790-0909</b>
-            </p>
+            <ul class="lista-principal">
+                <li><Strong>Su compañía:</Strong>
+                    <ul class="sub-lista">
+                        <li><b>Compartir</b>con ustedes es el mejor regalo que me pueden obsequiar.</li>
+                    </ul>
+                </li>
+                <li><Strong>Sin embargo:</Strong>
+                    <ul class="sub-lista">
+                        <li><b>Sí desean</b>de alguna manera brindar muestras de cariño podrán ser en efectivo</li>
+                    </ul>
+                </li>
+                <li><Strong>Como:</Strong>
+                    <ul class="sub-lista">
+                        <li><b>Sobre:</b>El día del evento</li>
+                        <li><b>Sinpe:</b>Al número 87900909</li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
 
@@ -219,10 +239,17 @@
                 </div>
             </div>
         </section>
-
+        <div class="ver-ubicacion-container">
+            <!-- Botón "Ver ubicación" -->
+            <button id="btn-ver-ubicacion" class="slider-action-btn">
+                <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                Ver ubicación
+            </button>
+        </div>
         <div class="confirmar-llegada-container">
+            <!-- Botón "Ver ubicación" -->
             <button id="btn-confirmar-whatsapp" class="slider-action-btn">
-                <i class="fa-brands fa-whatsapp" style="margin-right: 10px;"></i>
+                <i class="fa-brands fa-whatsapp" aria-hidden="true" style="margin-right: 10%;"></i>
                 Confirmar llegada
             </button>
         </div>
@@ -236,10 +263,6 @@
                 </a>
             </button>
         </div>
-
-
-
-
         <script src="https://kit.fontawesome.com/b1aeab81db.js" crossorigin="anonymous"></script>
         <script src="js/main.js"></script>
 </body>
