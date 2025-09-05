@@ -1306,27 +1306,44 @@ body.hyperspace-active #hyperspace {
 }
 
 #planet-earth {
-  position: fixed;
-  top: -120px; /* Oculto arriba */
-  right: 24px;
-  width: 800px;
-  height: 800px;
-  opacity: 0;
-  transition: top 1.2s cubic-bezier(.77,0,.18,1), opacity 0.7s;
-  z-index: 15;
-  filter: drop-shadow(0 4px 16px #0008);
-  pointer-events: none;
+    position: fixed;
+    top: -50%;
+    right: -50%;
+    width: 250px;
+    height: 700px;
+    opacity: 0;
+    z-index: 15;
+    filter: drop-shadow(0 4px 16px #0008);
+    transition: none;
+    pointer-events: none;
 }
 
 #planet-earth.planet-earth-visible {
-  top: -9%; /* Se asoma en la esquina superior derecha */
-  right: -12%;
-  opacity: 1;
+    animation: earth-slide-in 10s ease-out forwards;
 }
 
-keyframes planet {
-    
+@keyframes earth-slide-in {
+    0% {
+        top: -50%;
+        right: -50%;
+        opacity: 0;
+        transform: scale(1)
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1)
+    }
+
+    100% {
+        top: 0%;
+        right: 0%;
+        opacity: 1;
+        transform: scale(1)
+    }
 }
+
+
 
 
 
@@ -2073,8 +2090,8 @@ keyframes planet {
     }
 
 
-/* ------------------------------------------------------------------------------------------------ */
-/* Temporizador de eventos */
+    /* ------------------------------------------------------------------------------------------------ */
+    /* Temporizador de eventos */
     #event-timer-digital {
         position: fixed;
         top: 24px;
@@ -2152,6 +2169,43 @@ keyframes planet {
     }
 
 
+    #planet-earth {
+        position: fixed;
+        top: -50%;
+        right: -50%;
+        width: 250px;
+        height: 700px;
+        opacity: 0;
+        z-index: 15;
+        filter: drop-shadow(0 4px 16px #0008);
+        transition: none;
+        pointer-events: none;
+    }
+
+    #planet-earth.planet-earth-visible {
+        animation: earth-slide-in 10s ease-out forwards;
+    }
+
+    @keyframes earth-slide-in {
+        0% {
+            top: -50%;
+            right: -50%;
+            opacity: 0;
+            transform: scale(0.7)
+        }
+
+        60% {
+            opacity: 1;
+            transform: scale(0.7)
+        }
+
+        100% {
+            top: -25%;
+            right: -25%;
+            opacity: 1;
+            transform: scale(0.7)
+        }
+    }
 }
 
 
