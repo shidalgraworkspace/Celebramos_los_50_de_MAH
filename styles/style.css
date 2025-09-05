@@ -1353,6 +1353,7 @@ body.hyperspace-active #hyperspace {
 .slider-action-btn {
     width: 270px;
     height: 40px;
+    min-height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1369,7 +1370,7 @@ body.hyperspace-active #hyperspace {
     font-size: clamp(0.6em, 1vw, 1.4em);
     font-weight: bold;
     letter-spacing: 2px;
-    padding: 12px 28px;
+    padding: 10px 28px;
     margin: 0 70px;
     opacity: 0.95;
     transition: box-shadow 0.3s, background 0.3s;
@@ -1503,6 +1504,7 @@ body.hyperspace-active #hyperspace {
 .window-content b {
     color: #49daff;
 }
+
 /* -------------------------------------------------------------------------------------------------*/
 /* --- Botón para ver la ubicación en el mapa --- */
 .ver-ubicacion-container {
@@ -1510,7 +1512,8 @@ body.hyperspace-active #hyperspace {
     left: 50%;
     top: 10%;
     transform: translateX(-50%);
-    display: none; /* visible solo cuando lo actives por JS */
+    display: none;
+    /* visible solo cuando lo actives por JS */
     z-index: 1000;
 }
 
@@ -1520,7 +1523,8 @@ body.hyperspace-active #hyperspace {
     left: 50%;
     bottom: 10%;
     transform: translateX(-50%);
-    display: none; /* visible solo cuando lo actives por JS */
+    display: none;
+    /* visible solo cuando lo actives por JS */
     z-index: 1000;
 }
 
@@ -1531,62 +1535,108 @@ body.hyperspace-active #hyperspace {
 #btn-carinito {
     opacity: 0;
     transition: opacity 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    /* Espacio entre icono y texto */
+    text-align: center;
+    vertical-align: middle;
 }
 
 /* Animaciones */
 @keyframes slide-down {
-    from { transform: translateY(-60px); opacity: 0; }
-    to   { transform: translateY(0); opacity: 1; }
+    from {
+        transform: translateY(-60px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
+
 @keyframes slide-up {
-    from { transform: translateY(60px); opacity: 0; }
-    to   { transform: translateY(0); opacity: 1; }
+    from {
+        transform: translateY(60px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
+
 @keyframes slide-left {
-    from { transform: translateX(-60px); opacity: 0; }
-    to   { transform: translateX(0); opacity: 1; }
+    from {
+        transform: translateX(-60px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
+
 @keyframes slide-right {
-    from { transform: translateX(60px); opacity: 0; }
-    to   { transform: translateX(0); opacity: 1; }
+    from {
+        transform: translateX(60px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 /* Clases para activar animación */
 .btn-animate-down {
-    animation: slide-down 5s cubic-bezier(.77,0,.18,1) forwards;
+    animation: slide-down 5s cubic-bezier(.77, 0, .18, 1) forwards;
     pointer-events: auto;
 }
+
 .btn-animate-up {
-    animation: slide-up 5s cubic-bezier(.77,0,.18,1) forwards;
+    animation: slide-up 5s cubic-bezier(.77, 0, .18, 1) forwards;
     pointer-events: auto;
 }
+
 .btn-animate-left {
-    animation: slide-left 5s cubic-bezier(.77,0,.18,1) forwards;
+    animation: slide-left 5s cubic-bezier(.77, 0, .18, 1) forwards;
     pointer-events: auto;
 }
+
 .btn-animate-right {
-    animation: slide-right 5s cubic-bezier(.77,0,.18,1) forwards;
+    animation: slide-right 5s cubic-bezier(.77, 0, .18, 1) forwards;
     pointer-events: auto;
 }
 
 /*------------------------------------------------------------------------------------------------------------------------*/
 /* --- Estilos para la lista --- */
 .lista-principal {
-  list-style-type: disc; /* círculo sólido */
-  margin-left: 100px;
+    list-style-type: disc;
+    /* círculo sólido */
+    margin-left: 100px;
 }
 
 /* Sub-lista con rayitas */
 .sub-lista {
-  list-style-type: "- "; /* truco para rayitas */
-  margin-left: 30px;     /* sangría */
-  padding-left: 10px;
+    list-style-type: "- ";
+    /* truco para rayitas */
+    margin-left: 30px;
+    /* sangría */
+    padding-left: 10px;
 }
 
 
 .sub-lista li::marker {
-  content: "– "; /* raya */
-  color: #ffc909; /* opcional: darle color */
+    content: "– ";
+    /* raya */
+    color: #ffc909;
+    /* opcional: darle color */
 }
 
 
