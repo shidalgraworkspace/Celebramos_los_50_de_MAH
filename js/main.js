@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         await showMessage('3', 1000);
         await showMessage('2', 1000);
         await showMessage('1', 1000);
-        initiateHyperspace(true, false);
+        initiateHyperspace(true, true);
     }
 
     let hyperspaceDone = false;
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 hyperspaceContainer.appendChild(star);
             }
 
-            // ⚡ Destello ANTES de que acaben las estrellas (0.8s antes)
+            // Destello ANTES de que acaben las estrellas (0.8s antes)
             setTimeout(() => {
                 if (flashOverlay) {
                     flashOverlay.classList.add('active');
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }, travelDuration - 1500);
 
-            // ⭐ Secuencia normal al terminar estrellas
+            // Secuencia normal al terminar estrellas
             setTimeout(() => {
                 hyperspaceContainer.style.display = 'none';
                 hyperspaceContainer.innerHTML = '';
@@ -304,9 +304,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Animación de salto al hiperespacio y redirección
+    //Animación de salto al hiperespacio y redirección
     if (btnUbicacion) {
         btnUbicacion.addEventListener('click', function () {
+            // Oculta los elementos usando display
+            sliderSection.style.display = 'none';
+            btnCarinito.style.display = 'none';
+            btnInfoGeneral.style.display = 'none';
+            btnUbicacion.style.display = 'none';
+            btnConfirmar.style.display = 'none';
+
             // 1. Conteo regresivo
             let countdownDiv = document.createElement('div');
             countdownDiv.style.position = 'fixed';
@@ -314,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
             countdownDiv.style.left = '50%';
             countdownDiv.style.transform = 'translate(-50%, -50%)';
             countdownDiv.style.fontSize = '5em';
-            countdownDiv.style.color = '#ffc909';
+            countdownDiv.style.color = '#49daff';
             countdownDiv.style.zIndex = '9999';
             countdownDiv.style.fontFamily = "'Titillium Web', sans-serif";
             countdownDiv.style.textShadow = '0 0 40px #fff, 0 0 80px #ffc909';
@@ -343,12 +350,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         hyperspaceDiv.style.height = '100vh';
                         hyperspaceDiv.style.zIndex = '9998';
                         hyperspaceDiv.style.overflow = 'hidden';
-                        hyperspaceDiv.style.background = 'black';
+                        hyperspaceDiv.style.background = 'transparent';
                         document.body.appendChild(hyperspaceDiv);
 
                         const centerX = window.innerWidth / 2;
                         const centerY = window.innerHeight / 2;
-                        const starCount = 180;
+                        const starCount = 600;
                         for (let i = 0; i < starCount; i++) {
                             let star = document.createElement('div');
                             let size = Math.random() * 2 + 1;
@@ -402,12 +409,19 @@ document.addEventListener('DOMContentLoaded', () => {
                                 setTimeout(() => {
                                     document.body.removeChild(flash);
                                     document.body.removeChild(hyperspaceDiv);
+                                    // Muestra los elementos nuevamente
+                                    sliderSection.style.display = '';
+                                    btnCarinito.style.display = '';
+                                    btnInfoGeneral.style.display = '';
+                                    btnUbicacion.style.display = '';
+                                    btnConfirmar.style.display = '';
                                 }, 400);
                             }, 1000); // destello visible 1s
                         }, 1000); // Espera 1s para que se vean las estrellas acelerando
                     }, 700);
                 }
             }, 700);
+            // ...ya no se usa opacity para mostrar
         });
     }
 
@@ -415,11 +429,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const carinitoWindow = document.getElementById('carinito-window');
 
     // Función para mostrar la ventana justo debajo y alineada al botón
-    function showWindow(windowEl, btnEl) {
+    function showWindowInfoGeneral(windowEl, btnEl) {
         const rect = btnEl.getBoundingClientRect();
         const windowWidth = windowEl.offsetWidth || 360;
 
         const left = rect.left + (rect.width / 2) - (windowWidth / 2) + window.scrollX;
+
+        // Mover 50% más a la derecha
+        left += windowWidth / 2;
+
         const top = rect.bottom + 12 + window.scrollY; // 12px de separación
         windowEl.style.left = `${left}px`;
         windowEl.style.top = `${top}px`;
@@ -430,14 +448,30 @@ document.addEventListener('DOMContentLoaded', () => {
         infoGeneralWindow.classList.toggle('visible');
         carinitoWindow.classList.remove('visible');
         if (infoGeneralWindow.classList.contains('visible')) {
-            showWindow(infoGeneralWindow, btnInfoGeneral);
+            showWindowInfoGeneral(infoGeneralWindow, btnInfoGeneral);
         }
     });
+
+
+    function showWindowCarinito(windowEl, btnEl) {
+        const rect = btnEl.getBoundingClientRect();
+        const windowWidth = windowEl.offsetWidth || 360;
+
+        const left = rect.left + (rect.width / 2) - (windowWidth / 2) + window.scrollX;
+
+        // Mover 50% más a la derecha
+        left -= windowWidth / 2;
+
+        const top = rect.bottom + 12 + window.scrollY; // 12px de separación
+        windowEl.style.left = `${left}px`;
+        windowEl.style.top = `${top}px`;
+    }
+
     btnCarinito.addEventListener('click', () => {
         carinitoWindow.classList.toggle('visible');
         infoGeneralWindow.classList.remove('visible');
         if (carinitoWindow.classList.contains('visible')) {
-            showWindow(carinitoWindow, btnCarinito);
+            showWindowCarinito(carinitoWindow, btnCarinito);
         }
     });
 

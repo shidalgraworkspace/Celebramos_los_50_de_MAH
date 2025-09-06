@@ -65,7 +65,6 @@
         </div>
     </div>
 
-    <img id="planet-earth" src="images/PlanetaTierra.png" alt="Planeta Tierra" class="planet-earth-hidden">
 
     <div id="play-overlay" style="display: none;">
         <div id="play-button-container">
@@ -80,10 +79,7 @@
             <p>Teléfono #72657605</p>
         </div>
     </div>
-    <!-- Flecha animada señalando la bandera -->
-    <div id="arrow-location-container" style="display:none;">
-        <img id="arrow-location" src="images/SeccionStarWars/flecha-ubicacion.png" alt="Flecha ubicación">
-    </div>
+
     <div class="slider-buttons-container">
         <div class="slider-btn-group">
             <button id="btn-info-general" class="slider-action-btn">Información general</button>
@@ -142,7 +138,7 @@
             </ul>
         </div>
     </div>
-
+    
     <!-- SECCIÓN 1: INTRO STAR WARS -->
     <section class="intro-star-wars">
         <button id="play-music-btn" title="Reproducir música">
@@ -150,9 +146,14 @@
         </button>
         <!-- Botón personalizado en la esquina inferior izquierda -->
         <button id="custom-corner-btn">
-            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-rocket"></i>
         </button>
         <div class="cockpit-overlay"></div>
+        <!-- Flecha animada señalando la bandera -->
+        <div id="arrow-location-container" style="display:none;">
+            <img id="arrow-location" src="images/SeccionStarWars/flecha-ubicacion.png" alt="Flecha ubicación">
+        </div>
+        <img id="planet-earth" src="images/PlanetaTierra.png" alt="Planeta Tierra" class="planet-earth-hidden">
         <!-- SOLUCIÓN: ÚNICO fondo estelar, siempre visible -->
         <div class="starfield">
             <div class="stars-layer1"></div>
