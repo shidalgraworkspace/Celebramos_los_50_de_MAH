@@ -435,9 +435,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const left = rect.left + (rect.width / 2) - (windowWidth / 2) + window.scrollX;
 
-        // Mover 50% más a la derecha
-        left += windowWidth / 2;
-
         const top = rect.bottom + 12 + window.scrollY; // 12px de separación
         windowEl.style.left = `${left}px`;
         windowEl.style.top = `${top}px`;
@@ -458,9 +455,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const windowWidth = windowEl.offsetWidth || 360;
 
         const left = rect.left + (rect.width / 2) - (windowWidth / 2) + window.scrollX;
-
-        // Mover 50% más a la derecha
-        left -= windowWidth / 2;
 
         const top = rect.bottom + 12 + window.scrollY; // 12px de separación
         windowEl.style.left = `${left}px`;
