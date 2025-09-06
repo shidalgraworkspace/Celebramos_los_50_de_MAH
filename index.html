@@ -143,10 +143,16 @@
         </div>
     </div>
 
-    <div class="cockpit-overlay"></div>
-
     <!-- SECCIÓN 1: INTRO STAR WARS -->
     <section class="intro-star-wars">
+        <button id="play-music-btn" title="Reproducir música">
+            &#x1F50A;
+        </button>
+        <!-- Botón personalizado en la esquina inferior izquierda -->
+        <button id="custom-corner-btn">
+            <i class="fa-solid fa-star"></i>
+        </button>
+        <div class="cockpit-overlay"></div>
         <!-- SOLUCIÓN: ÚNICO fondo estelar, siempre visible -->
         <div class="starfield">
             <div class="stars-layer1"></div>
@@ -206,15 +212,13 @@
         <div id="hyperspace"></div>
         <div id="flash-overlay"></div>
 
-        <button id="play-music-btn" title="Reproducir música">
-            &#x1F50A;
-        </button>
         <audio id="player" class="player" loop>
             <source src="Audio/EpicStarWarsBattleOfTheHeroes.mp3" type="audio/mpeg">
             <source src="Audio/EpicStarWarsBattleOfTheHeroes.ogg" type="audio/ogg">
             <source src="Audio/EpicStarWarsBattleOfTheHeroes.aac" type="audio/aac">
             Your browser does not support the audio element.
         </audio>
+
 
         <div id="intermediate-image-container">
             <img src="images/primeraImagen.png" alt="ImagenPrincipal">

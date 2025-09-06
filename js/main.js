@@ -87,8 +87,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // --- FUNCIONES ORIGINALES (sin cambios en su lógica interna) ---
-
+    let starCountdown = false;
     async function startCountdown() {
+        // Solo ejecuta la función si aún no se ha hecho
+        if (starCountdown) return;
+        starCountdown = true;
+
         if (!countdownContainer) {
             initiateHyperspace(true, false);
             return;
@@ -110,24 +114,28 @@ document.addEventListener('DOMContentLoaded', () => {
         initiateHyperspace(true, false);
     }
 
+    let hyperspaceDone = false;
     function initiateHyperspace(activarSalto, activarDestello) {
+        if (hyperspaceDone) return;
+        hyperspaceDone = true;
+
         const hyperspaceContainer = document.getElementById('hyperspace');
         const deathStar = document.getElementById('death-star-anim');
         const flashOverlay = document.getElementById('flash-overlay');
 
         if (activarSalto) {
-            const elementsToHide = ['.crawl-container', '.lucrehulk', '.caza-tie', '.x-wing1', '.x-wing2', '.x-wing3'];
+            const elementsToHide = ['.crawl-container', '.lucrehulk', '.caza-tie', '.x-wing1', '.x-wing2', '.x-wing3', '.main-logo'];
             elementsToHide.forEach(selector => {
                 const element = document.querySelector(selector);
                 if (element) element.style.display = 'none';
             });
             if (!hyperspaceContainer || !deathStar) return;
-            const travelDuration = 2500;
+            const travelDuration = 2500; // duración estrellas
             hyperspaceContainer.style.display = 'block';
             deathStar.style.animation = `leave-death-star-behind ${travelDuration}ms ease-out forwards`;
             hyperspaceContainer.innerHTML = '';
 
-            const starCount = 400;
+            const starCount = 600;
             for (let i = 0; i < starCount; i++) {
                 const star = document.createElement('div');
                 star.classList.add('hyperspace-star');
@@ -138,47 +146,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 hyperspaceContainer.appendChild(star);
             }
 
-            // Este es el bloque que vamos a corregir
+            // ⚡ Destello ANTES de que acaben las estrellas (0.8s antes)
+            setTimeout(() => {
+                if (flashOverlay) {
+                    flashOverlay.classList.add('active');
+                    setTimeout(() => {
+                        flashOverlay.classList.remove('active');
+                    }, 500);
+                }
+            }, travelDuration - 1500);
+
+            // ⭐ Secuencia normal al terminar estrellas
             setTimeout(() => {
                 hyperspaceContainer.style.display = 'none';
                 hyperspaceContainer.innerHTML = '';
 
-                // --- SECUENCIA DE ANIMACIÓN CORREGIDA Y SECUENCIAL ---
+                // Secuencia intermedia (imagen + slider)
                 const intermediateImageContainer = document.getElementById('intermediate-image-container');
                 const sliderSection = document.getElementById('fotos-deslizantes');
 
                 if (intermediateImageContainer && sliderSection) {
-
-                    // --- PRIMERA PARTE: La imagen que crece (Duración: 4 segundos) ---
-
-                    // 1. Muestra el contenedor de la imagen y activa su animación.
-                    intermediateImageContainer.classList.add('visible');
-                    intermediateImageContainer.classList.add('animate');
-
-                    // --- SEGUNDA PARTE: La galería que aparece DESPUÉS ---
-
-                    // 2. Espera 4 segundos, que es la duración COMPLETA de la animación de la imagen.
+                    intermediateImageContainer.classList.add('visible', 'animate');
                     setTimeout(() => {
-                        // 3. Oculta el contenedor de la imagen para que no moleste.
                         intermediateImageContainer.style.display = 'none';
-
-                        // 4. Muestra la galería de fotos. Ahora sí aparecerá sin nada que la tape.
                         sliderSection.classList.add('visible');
-                    }, 4000); // 4000ms = 4 segundos
+                    }, 4000);
                 }
-                // --- FIN DE LA SECUENCIA ---
-
             }, travelDuration);
         }
-
-        if (activarDestello) {
-            if (!flashOverlay) return;
-            flashOverlay.classList.add('active');
-            setTimeout(() => {
-                flashOverlay.classList.remove('active');
-            }, 500);
-        }
     }
+
 
     // Pausar la canción en caso de que esté reproduciendo
     const musicBtn = document.getElementById('play-music-btn');
@@ -276,7 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnInfoGeneral = document.getElementById('btn-info-general');
     const btnCarinito = document.getElementById('btn-carinito');
 
-    
+
 
     // Detecta el final de la animación earth-slide-in
     if (planetEarth) {
@@ -463,8 +460,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btn-confirmar-whatsapp').addEventListener('click', function () {
         window.open('https://wa.me/50687900909?text=¡Confirmo mi llegada al evento!', '_blank');
     });
-    
-    
+
+    const customCornerBtn = document.getElementById('custom-corner-btn');
+    if (customCornerBtn) {
+        customCornerBtn.addEventListener('click', () => {
+            startCountdown();
+        });
+    }
 });
 
 
