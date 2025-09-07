@@ -17,6 +17,9 @@ body {
 
 :root {
     --crawl-duration-desktop: 500s;
+    --crawl-duration-milDos: 1200s;
+    --crawl-duration-NueveNuevedos: 1450s;
+    --crawl-duration-SieteSeisOcho: 1500s;
     --crawl-duration-mobile: 950s;
     --crawl-duration-mobiles: 1050s;
 
@@ -49,14 +52,16 @@ body {
 #credits {
     position: absolute;
     bottom: 20px;
-    right: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     color: rgba(255, 255, 255, 0.5);
     /* Color blanco semitransparente para que sea sutil */
     font-family: 'Alex Brush', cursive, 'Titillium Web', sans-serif;
     font-size: 20px;
-    text-align: right;
+    text-align: center;
     line-height: 1.4;
     pointer-events: none;
+    z-index: 1000;
     /* Importante: permite hacer clic "a través" del texto */
 }
 
@@ -1171,7 +1176,7 @@ body.hyperspace-active #hyperspace {
     position: fixed;
     bottom: 32px;
     right: 32px;
-    z-index: 1000;
+    z-index: 800;
     width: 56px;
     height: 56px;
     font-size: 2em;
@@ -1211,7 +1216,7 @@ body.hyperspace-active #hyperspace {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1001;
+    z-index: 800;
     cursor: pointer;
     transition: box-shadow 0.3s, background 0.3s;
     text-shadow: 0 0 8px #ffc90944;
@@ -1779,7 +1784,7 @@ body.hyperspace-active #hyperspace {
     .crawl-text {
         position: absolute;
         top: 100%;
-        width: 95%;
+        width: 50%;
         max-width: none;
         left: 50%;
         transform: translateX(-50%);
@@ -1792,7 +1797,7 @@ body.hyperspace-active #hyperspace {
         /* espaciado entre líneas más cómodo */
         letter-spacing: 1px;
         /* sensación más “épica” */
-        animation: crawl var(--crawl-duration-mobile) linear 13s forwards;
+        animation: crawl var(--crawl-duration-milDos) linear 13s forwards;
         transform-origin: 50% 100%;
     }
 
@@ -2452,7 +2457,7 @@ body.hyperspace-active #hyperspace {
         position: fixed;
         bottom: 32px;
         right: 32px;
-        z-index: 1000;
+        z-index: 800;
         width: 56px;
         height: 56px;
         font-size: 2em;
@@ -2492,7 +2497,7 @@ body.hyperspace-active #hyperspace {
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index: 1001;
+        z-index: 800;
         cursor: pointer;
         transition: box-shadow 0.3s, background 0.3s;
         text-shadow: 0 0 8px #ffc90944;
@@ -3017,7 +3022,7 @@ body.hyperspace-active #hyperspace {
     .crawl-text {
         position: absolute;
         top: 100%;
-        width: 95%;
+        width: 50%;
         max-width: none;
         left: 50%;
         transform: translateX(-50%);
@@ -3030,7 +3035,7 @@ body.hyperspace-active #hyperspace {
         /* espaciado entre líneas más cómodo */
         letter-spacing: 1px;
         /* sensación más “épica” */
-        animation: crawl var(--crawl-duration-mobile) linear 13s forwards;
+        animation: crawl var(--crawl-duration-NueveNuevedos) linear 13s forwards;
         transform-origin: 50% 100%;
     }
 
@@ -3690,7 +3695,7 @@ body.hyperspace-active #hyperspace {
         position: fixed;
         bottom: 32px;
         right: 32px;
-        z-index: 1000;
+        z-index: 800;
         width: 56px;
         height: 56px;
         font-size: 2em;
@@ -3730,7 +3735,7 @@ body.hyperspace-active #hyperspace {
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index: 1001;
+        z-index: 800;
         cursor: pointer;
         transition: box-shadow 0.3s, background 0.3s;
         text-shadow: 0 0 8px #ffc90944;
@@ -4243,12 +4248,13 @@ body.hyperspace-active #hyperspace {
 
     .crawl-container {
         perspective: 400px;
+        z-index: 26;
     }
 
     .crawl-text {
         position: absolute;
         top: 100%;
-        width: 95%;
+        width: 50%;
         max-width: none;
         left: 50%;
         transform: translateX(-50%);
@@ -4261,7 +4267,7 @@ body.hyperspace-active #hyperspace {
         /* espaciado entre líneas más cómodo */
         letter-spacing: 1px;
         /* sensación más “épica” */
-        animation: crawl var(--crawl-duration-mobile) linear 13s forwards;
+        animation: crawl var(--crawl-duration-SieteSeisOcho) linear 13s forwards;
         transform-origin: 50% 100%;
     }
 
@@ -4921,7 +4927,7 @@ body.hyperspace-active #hyperspace {
         position: fixed;
         bottom: 32px;
         right: 32px;
-        z-index: 1000;
+        z-index: 800;
         width: 56px;
         height: 56px;
         font-size: 2em;
@@ -4961,7 +4967,7 @@ body.hyperspace-active #hyperspace {
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index: 1001;
+        z-index: 800;
         cursor: pointer;
         transition: box-shadow 0.3s, background 0.3s;
         text-shadow: 0 0 8px #ffc90944;
@@ -5499,6 +5505,8 @@ body.hyperspace-active #hyperspace {
 
     .crawl-container {
         perspective: 400px;
+        z-index: 26;
+
     }
 
     .crawl-text {
@@ -6177,7 +6185,7 @@ body.hyperspace-active #hyperspace {
         position: fixed;
         bottom: 32px;
         right: 32px;
-        z-index: 1000;
+        z-index: 800;
         width: 32px;
         height: 32px;
         font-size: 1em;
@@ -6217,7 +6225,7 @@ body.hyperspace-active #hyperspace {
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index: 1001;
+        z-index: 800;
         cursor: pointer;
         transition: box-shadow 0.3s, background 0.3s;
         text-shadow: 0 0 8px #ffc90944;
