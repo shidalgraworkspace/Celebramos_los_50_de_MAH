@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     setTimeout(function () {
                         digitalDiv.classList.add('digital-timer-visible');
                         showDigitalTimer();
-                        document.querySelector('.slider-buttons-container').style.display = 'flex';
+                        document.querySelector('.slider-buttons-container')//.style.display = 'flex';
                     }, 5000);
                     observer.disconnect();
                 }
@@ -279,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
         planetEarth.addEventListener('animationend', function (e) {
             if (e.animationName === 'earth-slide-in') {
                 arrowContainer.style.display = 'block';
-                btnUbicacion.style.display = 'block';
+                btnUbicacion.style.display = '';
 
                 setTimeout(() => {
                     document.querySelector('.ver-ubicacion-container');
