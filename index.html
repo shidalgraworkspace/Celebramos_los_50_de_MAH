@@ -82,10 +82,31 @@
 
     <div class="slider-buttons-container">
         <div class="slider-btn-group">
-            <button id="btn-info-general" class="slider-action-btn">Información general</button>
+            <button id="btn-info-general" class="slider-action-btn">
+                <i class="fa fa-info-circle" aria-hidden="true" style="margin-right: 5%;"></i>
+                Información
+            </button>
         </div>
         <div class="slider-btn-group">
-            <button id="btn-carinito" class="slider-action-btn">Obsequios</button>
+            <button id="btn-carinito" class="slider-action-btn">
+                <i class="fa fa-gift" aria-hidden="true" style="margin-right: 5%;"></i>
+                Obsequios
+                
+            </button>
+        </div>
+        <div class="slider-btn-group">
+            <button id="btn-ver-ubicacion" class="slider-action-btn">
+                <i class="fa fa-location-arrow" aria-hidden="true" style="margin-right: 5%;"></i>
+                Ubicación
+            </button>
+        </div>
+        <meta name="format-detection" content="telephone=no">
+        <div class="slider-btn-group">
+            <button id="btn-confirmar-whatsapp" class="slider-action-btn">
+                <i class="fa-brands fa-whatsapp" aria-hidden="true" style="margin-right: 5%;"></i>
+                <a href="https://wa.me/50687900909"></a>
+                Confirmar
+            </button>
         </div>
     </div>
 
@@ -139,21 +160,22 @@
         </div>
     </div>
     
+    <div class="cockpit-overlay"></div>
+    <!-- Flecha animada señalando la bandera -->
+    <div id="arrow-location-container" style="display:none;">
+        <img id="arrow-location" src="images/SeccionStarWars/flecha-ubicacion.png" alt="Flecha ubicación">
+    </div>
+    <img id="planet-earth" src="images/PlanetaTierra.png" alt="Planeta Tierra" class="planet-earth-hidden">
+    <button id="play-music-btn" title="Reproducir música">
+        &#x1F50A;
+    </button>
+    <!-- Botón personalizado en la esquina inferior izquierda -->
+    <button id="custom-corner-btn">
+        <i class="fa-solid fa-rocket" id="rocket-icon"></i>
+    </button>
+
     <!-- SECCIÓN 1: INTRO STAR WARS -->
-    <section class="intro-star-wars">
-        <button id="play-music-btn" title="Reproducir música">
-            &#x1F50A;
-        </button>
-        <!-- Botón personalizado en la esquina inferior izquierda -->
-        <button id="custom-corner-btn">
-            <i class="fa-solid fa-rocket"></i>
-        </button>
-        <div class="cockpit-overlay"></div>
-        <!-- Flecha animada señalando la bandera -->
-        <div id="arrow-location-container" style="display:none;">
-            <img id="arrow-location" src="images/SeccionStarWars/flecha-ubicacion.png" alt="Flecha ubicación">
-        </div>
-        <img id="planet-earth" src="images/PlanetaTierra.png" alt="Planeta Tierra" class="planet-earth-hidden">
+    <section class="intro-star-wars" >
         <!-- SOLUCIÓN: ÚNICO fondo estelar, siempre visible -->
         <div class="starfield">
             <div class="stars-layer1"></div>
@@ -224,52 +246,28 @@
         <div id="intermediate-image-container">
             <img src="images/primeraImagen.png" alt="ImagenPrincipal">
         </div>
-
-        <section class="fotos-deslizantes" id="fotos-deslizantes">
-            <div class="contenedor-seccion-fotosDeslizantes slider-projector-effect">
-                <div class="contenedor-fotos_deslizantes">
-                    <ul>
-                        <li><img src="images/slider-Images/slider-1.jpg" alt="Recuerdo_1"></li>
-                        <li><img src="images/slider-Images/slider-2.jpg" alt="Recuerdo_2"></li>
-                        <li><img src="images/slider-Images/slider-3.jpg" alt="Recuerdo_3"></li>
-                        <li><img src="images/slider-Images/slider-4.jpg" alt="Recuerdo_4"></li>
-                        <li><img src="images/slider-Images/slider-5.jpg" alt="Recuerdo_5"></li>
-                        <li><img src="images/slider-Images/slider-6.jpg" alt="Recuerdo_6"></li>
-                        <li><img src="images/slider-Images/slider-7.jpg" alt="Recuerdo_7"></li>
-                        <li><img src="images/slider-Images/slider-8.jpg" alt="Recuerdo_8"></li>
-                        <li><img src="images/slider-Images/slider-9.jpg" alt="Recuerdo_9"></li>
-                        <li><img src="images/slider-Images/slider-10.jpg" alt="Recuerdo_10"></li>
-                        <li><img src="images/slider-Images/slider-1.jpg" alt="Recuerdo_1"></li>
-                    </ul>
-                </div>
+    </section>
+    <section class="fotos-deslizantes" id="fotos-deslizantes">
+        <div class="contenedor-seccion-fotosDeslizantes slider-projector-effect">
+            <div class="contenedor-fotos_deslizantes">
+                <ul>
+                    <li><img src="images/slider-Images/slider-1.jpg" alt="Recuerdo_1"></li>
+                    <li><img src="images/slider-Images/slider-2.jpg" alt="Recuerdo_2"></li>
+                    <li><img src="images/slider-Images/slider-3.jpg" alt="Recuerdo_3"></li>
+                    <li><img src="images/slider-Images/slider-4.jpg" alt="Recuerdo_4"></li>
+                    <li><img src="images/slider-Images/slider-5.jpg" alt="Recuerdo_5"></li>
+                    <li><img src="images/slider-Images/slider-6.jpg" alt="Recuerdo_6"></li>
+                    <li><img src="images/slider-Images/slider-7.jpg" alt="Recuerdo_7"></li>
+                    <li><img src="images/slider-Images/slider-8.jpg" alt="Recuerdo_8"></li>
+                    <li><img src="images/slider-Images/slider-9.jpg" alt="Recuerdo_9"></li>
+                    <li><img src="images/slider-Images/slider-10.jpg" alt="Recuerdo_10"></li>
+                    <li><img src="images/slider-Images/slider-1.jpg" alt="Recuerdo_1"></li>
+                </ul>
             </div>
-        </section>
-        <div class="ver-ubicacion-container">
-            <!-- Botón "Ver ubicación" -->
-            <button id="btn-ver-ubicacion" class="slider-action-btn">
-                <i class="fa fa-location-arrow" aria-hidden="true"></i>
-                Ubicación
-            </button>
         </div>
-        <div class="confirmar-llegada-container">
-            <!-- Botón "Ver ubicación" -->
-            <button id="btn-confirmar-whatsapp" class="slider-action-btn">
-                <i class="fa-brands fa-whatsapp" aria-hidden="true" style="margin-right: 5%;"></i>
-                Confirmar
-            </button>
-        </div>
-
-        <meta name="format-detection" content="telephone=no">
-        <div>
-            <button class="whatsapp" id="whatsapp1">
-                <a href="https://wa.me/50687900909">
-                    <i class="fa-brands fa-whatsapp"></i>
-                    Confirmar
-                </a>
-            </button>
-        </div>
-        <script src="https://kit.fontawesome.com/b1aeab81db.js" crossorigin="anonymous"></script>
-        <script src="js/main.js"></script>
+    </section>
+    <script src="https://kit.fontawesome.com/b1aeab81db.js" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

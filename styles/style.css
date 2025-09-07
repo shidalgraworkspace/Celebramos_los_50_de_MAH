@@ -3,6 +3,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Petit+Formal+Script&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&family=Yellowtail&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+
+html,
+body {
+    zoom: reset;
+    width: 100%;
+    background: #000;
+    /* Fondo negro puro, sin azul */
+    font-family: 'Titillium Web', sans-serif;
+    overflow-x: hidden;
+    /* quita scroll horizontal */
+    overflow-y: hidden;
+    /* quita scroll vertical si no quieres mover la página */
+}
+
 :root {
     --crawl-duration-desktop: 500s;
     --crawl-duration-mobile: 950s;
@@ -113,15 +127,6 @@
     box-sizing: border-box;
 }
 
-html,
-body {
-    zoom: reset;
-    width: 100%;
-    background: #000;
-    /* Fondo negro puro, sin azul */
-    overflow-x: hidden;
-    font-family: 'Titillium Web', sans-serif;
-}
 
 /* --- SECCIÓN 1: INTRO STAR WARS --- */
 .intro-star-wars {
@@ -239,7 +244,7 @@ body {
     perspective: 400px;
     opacity: 0;
     animation: show-crawl 1s 10s forwards;
-    z-index: 10;
+    z-index: 15;
     /*Para hacer que el texto se muestre de abajo hacia arriba y que no desaparezca bruscamente*/
     -webkit-mask-image: linear-gradient(to top, transparent 0%, black 20%, black 80%, transparent 100%);
     mask-image: linear-gradient(to top, transparent 0%, black 20%, black 80%, transparent 100%);
@@ -439,7 +444,7 @@ body {
     /* Siempre pegada al borde derecho */
     width: 70%;
     max-width: 800px;
-    z-index: 1;
+    z-index: 10;
     transform-origin: right center;
     /* Escalado desde el borde derecho */
     opacity: 0;
@@ -912,11 +917,10 @@ body.hyperspace-active #hyperspace {
     filter: drop-shadow(10px 10px 10px rgb(0 0 0 / 0.8));
 }
 
-
 .contenedor-fotos_deslizantes {
     width: 100%;
     max-width: 300px;
-    height: 445px;
+    height: 450px;
     overflow: hidden;
     border: 2px solid rgba(73, 218, 255, 0.3);
     border-radius: 10px;
@@ -1313,6 +1317,7 @@ body.hyperspace-active #hyperspace {
     z-index: 15;
     filter: drop-shadow(0 4px 16px #0008);
     transition: none;
+    pointer-events: none;
 }
 
 #planet-earth.planet-earth-visible {
@@ -1347,14 +1352,39 @@ body.hyperspace-active #hyperspace {
     top: 10%;
     right: 6%;
     z-index: 500;
-    pointer-events: none;
 }
+
 
 #arrow-location {
     width: 60px;
     animation: arrow-bounce 1s infinite;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    transform-origin: center;
 }
 
+/* Hover: detener animación y aplicar efectos */
+#arrow-location:hover {
+    cursor: pointer;
+    animation-play-state: paused;
+    /* detiene el rebote */
+    width: 65px;
+    /* aumenta tamaño */
+    filter: drop-shadow(0 0 10px #49daff);
+    /* resplandor celeste */
+}
+
+/* active: detener animación y aplicar efectos */
+#arrow-location:active {
+    cursor: pointer;
+    animation-play-state: paused;
+    /* detiene el rebote */
+    width: 59px;
+    /* aumenta tamaño */
+    filter: drop-shadow(0 0 10px #ffc909);
+    /* resplandor celeste */
+}
+
+/* Animación de rebote */
 @keyframes arrow-bounce {
 
     0%,
@@ -1363,46 +1393,47 @@ body.hyperspace-active #hyperspace {
     }
 
     50% {
-        transform: translateY(-20px);
+        transform: translateY(-15px);
     }
 }
-
-/* ------------------------------------------------------------------------------------------------- */
-/* --- Botón para ver la ubicación en el mapa --- */
-
-
-
 
 
 /* ----------------------------------------------------------------------------------------- */
 /* --- Ventanas de información y botones en el slider --- */
-.slider-btn-group {
-    pointer-events: none;
-}
 
 
 .slider-buttons-container {
     position: absolute;
-    display: none;
     top: 50%;
-    left: 0;
-    width: 100%;
-    z-index: 101;
-    transform: translateY(-50%);
-    justify-content: space-evenly;
+    left: 47%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
     pointer-events: none;
-
-    /* reparte equitativamente */
+    /* el contenedor no bloquea hover */
+    z-index: 101;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .slider-action-btn {
-    width: 270px;
-    height: 40px;
+    position: fixed;
+    /* todos los botones ocupan el mismo lugar */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* centra cada botón */
+    width: 400px;
+    height: auto;
     min-height: 44px;
-    display: flex;
     align-items: center;
     justify-content: center;
     pointer-events: auto;
+    /* permite click en el botón */
+    cursor: pointer;
+    margin: 0;
+    /* quitar márgenes */
     background: linear-gradient(145deg, #222 80%, #444 100%);
     border-radius: 18px 18px 22px 22px / 22px 22px 18px 18px;
     box-shadow:
@@ -1412,16 +1443,13 @@ body.hyperspace-active #hyperspace {
     border: 3px solid #505050;
     color: #49daff;
     font-family: 'Titillium Web', monospace;
-    font-size: clamp(0.6em, 1vw, 1.4em);
+    font-size: clamp(0.3em, 1vw, 0.5em);
     font-weight: bold;
     letter-spacing: 2px;
-    padding: 10px 10px;
-    margin: 0 70px;
+    padding: 0 5px;
     opacity: 0.95;
     transition: box-shadow 0.3s, background 0.3s;
     text-shadow: 0 0 8px #49daff44;
-    cursor: pointer;
-    position: relative;
     z-index: 1000;
 }
 
@@ -1553,24 +1581,22 @@ body.hyperspace-active #hyperspace {
 /* -------------------------------------------------------------------------------------------------*/
 /* --- Botón para ver la ubicación en el mapa --- */
 .ver-ubicacion-container {
-    position: fixed;
+    /* position: fixed;
     left: 50%;
     top: 10%;
-    transform: translateX(-50%);
+    transform: translateX(-50%); */
     display: none;
-    /* visible solo cuando lo actives por JS */
-    z-index: 1000;
+    /* z-index: 1000; */
 }
 
 /* boton de confirmar llegada  */
 .confirmar-llegada-container {
-    position: fixed;
+    /* position: fixed;
     left: 50%;
     bottom: 10%;
-    transform: translateX(-50%);
+    transform: translateX(-50%); */
     display: none;
-    /* visible solo cuando lo actives por JS */
-    z-index: 1000;
+    /* z-index: 1000; */
 }
 
 /* Oculta por defecto */
@@ -1578,16 +1604,14 @@ body.hyperspace-active #hyperspace {
 #btn-confirmar-whatsapp,
 #btn-info-general,
 #btn-carinito {
-    width: 265px;
-    height: auto;
+    width: 250px;
+    height: 25px;
     opacity: 0;
     font-size: clamp(0.8em, 1em, 1.2em);
     transition: opacity 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    /* Espacio entre icono y texto */
     text-align: center;
     vertical-align: middle;
 }
@@ -1595,48 +1619,48 @@ body.hyperspace-active #hyperspace {
 /* Animaciones */
 @keyframes slide-down {
     from {
-        transform: translateY(-60px);
-        opacity: 0;
+        transform: translateY(-60%) translateX(-32%);
+        opacity: 1;
     }
 
     to {
-        transform: translateY(0);
+        transform: translateY(-700%) translateX(-32%);
         opacity: 1;
     }
 }
 
 @keyframes slide-up {
     from {
-        transform: translateY(60px);
-        opacity: 0;
+        transform: translateY(-60%) translateX(-32%);
+        opacity: 1;
     }
 
     to {
-        transform: translateY(0);
+        transform: translateY(600%) translateX(-32%);
         opacity: 1;
     }
 }
 
 @keyframes slide-left {
     from {
-        transform: translateX(-60px);
-        opacity: 0;
+        transform: translateY(-60%) translateX(-32%);
+        opacity: 1;
     }
 
     to {
-        transform: translateX(0);
+        transform: translateY(-60%) translateX(-175%);
         opacity: 1;
     }
 }
 
 @keyframes slide-right {
     from {
-        transform: translateX(60px);
-        opacity: 0;
+        transform: translateY(-60%) translateX(-32%);
+        opacity: 1;
     }
 
     to {
-        transform: translateX(0);
+        transform: translateY(-60%) translateX(110%);
         opacity: 1;
     }
 }
@@ -1679,13 +1703,13 @@ body.hyperspace-active #hyperspace {
     padding-left: 10px;
 }
 
-
 .sub-lista li::marker {
     content: "– ";
     /* raya */
     color: #ffc909;
     /* opcional: darle color */
 }
+
 
 
 
@@ -1793,7 +1817,7 @@ body.hyperspace-active #hyperspace {
         /* Siempre pegada al borde derecho */
         width: 50%;
         max-width: 800px;
-        z-index: 25;
+        z-index: 10;
         transform-origin: right center;
         /* Escalado desde el borde derecho */
         opacity: 0;
@@ -2610,11 +2634,15 @@ body.hyperspace-active #hyperspace {
         top: 2%;
         right: 4%;
         z-index: 60;
-        pointer-events: none;
     }
 
     #arrow-location {
         width: 60px;
+        animation: arrow-bounce 1s infinite;
+    }
+
+    #arrow-location:hover {
+        width: 61px;
         animation: arrow-bounce 1s infinite;
     }
 
@@ -2630,121 +2658,90 @@ body.hyperspace-active #hyperspace {
         }
     }
 
-    /* ---------------------------------------------------------------------------------------------- */
-    /* --- Botón para ver la ubicación en el mapa --- */
-    #btn-ver-ubicacion {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 265px;
-        min-width: 265px;
-        height: 20px;
-        padding: 5px 20px;
-        top: 20%;
-        transform: translateX(-50%);
-        z-index: 500;
-        border: 3px solid #505050;
-        color: #49daff;
-        font-family: 'Titillium Web', monospace;
-        font-size: clamp(0.6em, 1vw, 1.4em);
-        font-weight: bold;
-        letter-spacing: 2px;
-        opacity: 0;
-        transition: opacity 0.7s;
-        display: block;
-        text-shadow: 0 0 8px #49daff44;
-        background: linear-gradient(145deg, #222 80%, #444 100%);
-        border-radius: 18px 18px 22px 22px / 22px 22px 18px 18px;
-        box-shadow:
-            0 4px 18px 4px #000a,
-            0 0 0 6px #333,
-            0 0 0 12px #222;
-    }
-
-    #btn-ver-ubicacion.visible {
-        opacity: 1;
-        display: block;
-    }
-
-    #btn-ver-ubicacion:hover {
-        background: linear-gradient(145deg, #444 70%, #222 100%);
-        color: #ffc909;
-        box-shadow: 0 0 24px #49daff88, 0 2px 8px #0006;
-        border-color: #49daff;
-    }
-
-    /* Animaciones */
     @keyframes slide-down {
         from {
-            transform: translateY(0%) translateX(-90%);
-            opacity: 0;
+            transform: translateY(0) translateX(0);
+            opacity: 1;
         }
 
         to {
-            transform: translateY(60%) translateX(-90%);
+            transform: translateY(0) translateX(0);
             opacity: 1;
         }
     }
 
     @keyframes slide-up {
         from {
-            transform: translateY(60px);
-            opacity: 0;
+            transform: translateY(0) translateX(0);
+            opacity: 1;
         }
 
         to {
-            transform: translateY(0);
+            transform: translateY(0) translateX(0);
             opacity: 1;
         }
     }
 
     @keyframes slide-left {
         from {
-            transform: translateX(-60px);
-            opacity: 0;
+            transform: translateX(0) translateY(0);
+            opacity: 1;
         }
 
         to {
-            transform: translateX(0);
+            transform: translateX(0) translateY(0);
             opacity: 1;
         }
     }
 
     @keyframes slide-right {
         from {
-            transform: translateX(0%) translateY(-60%);
-            opacity: 0;
+            transform: translateX(0) translateY(0);
+            opacity: 1;
         }
 
         to {
-            transform: translateX(60%) translateY(60%);
+            transform: translateX(0) translateY(0);
             opacity: 1;
         }
     }
 
     /* ----------------------------------------------------------------------------------------- */
     /* --- Ventanas de información y botones en el slider --- */
+
+
     .slider-buttons-container {
         position: absolute;
-        display: none;
         top: 50%;
-        left: 0;
-        width: 100%;
+        left: 47%;
+        transform: translate(-50%, -50%);
+        width: auto;
+        height: auto;
+        pointer-events: none;
+        /* el contenedor no bloquea hover */
         z-index: 101;
-        transform: translateY(-50%);
+        display: flex;
         justify-content: center;
-        /* reparte equitativamente */
+        align-items: center;
     }
 
     .slider-action-btn {
-        width: 270px;
-        height: 40px;
+        position: fixed;
+        /* todos los botones ocupan el mismo lugar */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* centra cada botón */
+        width: 400px;
+        height: auto;
         min-height: 44px;
-        display: flex;
         align-items: center;
         justify-content: center;
         pointer-events: auto;
+        /* permite click en el botón */
+        cursor: pointer;
+        margin: 0;
+        /* quitar márgenes */
         background: linear-gradient(145deg, #222 80%, #444 100%);
         border-radius: 18px 18px 22px 22px / 22px 22px 18px 18px;
         box-shadow:
@@ -2754,16 +2751,13 @@ body.hyperspace-active #hyperspace {
         border: 3px solid #505050;
         color: #49daff;
         font-family: 'Titillium Web', monospace;
-        font-size: clamp(0.6em, 1vw, 1.4em);
+        font-size: clamp(0.3em, 1vw, 0.5em);
         font-weight: bold;
         letter-spacing: 2px;
-        padding: 10px 28px;
-        margin: 0 70px;
+        padding: 0 5px;
         opacity: 0.95;
         transition: box-shadow 0.3s, background 0.3s;
         text-shadow: 0 0 8px #49daff44;
-        cursor: pointer;
-        position: relative;
         z-index: 1000;
     }
 
@@ -2895,24 +2889,22 @@ body.hyperspace-active #hyperspace {
     /* -------------------------------------------------------------------------------------------------*/
     /* --- Botón para ver la ubicación en el mapa --- */
     .ver-ubicacion-container {
-        position: fixed;
-        left: 50%;
-        top: 10%;
-        transform: translateX(-50%);
+        /* position: fixed;
+    left: 50%;
+    top: 10%;
+    transform: translateX(-50%); */
         display: none;
-        /* visible solo cuando lo actives por JS */
-        z-index: 1000;
+        /* z-index: 1000; */
     }
 
     /* boton de confirmar llegada  */
     .confirmar-llegada-container {
-        position: fixed;
-        left: 50%;
-        bottom: 10%;
-        transform: translateX(-50%);
+        /* position: fixed;
+    left: 50%;
+    bottom: 10%;
+    transform: translateX(-50%); */
         display: none;
-        /* visible solo cuando lo actives por JS */
-        z-index: 1000;
+        /* z-index: 1000; */
     }
 
     /* Oculta por defecto */
@@ -2920,65 +2912,68 @@ body.hyperspace-active #hyperspace {
     #btn-confirmar-whatsapp,
     #btn-info-general,
     #btn-carinito {
+        width: 250px;
+        height: 25px;
         opacity: 0;
+        font-size: clamp(0.8em, 1em, 1.2em);
         transition: opacity 0.3s;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
-        /* Espacio entre icono y texto */
         text-align: center;
         vertical-align: middle;
     }
 
     /* Animaciones */
-    @keyframes slide-down {
+    @keyframes slide-right {
         from {
-            transform: translateY(-60px);
+            transform: translateX(-35%) translateY(-80%);
             opacity: 0;
         }
 
         to {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-
-    @keyframes slide-up {
-        from {
-            transform: translateY(60px);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateY(0);
+            transform: translateX(-150%) translateY(-80%);
             opacity: 1;
         }
     }
 
     @keyframes slide-left {
         from {
-            transform: translateX(-60px);
+            transform: translateX(-35%) translateY(-80%);
             opacity: 0;
         }
 
         to {
-            transform: translateX(0);
+            transform: translateX(75%) translateY(-80%);
             opacity: 1;
         }
     }
 
-    @keyframes slide-right {
+    @keyframes slide-up {
         from {
-            transform: translateX(60px);
+            transform: translateY(-80%) translateX(-35%);
             opacity: 0;
         }
 
         to {
-            transform: translateX(0);
+            transform: translateY(-650%) translateX(-35%);
             opacity: 1;
         }
     }
+
+
+    @keyframes slide-down {
+        from {
+            transform: translateY(-80%) translateX(-35%);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(450%) translateX(-35%);
+            opacity: 1;
+        }
+    }
+
 
     /* Clases para activar animación */
     .btn-animate-down {
@@ -3034,33 +3029,30 @@ body.hyperspace-active #hyperspace {
         gap: 0;
     }
 
-    #btn-info-general {
-        order: 1;
-        margin-top: 30%;
-        margin-bottom: -80%;
-    }
-
-    #btn-carinito {
-        order: 2;
-        margin-top: 50%;
-        margin-bottom: 150%;
-    }
-
-    /* Aquí iría el slider en el HTML */
-    #btn-ver-ubicacion {
-        order: 3;
-        margin-top: 120%;
-        margin-bottom: 20%;
-    }
-
-    #btn-confirmar-whatsapp {
-        order: 4;
-        margin-top: 50%;
-        margin-bottom: 10%;
-    }
-
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3966,121 +3958,43 @@ body.hyperspace-active #hyperspace {
         }
     }
 
-    /* ---------------------------------------------------------------------------------------------- */
-    /* --- Botón para ver la ubicación en el mapa --- */
-    #btn-ver-ubicacion {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 265px;
-        min-width: 265px;
-        height: 20px;
-        padding: 5px 20px;
-        top: 20%;
-        transform: translateX(-50%);
-        z-index: 500;
-        border: 3px solid #505050;
-        color: #49daff;
-        font-family: 'Titillium Web', monospace;
-        font-size: clamp(0.6em, 1vw, 1.4em);
-        font-weight: bold;
-        letter-spacing: 2px;
-        opacity: 0;
-        transition: opacity 0.7s;
-        display: block;
-        text-shadow: 0 0 8px #49daff44;
-        background: linear-gradient(145deg, #222 80%, #444 100%);
-        border-radius: 18px 18px 22px 22px / 22px 22px 18px 18px;
-        box-shadow:
-            0 4px 18px 4px #000a,
-            0 0 0 6px #333,
-            0 0 0 12px #222;
-    }
-
-    #btn-ver-ubicacion.visible {
-        opacity: 1;
-        display: block;
-    }
-
-    #btn-ver-ubicacion:hover {
-        background: linear-gradient(145deg, #444 70%, #222 100%);
-        color: #ffc909;
-        box-shadow: 0 0 24px #49daff88, 0 2px 8px #0006;
-        border-color: #49daff;
-    }
-
-    /* Animaciones */
-    @keyframes slide-down {
-        from {
-            transform: translateY(0%) translateX(-90%);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateY(60%) translateX(-90%);
-            opacity: 1;
-        }
-    }
-
-    @keyframes slide-up {
-        from {
-            transform: translateY(60px);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-
-    @keyframes slide-left {
-        from {
-            transform: translateX(-60px);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
-
-    @keyframes slide-right {
-        from {
-            transform: translateX(0%) translateY(-60%);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateX(60%) translateY(60%);
-            opacity: 1;
-        }
-    }
 
     /* ----------------------------------------------------------------------------------------- */
     /* --- Ventanas de información y botones en el slider --- */
+
+
     .slider-buttons-container {
         position: absolute;
-        display: none;
         top: 50%;
-        left: 0;
-        width: 100%;
+        left: 47%;
+        transform: translate(-50%, -50%);
+        width: auto;
+        height: auto;
+        pointer-events: none;
+        /* el contenedor no bloquea hover */
         z-index: 101;
-        transform: translateY(-50%);
+        display: flex;
         justify-content: center;
-        /* reparte equitativamente */
+        align-items: center;
     }
 
     .slider-action-btn {
-        width: 270px;
-        height: 40px;
+        position: fixed;
+        /* todos los botones ocupan el mismo lugar */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* centra cada botón */
+        width: 400px;
+        height: auto;
         min-height: 44px;
-        display: flex;
         align-items: center;
         justify-content: center;
         pointer-events: auto;
+        /* permite click en el botón */
+        cursor: pointer;
+        margin: 0;
+        /* quitar márgenes */
         background: linear-gradient(145deg, #222 80%, #444 100%);
         border-radius: 18px 18px 22px 22px / 22px 22px 18px 18px;
         box-shadow:
@@ -4090,16 +4004,13 @@ body.hyperspace-active #hyperspace {
         border: 3px solid #505050;
         color: #49daff;
         font-family: 'Titillium Web', monospace;
-        font-size: clamp(0.6em, 1vw, 1.4em);
+        font-size: clamp(0.3em, 1vw, 0.5em);
         font-weight: bold;
         letter-spacing: 2px;
-        padding: 10px 28px;
-        margin: 0 70px;
+        padding: 0 5px;
         opacity: 0.95;
         transition: box-shadow 0.3s, background 0.3s;
         text-shadow: 0 0 8px #49daff44;
-        cursor: pointer;
-        position: relative;
         z-index: 1000;
     }
 
@@ -4231,24 +4142,12 @@ body.hyperspace-active #hyperspace {
     /* -------------------------------------------------------------------------------------------------*/
     /* --- Botón para ver la ubicación en el mapa --- */
     .ver-ubicacion-container {
-        position: fixed;
-        left: 50%;
-        top: 10%;
-        transform: translateX(-50%);
         display: none;
-        /* visible solo cuando lo actives por JS */
-        z-index: 1000;
     }
 
     /* boton de confirmar llegada  */
     .confirmar-llegada-container {
-        position: fixed;
-        left: 50%;
-        bottom: 10%;
-        transform: translateX(-50%);
         display: none;
-        /* visible solo cuando lo actives por JS */
-        z-index: 1000;
     }
 
     /* Oculta por defecto */
@@ -4256,13 +4155,14 @@ body.hyperspace-active #hyperspace {
     #btn-confirmar-whatsapp,
     #btn-info-general,
     #btn-carinito {
+        width: 250px;
+        height: 25px;
         opacity: 0;
+        font-size: clamp(0.8em, 1em, 1.2em);
         transition: opacity 0.3s;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
-        /* Espacio entre icono y texto */
         text-align: center;
         vertical-align: middle;
     }
@@ -4270,48 +4170,48 @@ body.hyperspace-active #hyperspace {
     /* Animaciones */
     @keyframes slide-down {
         from {
-            transform: translateY(-60px);
+            transform: translateY(-80%) translateX(-35%);
             opacity: 0;
         }
 
         to {
-            transform: translateY(0);
+            transform: translateY(-80%) translateX(75%);
             opacity: 1;
         }
     }
 
     @keyframes slide-up {
         from {
-            transform: translateY(60px);
+            transform: translateY(-80%) translateX(-35%);
             opacity: 0;
         }
 
         to {
-            transform: translateY(0);
+            transform: translateY(-80%) translateX(-150%);
             opacity: 1;
         }
     }
 
     @keyframes slide-left {
         from {
-            transform: translateX(-60px);
+            transform: translateY(-80%) translateX(-35%);
             opacity: 0;
         }
 
         to {
-            transform: translateX(0);
+            transform: translateY(-800%) translateX(-35%);
             opacity: 1;
         }
     }
 
     @keyframes slide-right {
         from {
-            transform: translateX(60px);
+            transform: translateY(-80%) translateX(-35%);
             opacity: 0;
         }
 
         to {
-            transform: translateX(0);
+            transform: translateY(600%) translateX(-35%);
             opacity: 1;
         }
     }
@@ -4370,30 +4270,7 @@ body.hyperspace-active #hyperspace {
         gap: 0;
     }
 
-    #btn-info-general {
-        order: 1;
-        margin-top: 30%;
-        margin-bottom: -80%;
-    }
 
-    #btn-carinito {
-        order: 2;
-        margin-top: 50%;
-        margin-bottom: 150%;
-    }
-
-    /* Aquí iría el slider en el HTML */
-    #btn-ver-ubicacion {
-        order: 3;
-        margin-top: 120%;
-        margin-bottom: 20%;
-    }
-
-    #btn-confirmar-whatsapp {
-        order: 4;
-        margin-top: 50%;
-        margin-bottom: 10%;
-    }
 }
 
 
@@ -5322,121 +5199,42 @@ body.hyperspace-active #hyperspace {
         }
     }
 
-    /* ---------------------------------------------------------------------------------------------- */
-    /* --- Botón para ver la ubicación en el mapa --- */
-    #btn-ver-ubicacion {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 265px;
-        min-width: 265px;
-        height: 20px;
-        padding: 5px 20px;
-        top: 20%;
-        transform: translateX(-50%);
-        z-index: 500;
-        border: 3px solid #505050;
-        color: #49daff;
-        font-family: 'Titillium Web', monospace;
-        font-size: clamp(0.6em, 1vw, 1.4em);
-        font-weight: bold;
-        letter-spacing: 2px;
-        opacity: 0;
-        transition: opacity 0.7s;
-        display: block;
-        text-shadow: 0 0 8px #49daff44;
-        background: linear-gradient(145deg, #222 80%, #444 100%);
-        border-radius: 18px 18px 22px 22px / 22px 22px 18px 18px;
-        box-shadow:
-            0 4px 18px 4px #000a,
-            0 0 0 6px #333,
-            0 0 0 12px #222;
-    }
-
-    #btn-ver-ubicacion.visible {
-        opacity: 1;
-        display: block;
-    }
-
-    #btn-ver-ubicacion:hover {
-        background: linear-gradient(145deg, #444 70%, #222 100%);
-        color: #ffc909;
-        box-shadow: 0 0 24px #49daff88, 0 2px 8px #0006;
-        border-color: #49daff;
-    }
-
-    /* Animaciones */
-    @keyframes slide-down {
-        from {
-            transform: translateY(0%) translateX(-90%);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateY(60%) translateX(-90%);
-            opacity: 1;
-        }
-    }
-
-    @keyframes slide-up {
-        from {
-            transform: translateY(60px);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-
-    @keyframes slide-left {
-        from {
-            transform: translateX(-60px);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
-
-    @keyframes slide-right {
-        from {
-            transform: translateX(0%) translateY(-60%);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateX(60%) translateY(60%);
-            opacity: 1;
-        }
-    }
-
     /* ----------------------------------------------------------------------------------------- */
     /* --- Ventanas de información y botones en el slider --- */
+
+
     .slider-buttons-container {
         position: absolute;
-        display: none;
         top: 50%;
-        left: 0;
-        width: 100%;
+        left: 47%;
+        transform: translate(-50%, -50%);
+        width: auto;
+        height: auto;
+        pointer-events: none;
+        /* el contenedor no bloquea hover */
         z-index: 101;
-        transform: translateY(-50%);
+        display: flex;
         justify-content: center;
-        /* reparte equitativamente */
+        align-items: center;
     }
 
     .slider-action-btn {
-        width: 270px;
-        height: 40px;
+        position: fixed;
+        /* todos los botones ocupan el mismo lugar */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* centra cada botón */
+        width: 400px;
+        height: auto;
         min-height: 44px;
-        display: flex;
         align-items: center;
         justify-content: center;
         pointer-events: auto;
+        /* permite click en el botón */
+        cursor: pointer;
+        margin: 0;
+        /* quitar márgenes */
         background: linear-gradient(145deg, #222 80%, #444 100%);
         border-radius: 18px 18px 22px 22px / 22px 22px 18px 18px;
         box-shadow:
@@ -5446,16 +5244,13 @@ body.hyperspace-active #hyperspace {
         border: 3px solid #505050;
         color: #49daff;
         font-family: 'Titillium Web', monospace;
-        font-size: clamp(0.6em, 1vw, 1.4em);
+        font-size: clamp(0.3em, 1vw, 0.5em);
         font-weight: bold;
         letter-spacing: 2px;
-        padding: 10px 28px;
-        margin: 0 70px;
+        padding: 0 5px;
         opacity: 0.95;
         transition: box-shadow 0.3s, background 0.3s;
         text-shadow: 0 0 8px #49daff44;
-        cursor: pointer;
-        position: relative;
         z-index: 1000;
     }
 
@@ -5587,24 +5382,22 @@ body.hyperspace-active #hyperspace {
     /* -------------------------------------------------------------------------------------------------*/
     /* --- Botón para ver la ubicación en el mapa --- */
     .ver-ubicacion-container {
-        position: fixed;
-        left: 50%;
-        top: 10%;
-        transform: translateX(-50%);
+        /* position: fixed;
+    left: 50%;
+    top: 10%;
+    transform: translateX(-50%); */
         display: none;
-        /* visible solo cuando lo actives por JS */
-        z-index: 1000;
+        /* z-index: 1000; */
     }
 
     /* boton de confirmar llegada  */
     .confirmar-llegada-container {
-        position: fixed;
-        left: 50%;
-        bottom: 10%;
-        transform: translateX(-50%);
+        /* position: fixed;
+    left: 50%;
+    bottom: 10%;
+    transform: translateX(-50%); */
         display: none;
-        /* visible solo cuando lo actives por JS */
-        z-index: 1000;
+        /* z-index: 1000; */
     }
 
     /* Oculta por defecto */
@@ -5612,62 +5405,62 @@ body.hyperspace-active #hyperspace {
     #btn-confirmar-whatsapp,
     #btn-info-general,
     #btn-carinito {
+        width: 250px;
+        height: 25px;
         opacity: 0;
+        font-size: clamp(0.8em, 1em, 1.2em);
         transition: opacity 0.3s;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
-        /* Espacio entre icono y texto */
         text-align: center;
         vertical-align: middle;
     }
 
-    /* Animaciones */
     @keyframes slide-down {
         from {
-            transform: translateY(-60px);
+            transform: translateY(-80%) translateX(-40%);
             opacity: 0;
         }
 
         to {
-            transform: translateY(0);
+            transform: translateY(-80%) translateX(60%);
             opacity: 1;
         }
     }
 
     @keyframes slide-up {
         from {
-            transform: translateY(60px);
+            transform: translateY(-80%) translateX(-40%);
             opacity: 0;
         }
 
         to {
-            transform: translateY(0);
+            transform: translateY(-80%) translateX(-140%);
             opacity: 1;
         }
     }
 
     @keyframes slide-left {
         from {
-            transform: translateX(-60px);
+            transform: translateY(-80%) translateX(-40%);
             opacity: 0;
         }
 
         to {
-            transform: translateX(0);
+            transform: translateY(-750%) translateX(-40%);
             opacity: 1;
         }
     }
 
     @keyframes slide-right {
         from {
-            transform: translateX(60px);
+            transform: translateY(-80%) translateX(-40%);
             opacity: 0;
         }
 
         to {
-            transform: translateX(0);
+            transform: translateY(500%) translateX(-40%);
             opacity: 1;
         }
     }
@@ -5725,31 +5518,6 @@ body.hyperspace-active #hyperspace {
         width: 100%;
         gap: 0;
     }
-
-    #btn-info-general {
-        order: 1;
-        margin-top: 30%;
-        margin-bottom: -80%;
-    }
-
-    #btn-carinito {
-        order: 2;
-        margin-top: 50%;
-        margin-bottom: 150%;
-    }
-
-    /* Aquí iría el slider en el HTML */
-    #btn-ver-ubicacion {
-        order: 3;
-        margin-top: 105%;
-        margin-bottom: 20%;
-    }
-
-    #btn-confirmar-whatsapp {
-        order: 4;
-        margin-top: 100%;
-        margin-bottom: -5%;
-    }
 }
 
 
@@ -5781,7 +5549,46 @@ body.hyperspace-active #hyperspace {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media screen and (max-width: 480px) {
+
+    html,
+    body {
+        zoom: reset;
+        width: 100%;
+        background: #000;
+        /* Fondo negro puro, sin azul */
+        font-family: 'Titillium Web', sans-serif;
+        overflow-x: hidden;
+        /* quita scroll horizontal */
+        overflow-y: hidden;
+        /* quita scroll vertical si no quieres mover la página */
+    }
+
     :root {
         /* Móvil: ajustamos el tiempo de espera para que coincida con la animación más larga */
         --tiempo-salto: 80s;
@@ -6609,8 +6416,8 @@ body.hyperspace-active #hyperspace {
         position: fixed;
         top: -50%;
         right: -50%;
-        width: 250px;
-        height: 700px;
+        width: 150px;
+        height: 550px;
         opacity: 0;
         z-index: 50;
         filter: drop-shadow(0 4px 16px #0008);
@@ -6650,7 +6457,6 @@ body.hyperspace-active #hyperspace {
         top: 2%;
         right: 4%;
         z-index: 60;
-        pointer-events: none;
     }
 
     #arrow-location {
@@ -6670,121 +6476,42 @@ body.hyperspace-active #hyperspace {
         }
     }
 
-    /* ---------------------------------------------------------------------------------------------- */
-    /* --- Botón para ver la ubicación en el mapa --- */
-    #btn-ver-ubicacion {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 265px;
-        min-width: 265px;
-        height: 20px;
-        padding: 5px 20px;
-        top: 20%;
-        transform: translateX(-50%);
-        z-index: 500;
-        border: 3px solid #505050;
-        color: #49daff;
-        font-family: 'Titillium Web', monospace;
-        font-size: clamp(0.6em, 1vw, 1.4em);
-        font-weight: bold;
-        letter-spacing: 2px;
-        opacity: 0;
-        transition: opacity 0.7s;
-        display: block;
-        text-shadow: 0 0 8px #49daff44;
-        background: linear-gradient(145deg, #222 80%, #444 100%);
-        border-radius: 18px 18px 22px 22px / 22px 22px 18px 18px;
-        box-shadow:
-            0 4px 18px 4px #000a,
-            0 0 0 6px #333,
-            0 0 0 12px #222;
-    }
-
-    #btn-ver-ubicacion.visible {
-        opacity: 1;
-        display: block;
-    }
-
-    #btn-ver-ubicacion:hover {
-        background: linear-gradient(145deg, #444 70%, #222 100%);
-        color: #ffc909;
-        box-shadow: 0 0 24px #49daff88, 0 2px 8px #0006;
-        border-color: #49daff;
-    }
-
-    /* Animaciones */
-    @keyframes slide-down {
-        from {
-            transform: translateY(0%) translateX(-90%);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateY(60%) translateX(-90%);
-            opacity: 1;
-        }
-    }
-
-    @keyframes slide-up {
-        from {
-            transform: translateY(60px);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-
-    @keyframes slide-left {
-        from {
-            transform: translateX(-60px);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
-
-    @keyframes slide-right {
-        from {
-            transform: translateX(0%) translateY(-60%);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateX(60%) translateY(60%);
-            opacity: 1;
-        }
-    }
-
     /* ----------------------------------------------------------------------------------------- */
     /* --- Ventanas de información y botones en el slider --- */
+
+
     .slider-buttons-container {
         position: absolute;
-        display: none;
         top: 50%;
-        left: 0;
-        width: 100%;
+        left: 47%;
+        transform: translate(-50%, -50%);
+        width: auto;
+        height: auto;
+        pointer-events: none;
+        /* el contenedor no bloquea hover */
         z-index: 101;
-        transform: translateY(-50%);
+        display: flex;
         justify-content: center;
-        /* reparte equitativamente */
+        align-items: center;
     }
 
     .slider-action-btn {
-        width: 270px;
-        height: 40px;
+        position: fixed;
+        /* todos los botones ocupan el mismo lugar */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* centra cada botón */
+        width: 400px;
+        height: auto;
         min-height: 44px;
-        display: flex;
         align-items: center;
         justify-content: center;
         pointer-events: auto;
+        /* permite click en el botón */
+        cursor: pointer;
+        margin: 0;
+        /* quitar márgenes */
         background: linear-gradient(145deg, #222 80%, #444 100%);
         border-radius: 18px 18px 22px 22px / 22px 22px 18px 18px;
         box-shadow:
@@ -6794,16 +6521,13 @@ body.hyperspace-active #hyperspace {
         border: 3px solid #505050;
         color: #49daff;
         font-family: 'Titillium Web', monospace;
-        font-size: clamp(0.6em, 1vw, 1.4em);
+        font-size: clamp(0.3em, 1vw, 0.5em);
         font-weight: bold;
         letter-spacing: 2px;
-        padding: 10px 28px;
-        margin: 0 70px;
+        padding: 0 5px;
         opacity: 0.95;
         transition: box-shadow 0.3s, background 0.3s;
         text-shadow: 0 0 8px #49daff44;
-        cursor: pointer;
-        position: relative;
         z-index: 1000;
     }
 
@@ -6935,24 +6659,13 @@ body.hyperspace-active #hyperspace {
     /* -------------------------------------------------------------------------------------------------*/
     /* --- Botón para ver la ubicación en el mapa --- */
     .ver-ubicacion-container {
-        position: fixed;
-        left: 50%;
-        top: 10%;
-        transform: translateX(-50%);
         display: none;
-        /* visible solo cuando lo actives por JS */
-        z-index: 1000;
+
     }
 
     /* boton de confirmar llegada  */
     .confirmar-llegada-container {
-        position: fixed;
-        left: 50%;
-        bottom: 10%;
-        transform: translateX(-50%);
         display: none;
-        /* visible solo cuando lo actives por JS */
-        z-index: 1000;
     }
 
     /* Oculta por defecto */
@@ -6960,62 +6673,62 @@ body.hyperspace-active #hyperspace {
     #btn-confirmar-whatsapp,
     #btn-info-general,
     #btn-carinito {
+        width: 170px;
+        height: auto;
         opacity: 0;
+        font-size: clamp(0.8em, 0.2em, 1.2em);
         transition: opacity 0.3s;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
-        /* Espacio entre icono y texto */
         text-align: center;
         vertical-align: middle;
     }
 
-    /* Animaciones */
     @keyframes slide-down {
         from {
-            transform: translateY(-60px);
+            transform: translateY(-80%) translateX(-42%);
             opacity: 0;
         }
 
         to {
-            transform: translateY(0);
+            transform: translateY(400%) translateX(-42%);
             opacity: 1;
         }
     }
 
     @keyframes slide-up {
         from {
-            transform: translateY(60px);
+            transform: translateY(-80%) translateX(-42%);
             opacity: 0;
         }
 
         to {
-            transform: translateY(0);
+            transform: translateY(600%) translateX(-42%);
             opacity: 1;
         }
     }
 
     @keyframes slide-left {
         from {
-            transform: translateX(-60px);
+            transform: translateY(-80%) translateX(-42%);
             opacity: 0;
         }
 
         to {
-            transform: translateX(0);
+            transform: translateY(-800%) translateX(-42%);
             opacity: 1;
         }
     }
 
     @keyframes slide-right {
         from {
-            transform: translateX(60px);
+            transform: translateY(-80%) translateX(-42%);
             opacity: 0;
         }
 
         to {
-            transform: translateX(0);
+            transform: translateY(-600%) translateX(-42%);
             opacity: 1;
         }
     }
@@ -7073,35 +6786,4 @@ body.hyperspace-active #hyperspace {
         width: 100%;
         gap: 0;
     }
-
-    #btn-info-general {
-        order: 1;
-        margin-top: 30%;
-        margin-bottom: -80%;
-    }
-
-    #btn-carinito {
-        order: 2;
-        margin-top: 50%;
-        margin-bottom: 150%;
-    }
-
-    /* Aquí iría el slider en el HTML */
-    #btn-ver-ubicacion {
-        order: 3;
-        margin-top: 105%;
-        margin-bottom: 20%;
-    }
-
-    #btn-confirmar-whatsapp {
-        order: 4;
-        margin-top: 100%;
-        margin-bottom: -5%;
-    }
 }
-
-
-
-
-
-
