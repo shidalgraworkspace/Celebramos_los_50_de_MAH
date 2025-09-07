@@ -13,8 +13,6 @@ body {
     font-family: 'Titillium Web', sans-serif;
     overflow-x: hidden;
     /* quita scroll horizontal */
-    overflow-y: hidden;
-    /* quita scroll vertical si no quieres mover la página */
 }
 
 :root {
@@ -3938,7 +3936,6 @@ body.hyperspace-active #hyperspace {
         top: 2%;
         right: 4%;
         z-index: 60;
-        pointer-events: none;
     }
 
     #arrow-location {
@@ -5179,7 +5176,6 @@ body.hyperspace-active #hyperspace {
         top: 2%;
         right: 4%;
         z-index: 60;
-        pointer-events: none;
     }
 
     #arrow-location {
@@ -5575,19 +5571,6 @@ body.hyperspace-active #hyperspace {
 
 
 @media screen and (max-width: 480px) {
-
-    html,
-    body {
-        zoom: reset;
-        width: 100%;
-        background: #000;
-        /* Fondo negro puro, sin azul */
-        font-family: 'Titillium Web', sans-serif;
-        overflow-x: hidden;
-        /* quita scroll horizontal */
-        overflow-y: hidden;
-        /* quita scroll vertical si no quieres mover la página */
-    }
 
     :root {
         /* Móvil: ajustamos el tiempo de espera para que coincida con la animación más larga */
