@@ -962,7 +962,7 @@ body.hyperspace-active #hyperspace {
     list-style: none;
     padding: 0;
     margin: 0;
-    width: 1000%;
+    width: 2000%;
     /* 100% por cada una de las 6 imágenes */
     height: 100%;
     animation: slide-fotos 60s linear infinite;
@@ -970,7 +970,7 @@ body.hyperspace-active #hyperspace {
 }
 
 .contenedor-fotos_deslizantes li {
-    width: 10%;
+    width: 5%;
     /* 100% / 6 imágenes */
     height: 100%;
     flex-shrink: 0;
@@ -1016,101 +1016,201 @@ body.hyperspace-active #hyperspace {
         transform: translateX(0%);
     }
 
-    8% {
+    4% {
         transform: translateX(0%);
     }
 
     /* Foto 1 */
 
+    5% {
+        transform: translateX(-5%);
+    }
+
+    9% {
+        transform: translateX(-5%);
+    }
+
+    /* Foto 2 */
+
     10% {
         transform: translateX(-10%);
     }
 
-    18% {
+    14% {
         transform: translateX(-10%);
     }
 
-    /* Foto 2 */
+    /* Foto 3 */
+
+    15% {
+        transform: translateX(-15%);
+    }
+
+    19% {
+        transform: translateX(-15%);
+    }
+
+    /* Foto 4 */
 
     20% {
         transform: translateX(-20%);
     }
 
-    28% {
+    24% {
         transform: translateX(-20%);
     }
 
-    /* Foto 3 */
+    /* Foto 5 */
+
+    25% {
+        transform: translateX(-25%);
+    }
+
+    29% {
+        transform: translateX(-25%);
+    }
+
+    /* Foto 6 */
 
     30% {
         transform: translateX(-30%);
     }
 
-    38% {
+    34% {
         transform: translateX(-30%);
     }
 
-    /* Foto 4 */
+    /* Foto 7 */
+
+    35% {
+        transform: translateX(-35%);
+    }
+
+    39% {
+        transform: translateX(-35%);
+    }
+
+    /* Foto 8 */
 
     40% {
         transform: translateX(-40%);
     }
 
-    48% {
+    44% {
         transform: translateX(-40%);
     }
 
-    /* Foto 5 */
+    /* Foto 9 */
+
+    45% {
+        transform: translateX(-45%);
+    }
+
+    49% {
+        transform: translateX(-45%);
+    }
+
+    /* Foto 10 */
 
     50% {
         transform: translateX(-50%);
     }
 
-    58% {
+    54% {
         transform: translateX(-50%);
     }
 
-    /* Foto 6 */
+    /* Foto 11 */
+
+    55% {
+        transform: translateX(-55%);
+    }
+
+    59% {
+        transform: translateX(-55%);
+    }
+
+    /* Foto 12 */
 
     60% {
         transform: translateX(-60%);
     }
 
-    68% {
+    64% {
         transform: translateX(-60%);
     }
 
-    /* Foto 7 */
+    /* Foto 13 */
+
+    65% {
+        transform: translateX(-65%);
+    }
+
+    69% {
+        transform: translateX(-65%);
+    }
+
+    /* Foto 14 */
 
     70% {
         transform: translateX(-70%);
     }
 
-    78% {
+    74% {
         transform: translateX(-70%);
     }
 
-    /* Foto 8 */
+    /* Foto 15 */
+
+    75% {
+        transform: translateX(-75%);
+    }
+
+    79% {
+        transform: translateX(-75%);
+    }
+
+    /* Foto 16 */
 
     80% {
         transform: translateX(-80%);
     }
 
-    88% {
+    84% {
         transform: translateX(-80%);
     }
 
-    /* Foto 9 */
+    /* Foto 17 */
+
+    85% {
+        transform: translateX(-85%);
+    }
+
+    89% {
+        transform: translateX(-85%);
+    }
+
+    /* Foto 18 */
 
     90% {
         transform: translateX(-90%);
     }
 
-    96% {
+    94% {
         transform: translateX(-90%);
     }
 
-    /* Foto 10 */
+    /* Foto 19 */
+
+    95% {
+        transform: translateX(-95%);
+    }
+
+    99% {
+        transform: translateX(-95%);
+    }
+
+    /* Foto 20 */
 
     /* transición extra para volver suave */
     100% {
@@ -2200,7 +2300,7 @@ body.hyperspace-active #hyperspace {
         list-style: none;
         padding: 0;
         margin: 0;
-        width: 1000%;
+        width: 2000%;
         /* 100% por cada una de las 6 imágenes */
         height: 100%;
         animation: slide-fotos 60s linear infinite;
@@ -2208,7 +2308,7 @@ body.hyperspace-active #hyperspace {
     }
 
     .contenedor-fotos_deslizantes li {
-        width: 10%;
+        width: 5%;
         /* 100% / 6 imágenes */
         height: 100%;
         flex-shrink: 0;
@@ -2249,112 +2349,212 @@ body.hyperspace-active #hyperspace {
     }
 
     /* Animación que desliza las fotos y pausa en cada una */
-    @keyframes slide-fotos {
-        0% {
-            transform: translateX(0%);
-        }
-
-        8% {
-            transform: translateX(0%);
-        }
-
-        /* Foto 1 */
-
-        10% {
-            transform: translateX(-10%);
-        }
-
-        18% {
-            transform: translateX(-10%);
-        }
-
-        /* Foto 2 */
-
-        20% {
-            transform: translateX(-20%);
-        }
-
-        28% {
-            transform: translateX(-20%);
-        }
-
-        /* Foto 3 */
-
-        30% {
-            transform: translateX(-30%);
-        }
-
-        38% {
-            transform: translateX(-30%);
-        }
-
-        /* Foto 4 */
-
-        40% {
-            transform: translateX(-40%);
-        }
-
-        48% {
-            transform: translateX(-40%);
-        }
-
-        /* Foto 5 */
-
-        50% {
-            transform: translateX(-50%);
-        }
-
-        58% {
-            transform: translateX(-50%);
-        }
-
-        /* Foto 6 */
-
-        60% {
-            transform: translateX(-60%);
-        }
-
-        68% {
-            transform: translateX(-60%);
-        }
-
-        /* Foto 7 */
-
-        70% {
-            transform: translateX(-70%);
-        }
-
-        78% {
-            transform: translateX(-70%);
-        }
-
-        /* Foto 8 */
-
-        80% {
-            transform: translateX(-80%);
-        }
-
-        88% {
-            transform: translateX(-80%);
-        }
-
-        /* Foto 9 */
-
-        90% {
-            transform: translateX(-90%);
-        }
-
-        96% {
-            transform: translateX(-90%);
-        }
-
-        /* Foto 10 */
-
-        /* transición extra para volver suave */
-        100% {
-            transform: translateX(-100%);
-        }
+@keyframes slide-fotos {
+    0% {
+        transform: translateX(0%);
     }
+
+    4% {
+        transform: translateX(0%);
+    }
+
+    /* Foto 1 */
+
+    5% {
+        transform: translateX(-5%);
+    }
+
+    9% {
+        transform: translateX(-5%);
+    }
+
+    /* Foto 2 */
+
+    10% {
+        transform: translateX(-10%);
+    }
+
+    14% {
+        transform: translateX(-10%);
+    }
+
+    /* Foto 3 */
+
+    15% {
+        transform: translateX(-15%);
+    }
+
+    19% {
+        transform: translateX(-15%);
+    }
+
+    /* Foto 4 */
+
+    20% {
+        transform: translateX(-20%);
+    }
+
+    24% {
+        transform: translateX(-20%);
+    }
+
+    /* Foto 5 */
+
+    25% {
+        transform: translateX(-25%);
+    }
+
+    29% {
+        transform: translateX(-25%);
+    }
+
+    /* Foto 6 */
+
+    30% {
+        transform: translateX(-30%);
+    }
+
+    34% {
+        transform: translateX(-30%);
+    }
+
+    /* Foto 7 */
+
+    35% {
+        transform: translateX(-35%);
+    }
+
+    39% {
+        transform: translateX(-35%);
+    }
+
+    /* Foto 8 */
+
+    40% {
+        transform: translateX(-40%);
+    }
+
+    44% {
+        transform: translateX(-40%);
+    }
+
+    /* Foto 9 */
+
+    45% {
+        transform: translateX(-45%);
+    }
+
+    49% {
+        transform: translateX(-45%);
+    }
+
+    /* Foto 10 */
+
+    50% {
+        transform: translateX(-50%);
+    }
+
+    54% {
+        transform: translateX(-50%);
+    }
+
+    /* Foto 11 */
+
+    55% {
+        transform: translateX(-55%);
+    }
+
+    59% {
+        transform: translateX(-55%);
+    }
+
+    /* Foto 12 */
+
+    60% {
+        transform: translateX(-60%);
+    }
+
+    64% {
+        transform: translateX(-60%);
+    }
+
+    /* Foto 13 */
+
+    65% {
+        transform: translateX(-65%);
+    }
+
+    69% {
+        transform: translateX(-65%);
+    }
+
+    /* Foto 14 */
+
+    70% {
+        transform: translateX(-70%);
+    }
+
+    74% {
+        transform: translateX(-70%);
+    }
+
+    /* Foto 15 */
+
+    75% {
+        transform: translateX(-75%);
+    }
+
+    79% {
+        transform: translateX(-75%);
+    }
+
+    /* Foto 16 */
+
+    80% {
+        transform: translateX(-80%);
+    }
+
+    84% {
+        transform: translateX(-80%);
+    }
+
+    /* Foto 17 */
+
+    85% {
+        transform: translateX(-85%);
+    }
+
+    89% {
+        transform: translateX(-85%);
+    }
+
+    /* Foto 18 */
+
+    90% {
+        transform: translateX(-90%);
+    }
+
+    94% {
+        transform: translateX(-90%);
+    }
+
+    /* Foto 19 */
+
+    95% {
+        transform: translateX(-95%);
+    }
+
+    99% {
+        transform: translateX(-95%);
+    }
+
+    /* Foto 20 */
+
+    /* transición extra para volver suave */
+    100% {
+        transform: translateX(-100%);
+    }
+}
 
     /* --- SECCIÓN IMAGEN INTERMEDIA --- */
     #intermediate-image-container {
@@ -3406,7 +3606,7 @@ body.hyperspace-active #hyperspace {
         list-style: none;
         padding: 0;
         margin: 0;
-        width: 1000%;
+        width: 2000%;
         /* 100% por cada una de las 6 imágenes */
         height: 100%;
         animation: slide-fotos 60s linear infinite;
@@ -3414,7 +3614,7 @@ body.hyperspace-active #hyperspace {
     }
 
     .contenedor-fotos_deslizantes li {
-        width: 10%;
+        width: 5%;
         /* 100% / 6 imágenes */
         height: 100%;
         flex-shrink: 0;
@@ -3455,112 +3655,212 @@ body.hyperspace-active #hyperspace {
     }
 
     /* Animación que desliza las fotos y pausa en cada una */
-    @keyframes slide-fotos {
-        0% {
-            transform: translateX(0%);
-        }
-
-        8% {
-            transform: translateX(0%);
-        }
-
-        /* Foto 1 */
-
-        10% {
-            transform: translateX(-10%);
-        }
-
-        18% {
-            transform: translateX(-10%);
-        }
-
-        /* Foto 2 */
-
-        20% {
-            transform: translateX(-20%);
-        }
-
-        28% {
-            transform: translateX(-20%);
-        }
-
-        /* Foto 3 */
-
-        30% {
-            transform: translateX(-30%);
-        }
-
-        38% {
-            transform: translateX(-30%);
-        }
-
-        /* Foto 4 */
-
-        40% {
-            transform: translateX(-40%);
-        }
-
-        48% {
-            transform: translateX(-40%);
-        }
-
-        /* Foto 5 */
-
-        50% {
-            transform: translateX(-50%);
-        }
-
-        58% {
-            transform: translateX(-50%);
-        }
-
-        /* Foto 6 */
-
-        60% {
-            transform: translateX(-60%);
-        }
-
-        68% {
-            transform: translateX(-60%);
-        }
-
-        /* Foto 7 */
-
-        70% {
-            transform: translateX(-70%);
-        }
-
-        78% {
-            transform: translateX(-70%);
-        }
-
-        /* Foto 8 */
-
-        80% {
-            transform: translateX(-80%);
-        }
-
-        88% {
-            transform: translateX(-80%);
-        }
-
-        /* Foto 9 */
-
-        90% {
-            transform: translateX(-90%);
-        }
-
-        96% {
-            transform: translateX(-90%);
-        }
-
-        /* Foto 10 */
-
-        /* transición extra para volver suave */
-        100% {
-            transform: translateX(-100%);
-        }
+@keyframes slide-fotos {
+    0% {
+        transform: translateX(0%);
     }
+
+    4% {
+        transform: translateX(0%);
+    }
+
+    /* Foto 1 */
+
+    5% {
+        transform: translateX(-5%);
+    }
+
+    9% {
+        transform: translateX(-5%);
+    }
+
+    /* Foto 2 */
+
+    10% {
+        transform: translateX(-10%);
+    }
+
+    14% {
+        transform: translateX(-10%);
+    }
+
+    /* Foto 3 */
+
+    15% {
+        transform: translateX(-15%);
+    }
+
+    19% {
+        transform: translateX(-15%);
+    }
+
+    /* Foto 4 */
+
+    20% {
+        transform: translateX(-20%);
+    }
+
+    24% {
+        transform: translateX(-20%);
+    }
+
+    /* Foto 5 */
+
+    25% {
+        transform: translateX(-25%);
+    }
+
+    29% {
+        transform: translateX(-25%);
+    }
+
+    /* Foto 6 */
+
+    30% {
+        transform: translateX(-30%);
+    }
+
+    34% {
+        transform: translateX(-30%);
+    }
+
+    /* Foto 7 */
+
+    35% {
+        transform: translateX(-35%);
+    }
+
+    39% {
+        transform: translateX(-35%);
+    }
+
+    /* Foto 8 */
+
+    40% {
+        transform: translateX(-40%);
+    }
+
+    44% {
+        transform: translateX(-40%);
+    }
+
+    /* Foto 9 */
+
+    45% {
+        transform: translateX(-45%);
+    }
+
+    49% {
+        transform: translateX(-45%);
+    }
+
+    /* Foto 10 */
+
+    50% {
+        transform: translateX(-50%);
+    }
+
+    54% {
+        transform: translateX(-50%);
+    }
+
+    /* Foto 11 */
+
+    55% {
+        transform: translateX(-55%);
+    }
+
+    59% {
+        transform: translateX(-55%);
+    }
+
+    /* Foto 12 */
+
+    60% {
+        transform: translateX(-60%);
+    }
+
+    64% {
+        transform: translateX(-60%);
+    }
+
+    /* Foto 13 */
+
+    65% {
+        transform: translateX(-65%);
+    }
+
+    69% {
+        transform: translateX(-65%);
+    }
+
+    /* Foto 14 */
+
+    70% {
+        transform: translateX(-70%);
+    }
+
+    74% {
+        transform: translateX(-70%);
+    }
+
+    /* Foto 15 */
+
+    75% {
+        transform: translateX(-75%);
+    }
+
+    79% {
+        transform: translateX(-75%);
+    }
+
+    /* Foto 16 */
+
+    80% {
+        transform: translateX(-80%);
+    }
+
+    84% {
+        transform: translateX(-80%);
+    }
+
+    /* Foto 17 */
+
+    85% {
+        transform: translateX(-85%);
+    }
+
+    89% {
+        transform: translateX(-85%);
+    }
+
+    /* Foto 18 */
+
+    90% {
+        transform: translateX(-90%);
+    }
+
+    94% {
+        transform: translateX(-90%);
+    }
+
+    /* Foto 19 */
+
+    95% {
+        transform: translateX(-95%);
+    }
+
+    99% {
+        transform: translateX(-95%);
+    }
+
+    /* Foto 20 */
+
+    /* transición extra para volver suave */
+    100% {
+        transform: translateX(-100%);
+    }
+}
 
     /* --- SECCIÓN IMAGEN INTERMEDIA --- */
     #intermediate-image-container {
@@ -4609,7 +4909,7 @@ body.hyperspace-active #hyperspace {
         list-style: none;
         padding: 0;
         margin: 0;
-        width: 1000%;
+        width: 2000%;
         /* 100% por cada una de las 6 imágenes */
         height: 100%;
         animation: slide-fotos 60s linear infinite;
@@ -4617,7 +4917,7 @@ body.hyperspace-active #hyperspace {
     }
 
     .contenedor-fotos_deslizantes li {
-        width: 10%;
+        width: 5%;
         /* 100% / 6 imágenes */
         height: 100%;
         flex-shrink: 0;
@@ -4658,112 +4958,212 @@ body.hyperspace-active #hyperspace {
     }
 
     /* Animación que desliza las fotos y pausa en cada una */
-    @keyframes slide-fotos {
-        0% {
-            transform: translateX(0%);
-        }
-
-        8% {
-            transform: translateX(0%);
-        }
-
-        /* Foto 1 */
-
-        10% {
-            transform: translateX(-10%);
-        }
-
-        18% {
-            transform: translateX(-10%);
-        }
-
-        /* Foto 2 */
-
-        20% {
-            transform: translateX(-20%);
-        }
-
-        28% {
-            transform: translateX(-20%);
-        }
-
-        /* Foto 3 */
-
-        30% {
-            transform: translateX(-30%);
-        }
-
-        38% {
-            transform: translateX(-30%);
-        }
-
-        /* Foto 4 */
-
-        40% {
-            transform: translateX(-40%);
-        }
-
-        48% {
-            transform: translateX(-40%);
-        }
-
-        /* Foto 5 */
-
-        50% {
-            transform: translateX(-50%);
-        }
-
-        58% {
-            transform: translateX(-50%);
-        }
-
-        /* Foto 6 */
-
-        60% {
-            transform: translateX(-60%);
-        }
-
-        68% {
-            transform: translateX(-60%);
-        }
-
-        /* Foto 7 */
-
-        70% {
-            transform: translateX(-70%);
-        }
-
-        78% {
-            transform: translateX(-70%);
-        }
-
-        /* Foto 8 */
-
-        80% {
-            transform: translateX(-80%);
-        }
-
-        88% {
-            transform: translateX(-80%);
-        }
-
-        /* Foto 9 */
-
-        90% {
-            transform: translateX(-90%);
-        }
-
-        96% {
-            transform: translateX(-90%);
-        }
-
-        /* Foto 10 */
-
-        /* transición extra para volver suave */
-        100% {
-            transform: translateX(-100%);
-        }
+@keyframes slide-fotos {
+    0% {
+        transform: translateX(0%);
     }
+
+    4% {
+        transform: translateX(0%);
+    }
+
+    /* Foto 1 */
+
+    5% {
+        transform: translateX(-5%);
+    }
+
+    9% {
+        transform: translateX(-5%);
+    }
+
+    /* Foto 2 */
+
+    10% {
+        transform: translateX(-10%);
+    }
+
+    14% {
+        transform: translateX(-10%);
+    }
+
+    /* Foto 3 */
+
+    15% {
+        transform: translateX(-15%);
+    }
+
+    19% {
+        transform: translateX(-15%);
+    }
+
+    /* Foto 4 */
+
+    20% {
+        transform: translateX(-20%);
+    }
+
+    24% {
+        transform: translateX(-20%);
+    }
+
+    /* Foto 5 */
+
+    25% {
+        transform: translateX(-25%);
+    }
+
+    29% {
+        transform: translateX(-25%);
+    }
+
+    /* Foto 6 */
+
+    30% {
+        transform: translateX(-30%);
+    }
+
+    34% {
+        transform: translateX(-30%);
+    }
+
+    /* Foto 7 */
+
+    35% {
+        transform: translateX(-35%);
+    }
+
+    39% {
+        transform: translateX(-35%);
+    }
+
+    /* Foto 8 */
+
+    40% {
+        transform: translateX(-40%);
+    }
+
+    44% {
+        transform: translateX(-40%);
+    }
+
+    /* Foto 9 */
+
+    45% {
+        transform: translateX(-45%);
+    }
+
+    49% {
+        transform: translateX(-45%);
+    }
+
+    /* Foto 10 */
+
+    50% {
+        transform: translateX(-50%);
+    }
+
+    54% {
+        transform: translateX(-50%);
+    }
+
+    /* Foto 11 */
+
+    55% {
+        transform: translateX(-55%);
+    }
+
+    59% {
+        transform: translateX(-55%);
+    }
+
+    /* Foto 12 */
+
+    60% {
+        transform: translateX(-60%);
+    }
+
+    64% {
+        transform: translateX(-60%);
+    }
+
+    /* Foto 13 */
+
+    65% {
+        transform: translateX(-65%);
+    }
+
+    69% {
+        transform: translateX(-65%);
+    }
+
+    /* Foto 14 */
+
+    70% {
+        transform: translateX(-70%);
+    }
+
+    74% {
+        transform: translateX(-70%);
+    }
+
+    /* Foto 15 */
+
+    75% {
+        transform: translateX(-75%);
+    }
+
+    79% {
+        transform: translateX(-75%);
+    }
+
+    /* Foto 16 */
+
+    80% {
+        transform: translateX(-80%);
+    }
+
+    84% {
+        transform: translateX(-80%);
+    }
+
+    /* Foto 17 */
+
+    85% {
+        transform: translateX(-85%);
+    }
+
+    89% {
+        transform: translateX(-85%);
+    }
+
+    /* Foto 18 */
+
+    90% {
+        transform: translateX(-90%);
+    }
+
+    94% {
+        transform: translateX(-90%);
+    }
+
+    /* Foto 19 */
+
+    95% {
+        transform: translateX(-95%);
+    }
+
+    99% {
+        transform: translateX(-95%);
+    }
+
+    /* Foto 20 */
+
+    /* transición extra para volver suave */
+    100% {
+        transform: translateX(-100%);
+    }
+}
 
     /* --- SECCIÓN IMAGEN INTERMEDIA --- */
     #intermediate-image-container {
@@ -5828,7 +6228,7 @@ body.hyperspace-active #hyperspace {
         list-style: none;
         padding: 0;
         margin: 0;
-        width: 1000%;
+        width: 2000%;
         /* 100% por cada una de las 6 imágenes */
         height: 100%;
         animation: slide-fotos 60s linear infinite;
@@ -5836,7 +6236,7 @@ body.hyperspace-active #hyperspace {
     }
 
     .contenedor-fotos_deslizantes li {
-        width: 10%;
+        width: 5%;
         /* 100% / 6 imágenes */
         height: 100%;
         flex-shrink: 0;
@@ -5877,112 +6277,212 @@ body.hyperspace-active #hyperspace {
     }
 
     /* Animación que desliza las fotos y pausa en cada una */
-    @keyframes slide-fotos {
-        0% {
-            transform: translateX(0%);
-        }
-
-        8% {
-            transform: translateX(0%);
-        }
-
-        /* Foto 1 */
-
-        10% {
-            transform: translateX(-10%);
-        }
-
-        18% {
-            transform: translateX(-10%);
-        }
-
-        /* Foto 2 */
-
-        20% {
-            transform: translateX(-20%);
-        }
-
-        28% {
-            transform: translateX(-20%);
-        }
-
-        /* Foto 3 */
-
-        30% {
-            transform: translateX(-30%);
-        }
-
-        38% {
-            transform: translateX(-30%);
-        }
-
-        /* Foto 4 */
-
-        40% {
-            transform: translateX(-40%);
-        }
-
-        48% {
-            transform: translateX(-40%);
-        }
-
-        /* Foto 5 */
-
-        50% {
-            transform: translateX(-50%);
-        }
-
-        58% {
-            transform: translateX(-50%);
-        }
-
-        /* Foto 6 */
-
-        60% {
-            transform: translateX(-60%);
-        }
-
-        68% {
-            transform: translateX(-60%);
-        }
-
-        /* Foto 7 */
-
-        70% {
-            transform: translateX(-70%);
-        }
-
-        78% {
-            transform: translateX(-70%);
-        }
-
-        /* Foto 8 */
-
-        80% {
-            transform: translateX(-80%);
-        }
-
-        88% {
-            transform: translateX(-80%);
-        }
-
-        /* Foto 9 */
-
-        90% {
-            transform: translateX(-90%);
-        }
-
-        96% {
-            transform: translateX(-90%);
-        }
-
-        /* Foto 10 */
-
-        /* transición extra para volver suave */
-        100% {
-            transform: translateX(-100%);
-        }
+@keyframes slide-fotos {
+    0% {
+        transform: translateX(0%);
     }
+
+    4% {
+        transform: translateX(0%);
+    }
+
+    /* Foto 1 */
+
+    5% {
+        transform: translateX(-5%);
+    }
+
+    9% {
+        transform: translateX(-5%);
+    }
+
+    /* Foto 2 */
+
+    10% {
+        transform: translateX(-10%);
+    }
+
+    14% {
+        transform: translateX(-10%);
+    }
+
+    /* Foto 3 */
+
+    15% {
+        transform: translateX(-15%);
+    }
+
+    19% {
+        transform: translateX(-15%);
+    }
+
+    /* Foto 4 */
+
+    20% {
+        transform: translateX(-20%);
+    }
+
+    24% {
+        transform: translateX(-20%);
+    }
+
+    /* Foto 5 */
+
+    25% {
+        transform: translateX(-25%);
+    }
+
+    29% {
+        transform: translateX(-25%);
+    }
+
+    /* Foto 6 */
+
+    30% {
+        transform: translateX(-30%);
+    }
+
+    34% {
+        transform: translateX(-30%);
+    }
+
+    /* Foto 7 */
+
+    35% {
+        transform: translateX(-35%);
+    }
+
+    39% {
+        transform: translateX(-35%);
+    }
+
+    /* Foto 8 */
+
+    40% {
+        transform: translateX(-40%);
+    }
+
+    44% {
+        transform: translateX(-40%);
+    }
+
+    /* Foto 9 */
+
+    45% {
+        transform: translateX(-45%);
+    }
+
+    49% {
+        transform: translateX(-45%);
+    }
+
+    /* Foto 10 */
+
+    50% {
+        transform: translateX(-50%);
+    }
+
+    54% {
+        transform: translateX(-50%);
+    }
+
+    /* Foto 11 */
+
+    55% {
+        transform: translateX(-55%);
+    }
+
+    59% {
+        transform: translateX(-55%);
+    }
+
+    /* Foto 12 */
+
+    60% {
+        transform: translateX(-60%);
+    }
+
+    64% {
+        transform: translateX(-60%);
+    }
+
+    /* Foto 13 */
+
+    65% {
+        transform: translateX(-65%);
+    }
+
+    69% {
+        transform: translateX(-65%);
+    }
+
+    /* Foto 14 */
+
+    70% {
+        transform: translateX(-70%);
+    }
+
+    74% {
+        transform: translateX(-70%);
+    }
+
+    /* Foto 15 */
+
+    75% {
+        transform: translateX(-75%);
+    }
+
+    79% {
+        transform: translateX(-75%);
+    }
+
+    /* Foto 16 */
+
+    80% {
+        transform: translateX(-80%);
+    }
+
+    84% {
+        transform: translateX(-80%);
+    }
+
+    /* Foto 17 */
+
+    85% {
+        transform: translateX(-85%);
+    }
+
+    89% {
+        transform: translateX(-85%);
+    }
+
+    /* Foto 18 */
+
+    90% {
+        transform: translateX(-90%);
+    }
+
+    94% {
+        transform: translateX(-90%);
+    }
+
+    /* Foto 19 */
+
+    95% {
+        transform: translateX(-95%);
+    }
+
+    99% {
+        transform: translateX(-95%);
+    }
+
+    /* Foto 20 */
+
+    /* transición extra para volver suave */
+    100% {
+        transform: translateX(-100%);
+    }
+}
 
     /* --- SECCIÓN IMAGEN INTERMEDIA --- */
     #intermediate-image-container {
