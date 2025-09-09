@@ -550,45 +550,70 @@ document.addEventListener('DOMContentLoaded', () => {
     const carinitoWindow = document.getElementById('carinito-window');
 
     // Función para mostrar la ventana justo debajo y alineada al botón
-    function showWindowInfoGeneral(windowEl, btnEl) {
-        const rect = btnEl.getBoundingClientRect();
-        const windowWidth = windowEl.offsetWidth || 360;
-
-        const left = rect.left + (rect.width / 2) - (windowWidth / 2) + window.scrollX;
-
-        const top = rect.bottom + 12 + window.scrollY; // 12px de separación
-        windowEl.style.left = `${left}px`;
-        windowEl.style.top = `${top}px`;
+    function showFullScreenWindow(windowEl) {
+        windowEl.style.position = 'fixed';
+        windowEl.style.top = '0';
+        windowEl.style.left = '0';
+        windowEl.style.width = '100vw';
+        windowEl.style.height = '100vh';
+        windowEl.scrollTop = 0; // Siempre inicia el scroll en top
     }
-
-    // Mostrar/ocultar ventanas al hacer clic
+    
     btnInfoGeneral.addEventListener('click', () => {
         infoGeneralWindow.classList.toggle('visible');
         carinitoWindow.classList.remove('visible');
         if (infoGeneralWindow.classList.contains('visible')) {
-            showWindowInfoGeneral(infoGeneralWindow, btnInfoGeneral);
+            showFullScreenWindow(infoGeneralWindow);
         }
     });
-
-
-    function showWindowCarinito(windowEl, btnEl) {
-        const rect = btnEl.getBoundingClientRect();
-        const windowWidth = windowEl.offsetWidth || 360;
-
-        const left = rect.left + (rect.width / 2) - (windowWidth / 2) + window.scrollX;
-
-        const top = rect.bottom + 12 + window.scrollY; // 12px de separación
-        windowEl.style.left = `${left}px`;
-        windowEl.style.top = `${top}px`;
-    }
 
     btnCarinito.addEventListener('click', () => {
         carinitoWindow.classList.toggle('visible');
         infoGeneralWindow.classList.remove('visible');
         if (carinitoWindow.classList.contains('visible')) {
-            showWindowCarinito(carinitoWindow, btnCarinito);
+            showFullScreenWindow(carinitoWindow);
         }
     });
+
+    // function showWindowInfoGeneral(windowEl, btnEl) {
+    //     const rect = btnEl.getBoundingClientRect();
+    //     const windowWidth = windowEl.offsetWidth || 360;
+
+    //     const left = rect.left + (rect.width / 2) - (windowWidth / 2) + window.scrollX;
+
+    //     const top = rect.bottom + 12 + window.scrollY; // 12px de separación
+    //     windowEl.style.left = `${left}px`;
+    //     windowEl.style.top = `${top}px`;
+    // }
+
+    // Mostrar/ocultar ventanas al hacer clic
+    // btnInfoGeneral.addEventListener('click', () => {
+    //     infoGeneralWindow.classList.toggle('visible');
+    //     carinitoWindow.classList.remove('visible');
+    //     if (infoGeneralWindow.classList.contains('visible')) {
+    //         showWindowInfoGeneral(infoGeneralWindow, btnInfoGeneral);
+    //     }
+    // });
+
+
+    // function showWindowCarinito(windowEl, btnEl) {
+    //     const rect = btnEl.getBoundingClientRect();
+    //     const windowWidth = windowEl.offsetWidth || 360;
+
+    //     const left = rect.left + (rect.width / 2) - (windowWidth / 2) + window.scrollX;
+
+    //     const top = rect.bottom + 12 + window.scrollY; // 12px de separación
+    //     windowEl.style.left = `${left}px`;
+    //     windowEl.style.top = `${top}px`;
+    // }
+
+    // btnCarinito.addEventListener('click', () => {
+    //     carinitoWindow.classList.toggle('visible');
+    //     infoGeneralWindow.classList.remove('visible');
+    //     if (carinitoWindow.classList.contains('visible')) {
+    //         showWindowCarinito(carinitoWindow, btnCarinito);
+    //     }
+    // });
 
     // Opcional: cerrar ventana al hacer clic fuera infoGeneral
     document.addEventListener('click', (e) => {

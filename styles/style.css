@@ -6,7 +6,7 @@
 
 html,
 body {
-    zoom: reset;
+    zoom: normal;
     width: 100%;
     background: #000;
     /* Fondo negro puro, sin azul */
@@ -1412,7 +1412,7 @@ body.hyperspace-active #hyperspace {
     height: auto;
     pointer-events: none;
     /* el contenedor no bloquea hover */
-    z-index: 101;
+    z-index: 2000;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1462,66 +1462,6 @@ body.hyperspace-active #hyperspace {
     border-color: #49daff;
 }
 
-.slider-infoGeneral-window {
-    position: absolute;
-    min-width: 320px;
-    max-width: 700px;
-    display: none;
-    opacity: 0;
-    border-radius: 22px;
-    box-shadow: 0 8px 32px 8px #000a, 0 0 0 8px #333, 0 0 0 16px #222;
-    overflow: hidden;
-    background: rgba(34, 34, 44, 0.98);
-    border: 3px solid #49daff;
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    transform: translateY(-10px);
-    z-index: 1001;
-}
-
-.slider-infoGeneral-window.visible {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-    animation: slideDownFade 0.4s ease forwards;
-    z-index: 1001;
-}
-
-.slider-infoCarinito-window {
-    position: absolute;
-    min-width: 320px;
-    max-width: 700px;
-    display: none;
-    opacity: 0;
-    border-radius: 22px;
-    box-shadow: 0 8px 32px 8px #000a, 0 0 0 8px #333, 0 0 0 16px #222;
-    overflow: hidden;
-    background: rgba(34, 34, 44, 0.98);
-    border: 3px solid #49daff;
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    transform: translateY(-10px);
-    z-index: 1001;
-}
-
-.slider-infoCarinito-window.visible {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-    animation: slideDownFade 0.4s ease forwards;
-    z-index: 1001;
-}
-
-@keyframes window-slide-down {
-    0% {
-        opacity: 0;
-        transform: translateY(0) scaleY(0.7);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0) scaleY(1);
-    }
-}
-
 @keyframes slideDownFade {
     0% {
         opacity: 0;
@@ -1534,12 +1474,40 @@ body.hyperspace-active #hyperspace {
     }
 }
 
-.slider-infoGeneral-window.visible {
-    animation: slideDownFade 0.4s ease forwards;
+.slider-infoGeneral-window,
+.slider-infoCarinito-window {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    min-width: unset;
+    max-width: unset;
+    min-height: unset;
+    max-height: unset;
+    display: none;
+    opacity: 0;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px 8px #000a, 0 0 0 8px #333, 0 0 0 16px #222;
+    background: rgba(34, 34, 44, 0.98);
+    border: 3px solid #49daff;
+    z-index: 10001;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    overflow-y: scroll;
+    scrollbar-width: none;
 }
 
+.slider-infoGeneral-window::-webkit-scrollbar,
+.slider-infoCarinito-window::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Edge */
+}
+
+.slider-infoGeneral-window.visible,
 .slider-infoCarinito-window.visible {
-    animation: slideDownFade 0.4s ease forwards;
+    animation: slideDownFade 2s ease forwards;
+    display: block;
+    opacity: 1;
 }
 
 .window-bg {
@@ -1572,7 +1540,7 @@ body.hyperspace-active #hyperspace {
 }
 
 .window-content li {
-    margin-bottom: 12px;
+    margin: 0px 0px 12px 24px;
 }
 
 .window-content b {
@@ -1582,22 +1550,12 @@ body.hyperspace-active #hyperspace {
 /* -------------------------------------------------------------------------------------------------*/
 /* --- Botón para ver la ubicación en el mapa --- */
 .ver-ubicacion-container {
-    /* position: fixed;
-    left: 50%;
-    top: 10%;
-    transform: translateX(-50%); */
     display: none;
-    /* z-index: 1000; */
 }
 
 /* boton de confirmar llegada  */
 .confirmar-llegada-container {
-    /* position: fixed;
-    left: 50%;
-    bottom: 10%;
-    transform: translateX(-50%); */
     display: none;
-    /* z-index: 1000; */
 }
 
 /* Oculta por defecto */
@@ -1621,7 +1579,7 @@ body.hyperspace-active #hyperspace {
 @keyframes slide-down {
     from {
         transform: translateY(-60%) translateX(-50%);
-        opacity: 1;
+        opacity: 0;
     }
 
     to {
@@ -1633,7 +1591,7 @@ body.hyperspace-active #hyperspace {
 @keyframes slide-up {
     from {
         transform: translateY(-60%) translateX(-50%);
-        opacity: 1;
+        opacity: 0;
     }
 
     to {
@@ -1645,11 +1603,11 @@ body.hyperspace-active #hyperspace {
 @keyframes slide-left {
     from {
         transform: translateY(-60%) translateX(-50%);
-        opacity: 1;
+        opacity: 0;
     }
 
     to {
-        transform: translateY(-60%) translateX(-225%);
+        transform: translateY(-60%) translateX(-210%);
         opacity: 1;
     }
 }
@@ -1657,7 +1615,7 @@ body.hyperspace-active #hyperspace {
 @keyframes slide-right {
     from {
         transform: translateY(-60%) translateX(-32%);
-        opacity: 1;
+        opacity: 0;
     }
 
     to {
@@ -1710,8 +1668,6 @@ body.hyperspace-active #hyperspace {
     color: #ffc909;
     /* opcional: darle color */
 }
-
-
 
 
 
@@ -2661,8 +2617,6 @@ body.hyperspace-active #hyperspace {
 
     /* ----------------------------------------------------------------------------------------- */
     /* --- Ventanas de información y botones en el slider --- */
-
-
     .slider-buttons-container {
         position: absolute;
         top: 50%;
@@ -2722,66 +2676,8 @@ body.hyperspace-active #hyperspace {
         border-color: #49daff;
     }
 
-    .slider-infoGeneral-window {
-        position: absolute;
-        min-width: 320px;
-        max-width: 700px;
-        display: none;
-        opacity: 0;
-        border-radius: 22px;
-        box-shadow: 0 8px 32px 8px #000a, 0 0 0 8px #333, 0 0 0 16px #222;
-        overflow: hidden;
-        background: rgba(34, 34, 44, 0.98);
-        border: 3px solid #49daff;
-        transition: opacity 0.4s ease, transform 0.4s ease;
-        transform: translateY(-10px);
-        z-index: 1001;
-    }
-
-    .slider-infoGeneral-window.visible {
-        display: block;
-        opacity: 1;
-        transform: translateY(0);
-        animation: slideDownFade 0.4s ease forwards;
-        z-index: 1001;
-    }
-
-    .slider-infoCarinito-window {
-        position: absolute;
-        min-width: 320px;
-        max-width: 700px;
-        display: none;
-        opacity: 0;
-        border-radius: 22px;
-        box-shadow: 0 8px 32px 8px #000a, 0 0 0 8px #333, 0 0 0 16px #222;
-        overflow: hidden;
-        background: rgba(34, 34, 44, 0.98);
-        border: 3px solid #49daff;
-        transition: opacity 0.4s ease, transform 0.4s ease;
-        transform: translateY(-10px);
-        z-index: 1001;
-    }
-
-    .slider-infoCarinito-window.visible {
-        display: block;
-        opacity: 1;
-        transform: translateY(0);
-        animation: slideDownFade 0.4s ease forwards;
-        z-index: 1001;
-    }
-
-    @keyframes window-slide-down {
-        0% {
-            opacity: 0;
-            transform: translateY(0) scaleY(0.7);
-        }
-
-        100% {
-            opacity: 1;
-            transform: translateY(0) scaleY(1);
-        }
-    }
-
+    /* ----------------------------------------------------------------------------------------------------------------- */
+    /* informacionGeneral y obsequios*/
     @keyframes slideDownFade {
         0% {
             opacity: 0;
@@ -2794,12 +2690,40 @@ body.hyperspace-active #hyperspace {
         }
     }
 
-    .slider-infoGeneral-window.visible {
-        animation: slideDownFade 0.4s ease forwards;
+    .slider-infoGeneral-window,
+    .slider-infoCarinito-window {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        min-width: unset;
+        max-width: unset;
+        min-height: unset;
+        max-height: unset;
+        display: none;
+        opacity: 0;
+        border-radius: 15px;
+        box-shadow: 0 8px 32px 8px #000a, 0 0 0 8px #333, 0 0 0 16px #222;
+        background: rgba(34, 34, 44, 0.98);
+        border: 3px solid #49daff;
+        z-index: 10001;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        overflow-y: scroll;
+        scrollbar-width: none;
     }
 
+    .slider-infoGeneral-window::-webkit-scrollbar,
+    .slider-infoCarinito-window::-webkit-scrollbar {
+        display: none;
+        /* Chrome, Safari, Edge */
+    }
+
+    .slider-infoGeneral-window.visible,
     .slider-infoCarinito-window.visible {
-        animation: slideDownFade 0.4s ease forwards;
+        animation: slideDownFade 2s ease forwards;
+        display: block;
+        opacity: 1;
     }
 
     .window-bg {
@@ -2832,7 +2756,7 @@ body.hyperspace-active #hyperspace {
     }
 
     .window-content li {
-        margin-bottom: 12px;
+        margin: 0px 0px 12px 24px;
     }
 
     .window-content b {
@@ -3956,66 +3880,8 @@ body.hyperspace-active #hyperspace {
         border-color: #49daff;
     }
 
-    .slider-infoGeneral-window {
-        position: absolute;
-        min-width: 320px;
-        max-width: 700px;
-        display: none;
-        opacity: 0;
-        border-radius: 22px;
-        box-shadow: 0 8px 32px 8px #000a, 0 0 0 8px #333, 0 0 0 16px #222;
-        overflow: hidden;
-        background: rgba(34, 34, 44, 0.98);
-        border: 3px solid #49daff;
-        transition: opacity 0.4s ease, transform 0.4s ease;
-        transform: translateY(-10px);
-        z-index: 1001;
-    }
-
-    .slider-infoGeneral-window.visible {
-        display: block;
-        opacity: 1;
-        transform: translateY(0);
-        animation: slideDownFade 0.4s ease forwards;
-        z-index: 1001;
-    }
-
-    .slider-infoCarinito-window {
-        position: absolute;
-        min-width: 320px;
-        max-width: 700px;
-        display: none;
-        opacity: 0;
-        border-radius: 22px;
-        box-shadow: 0 8px 32px 8px #000a, 0 0 0 8px #333, 0 0 0 16px #222;
-        overflow: hidden;
-        background: rgba(34, 34, 44, 0.98);
-        border: 3px solid #49daff;
-        transition: opacity 0.4s ease, transform 0.4s ease;
-        transform: translateY(-10px);
-        z-index: 1001;
-    }
-
-    .slider-infoCarinito-window.visible {
-        display: block;
-        opacity: 1;
-        transform: translateY(0);
-        animation: slideDownFade 0.4s ease forwards;
-        z-index: 1001;
-    }
-
-    @keyframes window-slide-down {
-        0% {
-            opacity: 0;
-            transform: translateY(0) scaleY(0.7);
-        }
-
-        100% {
-            opacity: 1;
-            transform: translateY(0) scaleY(1);
-        }
-    }
-
+    /* ----------------------------------------------------------------------------------------------------------------- */
+    /* informacionGeneral y obsequios*/
     @keyframes slideDownFade {
         0% {
             opacity: 0;
@@ -4028,12 +3894,40 @@ body.hyperspace-active #hyperspace {
         }
     }
 
-    .slider-infoGeneral-window.visible {
-        animation: slideDownFade 0.4s ease forwards;
+    .slider-infoGeneral-window,
+    .slider-infoCarinito-window {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        min-width: unset;
+        max-width: unset;
+        min-height: unset;
+        max-height: unset;
+        display: none;
+        opacity: 0;
+        border-radius: 15px;
+        box-shadow: 0 8px 32px 8px #000a, 0 0 0 8px #333, 0 0 0 16px #222;
+        background: rgba(34, 34, 44, 0.98);
+        border: 3px solid #49daff;
+        z-index: 10001;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        overflow-y: scroll;
+        scrollbar-width: none;
     }
 
+    .slider-infoGeneral-window::-webkit-scrollbar,
+    .slider-infoCarinito-window::-webkit-scrollbar {
+        display: none;
+        /* Chrome, Safari, Edge */
+    }
+
+    .slider-infoGeneral-window.visible,
     .slider-infoCarinito-window.visible {
-        animation: slideDownFade 0.4s ease forwards;
+        animation: slideDownFade 2s ease forwards;
+        display: block;
+        opacity: 1;
     }
 
     .window-bg {
@@ -4066,12 +3960,13 @@ body.hyperspace-active #hyperspace {
     }
 
     .window-content li {
-        margin-bottom: 12px;
+        margin: 0px 0px 12px 24px;
     }
 
     .window-content b {
         color: #49daff;
     }
+
 
     /* -------------------------------------------------------------------------------------------------*/
     /* --- Botón para ver la ubicación en el mapa --- */
@@ -5187,66 +5082,8 @@ body.hyperspace-active #hyperspace {
         border-color: #49daff;
     }
 
-    .slider-infoGeneral-window {
-        position: absolute;
-        min-width: 320px;
-        max-width: 700px;
-        display: none;
-        opacity: 0;
-        border-radius: 22px;
-        box-shadow: 0 8px 32px 8px #000a, 0 0 0 8px #333, 0 0 0 16px #222;
-        overflow: hidden;
-        background: rgba(34, 34, 44, 0.98);
-        border: 3px solid #49daff;
-        transition: opacity 0.4s ease, transform 0.4s ease;
-        transform: translateY(-10px);
-        z-index: 1001;
-    }
-
-    .slider-infoGeneral-window.visible {
-        display: block;
-        opacity: 1;
-        transform: translateY(0);
-        animation: slideDownFade 0.4s ease forwards;
-        z-index: 1001;
-    }
-
-    .slider-infoCarinito-window {
-        position: absolute;
-        min-width: 320px;
-        max-width: 700px;
-        display: none;
-        opacity: 0;
-        border-radius: 22px;
-        box-shadow: 0 8px 32px 8px #000a, 0 0 0 8px #333, 0 0 0 16px #222;
-        overflow: hidden;
-        background: rgba(34, 34, 44, 0.98);
-        border: 3px solid #49daff;
-        transition: opacity 0.4s ease, transform 0.4s ease;
-        transform: translateY(-10px);
-        z-index: 1001;
-    }
-
-    .slider-infoCarinito-window.visible {
-        display: block;
-        opacity: 1;
-        transform: translateY(0);
-        animation: slideDownFade 0.4s ease forwards;
-        z-index: 1001;
-    }
-
-    @keyframes window-slide-down {
-        0% {
-            opacity: 0;
-            transform: translateY(0) scaleY(0.7);
-        }
-
-        100% {
-            opacity: 1;
-            transform: translateY(0) scaleY(1);
-        }
-    }
-
+    /* ----------------------------------------------------------------------------------------------------------------- */
+    /* informacionGeneral y obsequios*/
     @keyframes slideDownFade {
         0% {
             opacity: 0;
@@ -5259,12 +5096,40 @@ body.hyperspace-active #hyperspace {
         }
     }
 
-    .slider-infoGeneral-window.visible {
-        animation: slideDownFade 0.4s ease forwards;
+    .slider-infoGeneral-window,
+    .slider-infoCarinito-window {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        min-width: unset;
+        max-width: unset;
+        min-height: unset;
+        max-height: unset;
+        display: none;
+        opacity: 0;
+        border-radius: 15px;
+        box-shadow: 0 8px 32px 8px #000a, 0 0 0 8px #333, 0 0 0 16px #222;
+        background: rgba(34, 34, 44, 0.98);
+        border: 3px solid #49daff;
+        z-index: 10001;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        overflow-y: scroll;
+        scrollbar-width: none;
     }
 
+    .slider-infoGeneral-window::-webkit-scrollbar,
+    .slider-infoCarinito-window::-webkit-scrollbar {
+        display: none;
+        /* Chrome, Safari, Edge */
+    }
+
+    .slider-infoGeneral-window.visible,
     .slider-infoCarinito-window.visible {
-        animation: slideDownFade 0.4s ease forwards;
+        animation: slideDownFade 2s ease forwards;
+        display: block;
+        opacity: 1;
     }
 
     .window-bg {
@@ -5297,32 +5162,23 @@ body.hyperspace-active #hyperspace {
     }
 
     .window-content li {
-        margin-bottom: 12px;
+        margin: 0px 0px 12px 24px;
     }
 
     .window-content b {
         color: #49daff;
     }
 
+
     /* -------------------------------------------------------------------------------------------------*/
     /* --- Botón para ver la ubicación en el mapa --- */
     .ver-ubicacion-container {
-        /* position: fixed;
-    left: 50%;
-    top: 10%;
-    transform: translateX(-50%); */
         display: none;
-        /* z-index: 1000; */
     }
 
     /* boton de confirmar llegada  */
     .confirmar-llegada-container {
-        /* position: fixed;
-    left: 50%;
-    bottom: 10%;
-    transform: translateX(-50%); */
         display: none;
-        /* z-index: 1000; */
     }
 
     /* Oculta por defecto */
@@ -6450,70 +6306,8 @@ body.hyperspace-active #hyperspace {
         border-color: #49daff;
     }
 
-    .slider-action-btn .tooltip-btn {
-        display: none;
-    }
-
-    .slider-infoGeneral-window {
-        position: absolute;
-        min-width: 320px;
-        max-width: 700px;
-        display: none;
-        opacity: 0;
-        border-radius: 22px;
-        box-shadow: 0 8px 32px 8px #000a, 0 0 0 8px #333, 0 0 0 16px #222;
-        overflow: hidden;
-        background: rgba(34, 34, 44, 0.98);
-        border: 3px solid #49daff;
-        transition: opacity 0.4s ease, transform 0.4s ease;
-        transform: translateY(-10px);
-        z-index: 1001;
-    }
-
-    .slider-infoGeneral-window.visible {
-        display: block;
-        opacity: 1;
-        transform: translateY(0);
-        animation: slideDownFade 0.4s ease forwards;
-        z-index: 1001;
-    }
-
-    .slider-infoCarinito-window {
-        position: absolute;
-        min-width: 320px;
-        max-width: 700px;
-        display: none;
-        opacity: 0;
-        border-radius: 22px;
-        box-shadow: 0 8px 32px 8px #000a, 0 0 0 8px #333, 0 0 0 16px #222;
-        overflow: hidden;
-        background: rgba(34, 34, 44, 0.98);
-        border: 3px solid #49daff;
-        transition: opacity 0.4s ease, transform 0.4s ease;
-        transform: translateY(-10px);
-        z-index: 1001;
-    }
-
-    .slider-infoCarinito-window.visible {
-        display: block;
-        opacity: 1;
-        transform: translateY(0);
-        animation: slideDownFade 0.4s ease forwards;
-        z-index: 1001;
-    }
-
-    @keyframes window-slide-down {
-        0% {
-            opacity: 0;
-            transform: translateY(0) scaleY(0.7);
-        }
-
-        100% {
-            opacity: 1;
-            transform: translateY(0) scaleY(1);
-        }
-    }
-
+    /* ----------------------------------------------------------------------------------------------------------------- */
+    /* informacionGeneral y obsequios*/
     @keyframes slideDownFade {
         0% {
             opacity: 0;
@@ -6526,12 +6320,40 @@ body.hyperspace-active #hyperspace {
         }
     }
 
-    .slider-infoGeneral-window.visible {
-        animation: slideDownFade 0.4s ease forwards;
+    .slider-infoGeneral-window,
+    .slider-infoCarinito-window {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        min-width: unset;
+        max-width: unset;
+        min-height: unset;
+        max-height: unset;
+        display: none;
+        opacity: 0;
+        border-radius: 15px;
+        box-shadow: 0 8px 32px 8px #000a, 0 0 0 8px #333, 0 0 0 16px #222;
+        background: rgba(34, 34, 44, 0.98);
+        border: 3px solid #49daff;
+        z-index: 10001;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        overflow-y: scroll;
+        scrollbar-width: none;
     }
 
+    .slider-infoGeneral-window::-webkit-scrollbar,
+    .slider-infoCarinito-window::-webkit-scrollbar {
+        display: none;
+        /* Chrome, Safari, Edge */
+    }
+
+    .slider-infoGeneral-window.visible,
     .slider-infoCarinito-window.visible {
-        animation: slideDownFade 0.4s ease forwards;
+        animation: slideDownFade 2s ease forwards;
+        display: block;
+        opacity: 1;
     }
 
     .window-bg {
@@ -6564,7 +6386,7 @@ body.hyperspace-active #hyperspace {
     }
 
     .window-content li {
-        margin-bottom: 12px;
+        margin: 0px 0px 12px 24px;
     }
 
     .window-content b {
