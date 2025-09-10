@@ -1,4 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+        alert('No está permitido en esta página.');
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (
+            e.key === 'F12' ||
+            (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) ||
+            (e.ctrlKey && e.key === 'U')
+        ) {
+            e.preventDefault();
+            alert('No está permitido en esta página.');
+        }
+    });
+
+
     // --- AÑADE ESTAS LÍNEAS AQUÍ ---
     const audioPlayer = document.getElementById('player');
     if (audioPlayer) {
@@ -558,7 +575,7 @@ document.addEventListener('DOMContentLoaded', () => {
         windowEl.style.height = '100vh';
         windowEl.scrollTop = 0; // Siempre inicia el scroll en top
     }
-    
+
     btnInfoGeneral.addEventListener('click', () => {
         infoGeneralWindow.classList.toggle('visible');
         carinitoWindow.classList.remove('visible');
