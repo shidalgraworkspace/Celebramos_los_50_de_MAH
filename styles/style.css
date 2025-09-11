@@ -70,6 +70,16 @@ body {
     /* Quitamos cualquier margen por defecto del párrafo */
 }
 
+#credits .credits-text {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 110%;
+    margin-top: 10%;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: clamp(10px, 1.5vw, 25px);
+}
+
 /* --- ESTILOS PARA EL BOTÓN DE PLAY --- */
 #play-overlay {
     position: fixed;
